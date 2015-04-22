@@ -1,16 +1,90 @@
-<html>
+<!DOCTYPE html>
+<html class="no-js">
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Bauhaus Demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
         <style type="text/css">
-            body{
-                background-image: url(doge.jpg);
-                background-repeat: repeat-x;
+			#revealAnim{
+                background-color: #594;
             }
-        </style>
+            #betweenSlidesAnimStart{
+                background-color: #898;
+            }
+            #betweenSlidesAnimEnd{
+                background-color: #E4D32B;
+            }
+		</style>
     </head>
-    <body>
-        <h1>Bem vindo a internet</h1>
-        <a href="https://github.com/andytsunami/bauhaus">
-            <img src="http://i1.kym-cdn.com/photos/images/newsfeed/000/221/156/welcome-to-internet.jpg"/>
-        </a>
+    <body class="loading">
+       	<div class="main">
+	        <section id="fadeInAnim">
+	        	<div class="section-content">
+		    		<div class="copy-container">
+			    		<h2>Ponto</h2>
+<pre><code>Ponto é a origem de tudo...
+</code></pre>
+		    		</div>
+		    		<img src="img/bauhausPoint.jpg" alt="Ponto..." />
+	        	</div>
+		    </section>
+		    <section id="revealAnim">
+		    	<div class="section-content">
+		    		<div class="copy-container">
+			    		<h2>Linha</h2>
+    <pre><code>Linhas, linhas e linhas...</code></pre>
+		    		</div>
+		    		<div class="images-container">
+			    		<img class="front" src="img/line1.jpg" alt="Linhas..." width="300" height="563"/>
+                        <img class="back" src="img/line2.jpg" alt="Linhas..." width="300" height="563"/>
+                        <img class="side" src="img/line3.jpg" alt="Linhas..." width="50" height="563"/>
+			    		
+		    		</div>
+	        	</div>
+		    </section>
+		    <section id="betweenSlidesAnimStart">
+		    	<div class="section-content">
+		    		<div class="copy-container">
+			    		<h2>Formas</h2>
+			    		<p>Muitas formas...</p>
+		    		</div>
+		    		<div class="images-container">
+		    			<img class="yellow" src="img/shape1.png" alt="Formas" />
+		    			<img class="pink" src="img/shape2.gif" alt="Formas" />
+		    			<img class="blue" src="img/shape3.jpg" alt="Formas" />
+		    		</div>
+	        	</div>
+		    </section>
+		    <section id="betweenSlidesAnimEnd">
+		    	<div class="fake-content">
+		    		<div class="images-container">
+		    			<iimg class="green" src="img/plain1.jpg" alt="Planos" />
+		    		</div>
+	        	</div>
+		    	<div class="section-content">
+		    		<div class="copy-container">
+			    		<h2>Planos...</h2>
+			    		<p>Naão achei plnaos. Então fique com essa <strong>planta</strong> ae champs....</p>
+		    		</div>
+		    		<div class="images-container">
+		    			<img class="front2" src="img/plain2.jpg" alt="iPhone" />
+		    		</div>
+	        	</div>
+		    </section>
+		    
+		</div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/onepagescroll/jquery.onepage-scroll.js"></script>
+		<link href='js/onepagescroll/onepage-scroll.css' rel='stylesheet' type='text/css'>
+        <script src="js/main.js"></script>
     </body>
 </html>
