@@ -304,11 +304,11 @@ section p {
 		transition-delay:.0s;
 	}
 
-#betweenSlidesAnimEnd .images-container {
-	width: 860px;
-	margin-top: -10px;
-	margin-left: -96px;
-}
+    #betweenSlidesAnimEnd .images-container {
+        width: 860px;
+        margin-top: -10px;
+        margin-left: -96px;
+    }
 	#betweenSlidesAnimEnd .copy-container {
 		width: 760px;
 		text-align: center;
