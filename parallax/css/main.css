@@ -585,3 +585,11 @@ section p {
         page-break-after: avoid;
     }
 }
+
+#video iframe {
+  height: 70%;
+  left: 10%;
+  position: absolute;
+  top: 10%;
+  width: 80%;
+}
