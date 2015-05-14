@@ -608,7 +608,7 @@ section p {
   -moz-transition: all 1s;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
-  background-color: rgba(255, 0, 0, 1);
+  background-color: rgba(241,226,131, 1);
   content: "";
   height: 77%;
   left: -52%;
@@ -632,7 +632,7 @@ section p {
 }
 
 #sobre h2{
-    color: #ffffff;
+    color: rgba(241,226,131, 1);
     font-size: 132px;
     margin-left: -113%;
     margin-top: -24%;
@@ -642,4 +642,9 @@ section p {
     -ms-transform: rotate(-37deg);
     -webkit-transform: rotate(-37deg);
     
+}
+
+
+#sobre h2 #historia{
+    color: #000000;
 }
