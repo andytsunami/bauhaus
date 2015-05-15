@@ -2,3 +2,9 @@ Exemplos para sobre Bauhaus
 https://www.google.com.br/?gws_rd=ssl#q=diagonal%20background%20css
 http://stackoverflow.com/questions/14739162/two-tone-background-split-by-diagonal-line-using-css
 http://jsfiddle.net/PchSZ/
+
+---
+Color pick
+
+http://blog.project-sierra.de/projects/image-color-picker
+http://stackoverflow.com/questions/7379564/image-pixel-color-picker-with-jquery
