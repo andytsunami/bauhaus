@@ -648,3 +648,22 @@ section p {
 #sobre h2 #historia{
     color: #000000;
 }
+
+#formasSection, #formas, #formasContent{
+    height: 100%;
+    margin-left: 0;
+    margin-top: 0;
+
+}
+#formasContent{
+    top:0;
+}
+#formasDireita{
+    border-left: 32px solid #FF0000;
+    width: 15%;
+    height: 100%;
+    margin-left: 113%;
+}
+#formasDireita h2{
+    word-wrap: break-word;
+}
