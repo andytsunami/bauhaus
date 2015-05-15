@@ -633,9 +633,9 @@ section p {
 
 #sobre h2{
     color: rgba(241,226,131, 1);
-    font-size: 132px;
-    margin-left: -113%;
-    margin-top: -24%;
+    font-size: 124px;
+    margin-left: -111%;
+    margin-top: -6%;
     transform: rotate(-37deg);
     width: 100%;
     z-index: 4;
