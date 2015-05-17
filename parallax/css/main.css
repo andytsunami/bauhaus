@@ -19,13 +19,12 @@
 }
 
 @font-face {
-    font-family: 'Roboto';  
+    font-family: 'Roboto-Light';  
     src: url('../font/Roboto/Roboto-Light.ttf');  
     src: url('../font/Roboto/Roboto-Light.ttf') format('truetype');
     font-weight: normal;  
     font-style: normal;  
 }
-
 
 html,
 button,
@@ -33,6 +32,7 @@ input,
 select,
 ,p,
 textarea {
+    font-family: 'Roboto-Light';
     color: #222;
 }
 
@@ -659,7 +659,7 @@ section h2 {
 }
 
 #analiseCor{
-    font-family: "Roboto";
+    font-family: 'Roboto-Light';
     width: 100%;
 }
 
