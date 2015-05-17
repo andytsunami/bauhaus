@@ -31,6 +31,7 @@ html,
 button,
 input,
 select,
+,p,
 textarea {
     color: #222;
 }
@@ -38,7 +39,6 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
-    font-family: 'Bauhaus';
 }
 
 /*
@@ -70,35 +70,11 @@ hr {
     padding: 0;
 }
 
-/*
- * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
- */
-
-img {
-    vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
 fieldset {
     border: 0;
     margin: 0;
     padding: 0;
 }
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
-
-/* ==========================================================================
-   Chrome Frame prompt
-   ========================================================================== */
 
 .chromeframe {
     margin: 0.2em 0;
@@ -118,20 +94,12 @@ pre {
  background: #faf8f0;
  font-size: 14px;
 }
-code {
- display: block;
- padding: 0.5em 1em;
- border: 1px solid #bebab0;
-}
 body, html {
 	height: 100%;
 	min-height: 100%;
 }
 .loading {
 	background: url('../img/ico_loading.gif') no-repeat center center;
-}
-#demo-content {
-	
 }
 section {
 	min-width: 960px;
@@ -155,13 +123,6 @@ section h2 {
 	margin: 0;
 	padding: 0;
 	line-height: 1em;
-}
-section p {
-	font-weight: 300;
-	margin-bottom: 30px;
-	font-size: 1.1875em;
-	line-height: 1.6316;
-	color: #808080;
 }
 .section-content,
 .fake-content {
@@ -658,12 +619,62 @@ section p {
     color: #000000;
 }
 
-#formasSection, #formas, #formasContent{
+#coresSection{
+    background-color: #ECE084; 
+}
+
+#coresSection, #cores, #coresContainer{
     height: 100%;
     margin-left: 0;
     margin-top: 0;
+    top:0;
 
 }
-#formasContent{
+#cores{
     top:0;
+}
+
+#coresContainer{
+    left: 0;
+    width: 33%;
+}
+
+#coresContainer h2, #imgCirculo{
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-left: 20%;
+    margin-top: 10%;
+}
+#imgCirculo{
+    width: 94%;
+}
+#coresEsquerda{
+    float: left;
+}
+#coresDireita{
+    margin-left: 64%;
+    padding-left: 95%;
+    padding-top: 15%;
+    width: 120%;
+}
+
+#analiseCor{
+    font-family: "Roboto";
+    width: 100%;
+}
+
+#imagemCor, #fotoProfessor{
+    border: 10px solid #39B54A;
+    margin: 1%;
+}
+
+#fotoProfessor{   
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+#imagemCor{
+    width: 100%;
+    height: 100px;
 }
