@@ -16,7 +16,16 @@
     src: url('../font/Bauhausb.ttf') format('truetype');
     font-weight: normal;  
     font-style: normal;  
-}  
+}
+
+@font-face {
+    font-family: 'Roboto';  
+    src: url('../font/Roboto/Roboto-Light.ttf');  
+    src: url('../font/Roboto/Roboto-Light.ttf') format('truetype');
+    font-weight: normal;  
+    font-style: normal;  
+}
+
 
 html,
 button,
@@ -657,13 +666,4 @@ section p {
 }
 #formasContent{
     top:0;
-}
-#formasDireita{
-    border-left: 32px solid #FF0000;
-    width: 15%;
-    height: 100%;
-    margin-left: 113%;
-}
-#formasDireita h2{
-    word-wrap: break-word;
 }
