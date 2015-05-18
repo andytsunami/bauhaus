@@ -1,3 +1,12 @@
+var canvas;
+var ctx;
+
+var images = [ // predefined array of used images
+    'img/circulo.png',
+];
+
+var iActiveImage = 0;
+
 $(document).ready(function(){
 
 	$(".main").onepage_scroll({
@@ -7,6 +16,33 @@ $(document).ready(function(){
 	   pagination: true, // You can either show or hide the pagination. Toggle true for show, false for hide.
 	   updateURL: false // Toggle this true if you want the URL to be updated automatically when the user scroll to each page.
 	});
+    
+    
+    //Circulo cromatico
+    var image = new Image();
+    image.onload = function () {
+        ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
+    }
+    image.src = images[iActiveImage];
+
+    // creating canvas object
+    canvas = document.getElementById('circuloCanva');
+    ctx = canvas.getContext('2d');
+    
+    
+    $('#circuloCanva').mousemove(function(e) { // mouse move handler
+        var canvasOffset = $(canvas).offset();
+        var canvasX = Math.floor(e.pageX - canvasOffset.left);
+        var canvasY = Math.floor(e.pageY - canvasOffset.top);
+
+        var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
+        var pixel = imageData.data;
+
+        var pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
+        var hexCor = +pixel[2]+256*+pixel[1]+65536 * +pixel[0];
+        $('#fotoProfessor,#imagemCor').css('backgroundColor', pixelColor).text("#"+hexCor.toString(16));
+        
+    });
 	
 });
 
