@@ -30,7 +30,7 @@ $(document).ready(function(){
     ctx = canvas.getContext('2d');
     
     
-    $('#circuloCanva').mousemove(function(e) { // mouse move handler
+    $('#circuloCanva').click(function(e) { // mouse move handler
         var canvasOffset = $(canvas).offset();
         var canvasX = Math.floor(e.pageX - canvasOffset.left);
         var canvasY = Math.floor(e.pageY - canvasOffset.top);

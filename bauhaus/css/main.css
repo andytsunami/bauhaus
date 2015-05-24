@@ -16,20 +16,29 @@
     src: url('../font/Bauhausb.ttf') format('truetype');
     font-weight: normal;  
     font-style: normal;  
-}  
+}
+
+@font-face {
+    font-family: 'Roboto-Light';  
+    src: url('../font/Roboto/Roboto-Light.ttf');  
+    src: url('../font/Roboto/Roboto-Light.ttf') format('truetype');
+    font-weight: normal;  
+    font-style: normal;  
+}
 
 html,
 button,
 input,
 select,
+,p,
 textarea {
+    font-family: 'Roboto-Light';
     color: #222;
 }
 
 body {
     font-size: 1em;
     line-height: 1.4;
-    font-family: 'Bauhaus';
 }
 
 /*
@@ -61,35 +70,11 @@ hr {
     padding: 0;
 }
 
-/*
- * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
- */
-
-img {
-    vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
 fieldset {
     border: 0;
     margin: 0;
     padding: 0;
 }
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
-
-/* ==========================================================================
-   Chrome Frame prompt
-   ========================================================================== */
 
 .chromeframe {
     margin: 0.2em 0;
@@ -109,20 +94,12 @@ pre {
  background: #faf8f0;
  font-size: 14px;
 }
-code {
- display: block;
- padding: 0.5em 1em;
- border: 1px solid #bebab0;
-}
 body, html {
 	height: 100%;
 	min-height: 100%;
 }
 .loading {
 	background: url('../img/ico_loading.gif') no-repeat center center;
-}
-#demo-content {
-	
 }
 section {
 	min-width: 960px;
@@ -146,13 +123,6 @@ section h2 {
 	margin: 0;
 	padding: 0;
 	line-height: 1em;
-}
-section p {
-	font-weight: 300;
-	margin-bottom: 30px;
-	font-size: 1.1875em;
-	line-height: 1.6316;
-	color: #808080;
 }
 .section-content,
 .fake-content {
@@ -304,11 +274,11 @@ section p {
 		transition-delay:.0s;
 	}
 
-#betweenSlidesAnimEnd .images-container {
-	width: 860px;
-	margin-top: -10px;
-	margin-left: -96px;
-}
+    #betweenSlidesAnimEnd .images-container {
+        width: 860px;
+        margin-top: -10px;
+        margin-left: -96px;
+    }
 	#betweenSlidesAnimEnd .copy-container {
 		width: 760px;
 		text-align: center;
@@ -584,4 +554,132 @@ section p {
     h3 {
         page-break-after: avoid;
     }
+}
+
+#video iframe {
+  height: 70%;
+  left: 10%;
+  position: absolute;
+  top: 10%;
+  width: 80%;
+}
+
+#sobre {
+    background-color: #000000;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+#sobre:before { 
+  background-color: rgb(255, 0, 0); /* fallback */
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  background-color: rgba(241,226,131, 1);
+  content: "";
+  height: 77%;
+  left: -52%;
+  position: absolute;
+  top: -37%;
+  transform: rotate(323deg);
+  transition: all 1s ease 0s;
+  width: 162%;
+}
+
+#sobre.topLeft:before {
+    top: -100px;
+    left: -100px;
+    width: 600px;
+    height: 600px;
+}
+
+#sobre.bottomRight:before {
+    top: 300px;
+    left: 300px;
+}
+
+#sobre h2{
+    color: rgba(241,226,131, 1);
+    font-size: 124px;
+    margin-left: -111%;
+    margin-top: -6%;
+    transform: rotate(-37deg);
+    width: 100%;
+    z-index: 4;
+    -ms-transform: rotate(-37deg);
+    -webkit-transform: rotate(-37deg);
+    
+}
+
+
+#sobre h2 #historia{
+    color: #000000;
+}
+
+#coresSection{
+    background-color: #ECE084; 
+}
+
+#coresSection, #cores, #coresContainer{
+    height: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    top:0;
+
+}
+#cores{
+    top:0;
+}
+
+#coresContainer{
+    left: 0;
+    width: 33%;
+}
+
+#coresContainer h2, #imgCirculo{
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-left: 20%;
+    margin-top: 10%;
+}
+#imgCirculo{
+    width: 94%;
+}
+#coresEsquerda{
+    float: left;
+}
+#coresDireita{
+    margin-left: 64%;
+    padding-left: 95%;
+    padding-top: 15%;
+    width: 120%;
+}
+
+#circuloCanva{
+    margin-left: 5%;
+}
+
+#analiseCor{
+    font-family: 'Roboto-Light';
+    width: 100%;
+}
+
+#imagemCor, #fotoProfessor{
+    border: 10px solid #39B54A;
+    margin-right: 3%;
+    margin-bottom: 1%;
+}
+
+#fotoProfessor{   
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+#imagemCor{
+    width: 100%;
+    height: 100px;
 }
