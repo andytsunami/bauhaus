@@ -718,6 +718,8 @@ section h2 {
 
 #designMaterial h3{
     font-family: "Roboto";
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 .designConteudo{
@@ -725,7 +727,17 @@ section h2 {
 }
 
 #designEsquerda, #designCentro, #designDireita{
-    width: 25%;
-    padding: 2%;
-    margin: 2%;
+    margin: 0.5% 2% 2%;
+    padding: 1%;
+    width: 27%;
+}
+
+#designMaterial img{
+    width: 256px;
+}
+
+#designMaterial p {
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: justify;
 }
