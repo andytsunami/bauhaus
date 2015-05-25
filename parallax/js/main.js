@@ -46,11 +46,12 @@ $(document).ready(function(){
         
         $('#fotoProfessor, #imagemCor').css('border-color',pixelColor);
         
-        $('#imgProfessor, #imgCor').remove();
+        $('#imgProfessor, #imgCor, #analiseCor').remove();
         
         $('#fotoProfessor').html('<img id="imgProfessor" src="img/cores/'+hexa+'-cima.jpg">');
         $('#imagemCor').html('<img id="imgCor" src="img/cores/'+hexa+'-baixo.jpg">');
         
+        $('#containerAnaliseCor').html($("#"+hexa).val());
         
     });
 	
