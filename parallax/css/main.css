@@ -572,7 +572,6 @@ section h2 {
     overflow: hidden;
     position: relative;
     width: 1024px;
-    margin-left: 25%;
 }
 
 #sobreSection{
@@ -638,6 +637,7 @@ section h2 {
 }
 #cores{
     top:0;
+    padding-bottom: 1%;
 }
 
 #coresContainer{
@@ -698,8 +698,10 @@ section h2 {
 }
 
 #imagemCor{
+    float: left;
+    height: 100%;
+    margin-bottom: 1%;
     width: 100%;
-    height: 100px;
 }
 
 .header-material{
@@ -742,4 +744,36 @@ section h2 {
     font-size: 13px;
     line-height: 1.6;
     text-align: justify;
+}
+
+#tipografia{
+    background-color: #E4E2D2;
+}
+
+#textoTipografia{
+    float: left;
+    margin-top: 12%;
+    text-align: justify;
+    width: 45%;
+}
+
+#textoTipografia h2{
+    margin-bottom: 8%;
+}
+
+#letrao{
+    font-size: 200px;
+    width: 45%;
+    color: #FFFFFF;
+    float: left;
+}
+
+#letrao h2{
+    -webkit-transform: rotate(-23deg);
+    -moz-transform: rotate(-23deg);
+    color: #ffffff;
+    font-size: 366px;
+    margin: 9% 0 1px 17%;
+    transform: rotate(-23deg);
+    text-shadow: -18px 14px 0 #000000;
 }
