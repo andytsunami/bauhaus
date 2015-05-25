@@ -777,3 +777,14 @@ section h2 {
     transform: rotate(-23deg);
     text-shadow: -18px 14px 0 #000000;
 }
+
+#hrInferior, #hrSuperior{
+    border: 8px solid black;
+}
+
+#hrSuperior{
+    margin-top: 1%;
+}
+#hrInferior{
+    margin-top: 70%;
+}
