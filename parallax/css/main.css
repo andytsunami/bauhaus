@@ -571,7 +571,12 @@ section h2 {
     height: 100%;
     overflow: hidden;
     position: relative;
-    width: 100%;
+    width: 1024px;
+    margin-left: 25%;
+}
+
+#sobreSection{
+    background-color: #000000;
 }
 
 #sobre:before { 
