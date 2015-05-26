@@ -10,27 +10,13 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+
 @font-face {  
     font-family: 'Bauhaus';  
     src: url('../font/Bauhaus_.ttf');  
     src: url('../font/Bauhausb.ttf') format('truetype');
     font-weight: normal;  
-    font-style: normal;  
-}
-
-@font-face {
-    font-family: 'Roboto-Light';  
-    src: url('../font/roboto/Roboto-Light.ttf');  
-    src: url('../font/roboto/Roboto-Light.ttf') format('truetype');
-    font-weight: normal;  
-    font-style: normal;  
-}
-
-@font-face {
-    font-family: 'Roboto-Bold';  
-    src: url('../font/roboto/Roboto-Bold');
-    src: url('../font/roboto/Roboto-Bold') format('truetype');
-    font-weight: normal;
     font-style: normal;  
 }
 
@@ -40,11 +26,12 @@ input,
 select,
 ,p,
 textarea {
-    font-family: 'Roboto-Light';
     color: #222;
 }
 
 body {
+    font-family: 'Roboto';
+    font-weight: 200 !important;
     font-size: 1em;
     line-height: 1.4;
 }
@@ -366,7 +353,14 @@ section h2 {
 				font-family: 'Bauhaus', sans-serif;
 				font-weight: normal;
 				padding-left: 80px;
-			}
+			}   
+
+            h3{
+                font-family: 'Roboto';
+                font-weight: bold;
+            }
+
+
 			.entry-header .inner {
 				text-align: left;
 				margin: 0 auto 20px auto;
@@ -577,7 +571,11 @@ section h2 {
     height: 100%;
     overflow: hidden;
     position: relative;
-    width: 100%;
+    width: 1024px;
+}
+
+#sobreSection{
+    background-color: #000000;
 }
 
 #sobre:before { 
@@ -611,15 +609,14 @@ section h2 {
 
 #sobre h2{
     color: rgba(241,226,131, 1);
-    font-size: 124px;
-    margin-left: -111%;
-    margin-top: -6%;
+    font-size: 128px;
+    margin-left: -138%;
+    margin-top: -10%;
     transform: rotate(-37deg);
-    width: 100%;
+    width: 220%;
     z-index: 4;
     -ms-transform: rotate(-37deg);
     -webkit-transform: rotate(-37deg);
-    
 }
 
 
@@ -640,6 +637,7 @@ section h2 {
 }
 #cores{
     top:0;
+    padding-bottom: 1%;
 }
 
 #coresContainer{
@@ -679,7 +677,6 @@ section h2 {
 }
 
 #analiseCor{
-    font-family: 'Roboto-Light';
     width: 100%;
 }
 
@@ -689,6 +686,11 @@ section h2 {
     margin-bottom: 1%;
 }
 
+#imgProfessor, #imgCor{
+    height: 100%;
+    width: 100%;
+}
+
 #fotoProfessor{   
     width: 100px;
     height: 100px;
@@ -696,8 +698,10 @@ section h2 {
 }
 
 #imagemCor{
+    float: left;
+    height: 100%;
+    margin-bottom: 1%;
     width: 100%;
-    height: 100px;
 }
 
 .header-material{
@@ -740,4 +744,47 @@ section h2 {
     font-size: 13px;
     line-height: 1.6;
     text-align: justify;
+}
+
+#tipografia{
+    background-color: #E4E2D2;
+}
+
+#textoTipografia{
+    float: left;
+    margin-top: 12%;
+    text-align: justify;
+    width: 45%;
+}
+
+#textoTipografia h2{
+    margin-bottom: 8%;
+}
+
+#letrao{
+    font-size: 200px;
+    width: 45%;
+    color: #FFFFFF;
+    float: left;
+}
+
+#letrao h2{
+    -webkit-transform: rotate(-23deg);
+    -moz-transform: rotate(-23deg);
+    color: #ffffff;
+    font-size: 366px;
+    margin: 9% 0 1px 17%;
+    transform: rotate(-23deg);
+    text-shadow: -18px 14px 0 #000000;
+}
+
+#hrInferior, #hrSuperior{
+    border: 8px solid black;
+}
+
+#hrSuperior{
+    margin-top: 1%;
+}
+#hrInferior{
+    margin-top: 70%;
 }

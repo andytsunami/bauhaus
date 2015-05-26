@@ -1,6 +1,6 @@
-39b44a verde
-fbed21 Amarelo
-571bb Azul
-d2145a Lilas
-672d90 Roxo
-f5921e Laranja
+39b44a verde Johannes Itten
+fbed21 Amarelo Johannes Itten 2
+571bb Azul Paul Klee
+d2145a Lilas Wassily Kandinsky
+672d90 Roxo Josef Albers
+f5921e Laranja Johann Wolfgang von Goethe
