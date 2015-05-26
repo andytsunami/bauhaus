@@ -30,7 +30,7 @@ $(document).ready(function(){
     ctx = canvas.getContext('2d');
     
     
-    $('#circuloCanva').mousemove(function(e) { // mouse move handler
+    $('#circuloCanva').click(function(e) { // mouse move handler
         var canvasOffset = $(canvas).offset();
         var canvasX = Math.floor(e.pageX - canvasOffset.left);
         var canvasY = Math.floor(e.pageY - canvasOffset.top);
@@ -40,7 +40,20 @@ $(document).ready(function(){
 
         var pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
         var hexCor = +pixel[2]+256*+pixel[1]+65536 * +pixel[0];
-        $('#fotoProfessor,#imagemCor').css('backgroundColor', pixelColor).text("#"+hexCor.toString(16));
+        var hexa = hexCor.toString(16);
+        
+       // $('#fotoProfessor,#imagemCor').css('backgroundColor', pixelColor).text("#"+hexCor.toString(16));
+        
+        $('#fotoProfessor, #imagemCor').css('border-color',pixelColor);
+        
+        $('#imgProfessor, #imgCor, #analiseCor').remove();
+        
+        
+        $('#fotoProfessor').html('<img id="imgProfessor" src="img/cores/'+hexa+'-cima.jpg">');
+        $('#imagemCor').html('<img id="imgCor" src="img/cores/'+hexa+'-baixo.jpg">');
+        
+        $('#containerAnaliseCor').html("<h3 id='nomeProfessor'>"+$("#"+hexa).attr('data-nomeProfessor')+"</h3>"+$("#"+hexa).val());
+        
         
     });
 	
