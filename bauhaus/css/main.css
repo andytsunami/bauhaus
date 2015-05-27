@@ -721,16 +721,16 @@ section h2 {
     padding: 28px 15px 15px 58px;
 }
 
-#designMaterial{
+.sectionMaterial{
     font-family: "Roboto";
 }
 
-#designMaterial h2{
+.sectionMaterial h2{
     color: #FFFFFF;
     font-family: "Roboto";
 }
 
-#designMaterial h3{
+.sectionMaterial h3{
     font-family: "Roboto";
     margin-bottom: 1%;
     margin-top: 1%;
@@ -750,7 +750,7 @@ section h2 {
      width: 358px;
 }
 
-#designMaterial p {
+.sectionMaterial p {
     font-size: 16px;
     line-height: 1.6;
     text-align: justify;
@@ -914,4 +914,109 @@ section h2 {
     margin-left: 5%;
     margin-top: 10%;
     width: 44%;
+}
+
+.sectionMaterial{
+    background-color: #E3E3E3;
+}
+
+.cardBauhaus{
+    background-color: #ffffff;
+    background-position: center bottom;
+    float: left !important;
+    height: 24%;
+    margin-left: 7%;
+    width: 49%;
+}
+
+.sombra{
+    box-shadow: -6px 7px 5px 1px #888888;
+}
+
+.cardBauhaus p{
+    background-color: #ffffff;
+    font-size: 13px;
+    margin-top: 105px;
+    padding: 5%;
+}
+
+#cardEsquerda{
+     background-image: url("../img/backCard1.png");
+    background-size: 93% auto;
+    margin-top: 8%;
+}
+#cardDireita{
+    background-image: url("../img/backCard2.png");
+    background-size: 98% auto;
+    margin-top: 11%;
+}
+#nexus{
+    margin-left: 65%;
+    margin-top: 8%;
+    width: 27%;
+}
+
+#nexus img {
+    height: 100%;
+    width: 100%;
+}
+
+.comparaCor, .comparaForm{
+    float: left;
+    margin-top: 15%;
+}
+
+.comparaCor img, .comparaForm img, .comparaTip img{
+    width: 100%;
+    height: 100%;
+}
+
+#comp1{
+    margin-left: 5%;
+    width: 32%;
+}
+
+#comp2{
+    margin-left: 19%;
+    margin-top: 7%;
+    width: 24%;
+}
+
+.comparaCor p, .comparaForm p, .comparaTip p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    padding-top: 5%;
+    text-align: center;
+}
+
+#compForm1{
+    margin-left: 5%;
+    width: 32%;
+}
+
+#compForm2{
+    margin-left: 7%;
+    margin-top: 15%;
+    width: 36%;
+}
+
+.azul{
+    color: #01579B;
+}
+
+#compTip1{
+   margin-left: 6%;
+    margin-top: 15%;
+    width: 21%;
+}
+#compTip2{
+    margin-left: 58%;
+    margin-top: -30%;
+    width: 30%;
+}
+#compTip3{
+    margin-left: 27%;
+    margin-top: 1%;
+    width: 35%;
 }
