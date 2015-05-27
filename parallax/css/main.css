@@ -961,18 +961,18 @@ section h2 {
     width: 100%;
 }
 
-.comparaCor{
+.comparaCor, .comparaForm{
     float: left;
-    margin-top: 10%;
+    margin-top: 15%;
 }
 
-.comparaCor img{
+.comparaCor img, .comparaForm img, .comparaTip img{
     width: 100%;
     height: 100%;
 }
 
 #comp1{
-     margin-left: 5%;
+    margin-left: 5%;
     width: 32%;
 }
 
@@ -982,10 +982,41 @@ section h2 {
     width: 24%;
 }
 
-.comparaCor p{
+.comparaCor p, .comparaForm p, .comparaTip p{
     font-size: 16px;
     font-weight: 400;
     line-height: 1.6;
     padding-top: 5%;
     text-align: center;
+}
+
+#compForm1{
+    margin-left: 5%;
+    width: 32%;
+}
+
+#compForm2{
+    margin-left: 7%;
+    margin-top: 15%;
+    width: 36%;
+}
+
+.azul{
+    color: #01579B;
+}
+
+#compTip1{
+   margin-left: 6%;
+    margin-top: 15%;
+    width: 21%;
+}
+#compTip2{
+    margin-left: 58%;
+    margin-top: -30%;
+    width: 30%;
+}
+#compTip3{
+    margin-left: 27%;
+    margin-top: 1%;
+    width: 35%;
 }
