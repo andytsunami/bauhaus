@@ -1,0 +1,14 @@
+{
+  "name": "Bauhaus",
+  "description": "Teste do meu site",
+  "launch_path": "/bauhaus",
+  "icons": {
+    "128": "icon-128.png"
+  },
+
+  "developer": {
+    "name": "Vasconcelandia",
+    "url": "http://www.vasconcelandia.com.br"
+  },
+  "default_locale": "pt"
+}
