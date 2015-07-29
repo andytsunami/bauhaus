@@ -1,5 +1,5 @@
 {
-  "lang": "pt",
+  "lang": "en",
   "name": "Vasconcelandia Bauhaus",
   "short_name": "bauhaus",
   "icons": [{
@@ -36,6 +36,5 @@
   "scope": "/racer/",
   "start_url": "index.html",
   "display": "standalone",
-  "orientation": "any",
   "theme_color": "aliceblue"
 }
