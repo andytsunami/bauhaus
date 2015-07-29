@@ -1,19 +1,27 @@
 {
-  "lang": "en",
-  "name": "Super Racer 2000",
-  "short_name": "Racer2K",
+  "lang": "pt",
+  "name": "Vasconcelandia Bauhaus",
+  "short_name": "bauhaus",
   "icons": [{
-        "src": "icon/lowres",
-        "sizes": "64x64",
-        "type": "image/webp"
-      }, {
-        "src": "icon/hd_small",
-        "sizes": "64x64"
-      }, {
-        "src": "icon/hd_hi",
+        "src": "logos/Logo96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+           {
+        "src": "logos/Logo128.png",
         "sizes": "128x128",
-        "density": 2
-      }],
+        "type": "image/png"
+      },
+           {
+        "src": "logos/Logo144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      },
+           {
+        "src": "logos/Logo192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },],
   "splash_screens": [{
         "src": "splash/lowres",
         "sizes": "320x240"
@@ -26,8 +34,8 @@
         "density": 3
       }],
   "scope": "/racer/",
-  "start_url": "/racer/start.html",
-  "display": "fullscreen",
-  "orientation": "landscape",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "any",
   "theme_color": "aliceblue"
 }
