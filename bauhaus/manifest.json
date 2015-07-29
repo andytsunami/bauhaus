@@ -10,7 +10,10 @@
     "orientation": "any",
     "theme_color": "aliceblue",
   "icons": {
-    "128": "icon-128.png"
+    "96": "logos/Logo96.png",
+    "128": "logos/Logo128.png",
+    "144": "logos/Logo144.png",
+    "192": "logos/Logo192.png",
   },
 
   "developer": {
