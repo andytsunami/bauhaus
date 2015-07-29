@@ -1,15 +1,8 @@
 {
-  "name": "Bauhaus",
-  "description": "Teste do meu site",
-  "launch_path": "/bauhaus",
-  "lang" : "pt",
-  "start_url" : "http://www.vasconcelandia.com.br/bauhaus",
-    "short_name" : "WWWVasconcelandiaComBr",
-    "scope" : "/",
-    "display": "fullscreen",
-    "orientation": "any",
-    "theme_color": "aliceblue",
-  "icons": [
+    "lang": "pt",
+    "name": "Vasconcelandia Bauhaus",
+    "short_name": "Bauhaus",
+    "icons": [
       {
          "src": "logos/Logo96.png",
           "sizes" : "",
@@ -27,9 +20,9 @@
           "sizes" : "",
       },
   ],
-
-  "developer": {
-    "name": "Vasconcelandia",
-    "url": "http://www.vasconcelandia.com.br/bauhaus"
-  },
+    "start_url": "",
+    "scope": "/",
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "theme_color": "aliceblue"
 }
