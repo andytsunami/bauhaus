@@ -1,0 +1,20 @@
+{
+  "name": "Bauhaus",
+  "description": "Teste do meu site",
+  "launch_path": "/bauhaus",
+  "lang" : "pt",
+  "start_url" : "http://www.vasconcelandia.com.br/bauhaus",
+    "short_name" : "WWWVasconcelandiaComBr",
+    "scope" : "/",
+    "display": "fullscreen",
+    "orientation": "any",
+    "theme_color": "aliceblue",
+  "icons": {
+    "128": "icon-128.png"
+  },
+
+  "developer": {
+    "name": "Vasconcelandia",
+    "url": "http://www.vasconcelandia.com.br/bauhaus"
+  },
+}
