@@ -9,12 +9,24 @@
     "display": "fullscreen",
     "orientation": "any",
     "theme_color": "aliceblue",
-  "icons": {
-    "96": "logos/Logo96.png",
-    "128": "logos/Logo128.png",
-    "144": "logos/Logo144.png",
-    "192": "logos/Logo192.png",
-  },
+  "icons": [
+      {
+         "src": "logos/Logo96.png",
+          "sizes" : "",
+      },
+      {
+        "src": "logos/Logo128.png",
+          "sizes" : "",
+      },
+      {
+        "src": "logos/Logo144.png",
+          "sizes" : "",
+      },
+      {
+        "src": "logos/Logo192.png",
+          "sizes" : "",
+      },
+  ],
 
   "developer": {
     "name": "Vasconcelandia",
