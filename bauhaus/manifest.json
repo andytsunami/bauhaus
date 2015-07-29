@@ -25,7 +25,7 @@
       },
   ],
     "start_url": "http://www.vasconcelandia.com.br/bauhaus",
-    "scope": "/",
-    "display": "fullscreen",
+    "scope": "/index.html",
+    "display": "standalone",
     "orientation": "any"
 }
