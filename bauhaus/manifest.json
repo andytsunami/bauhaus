@@ -4,25 +4,24 @@
     "short_name": "Bauhaus",
     "icons": [
       {
-         "src": "logos/Logo96.png",
-          "sizes" : "",
+         "src" : "logos/Logo96.png",
+          "sizes" : "96x96",
       },
       {
-        "src": "logos/Logo128.png",
-          "sizes" : "",
+        "src" : "logos/Logo128.png",
+          "sizes" : "128x128",
       },
       {
-        "src": "logos/Logo144.png",
-          "sizes" : "",
+        "src" : "logos/Logo144.png",
+          "sizes" : "144x144",
       },
       {
-        "src": "logos/Logo192.png",
-          "sizes" : "",
+        "src" : "logos/Logo192.png",
+          "sizes" : "192x192",
       },
   ],
-    "start_url": "",
+    "start_url": "http://www.vasconcelandia.com.br/bauhaus",
     "scope": "/",
     "display": "fullscreen",
-    "orientation": "portrait",
-    "theme_color": "aliceblue"
+    "orientation": "any"
 }
