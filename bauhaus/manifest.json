@@ -1,31 +1,33 @@
 {
-    "lang": "pt",
-    "name": "Vasconcelandia Bauhaus",
-    "short_name": "Bauhaus",
-    "icons": [
-      {
-         "src" : "logos/Logo96.png",
-          "sizes" : "96x96",
-          "type": "image/png"
-      },
-      {
-        "src" : "logos/Logo128.png",
-          "sizes" : "128x128",
-          "type": "image/png"
-      },
-      {
-        "src" : "logos/Logo144.png",
-          "sizes" : "144x144",
-          "type": "image/png"
-      },
-      {
-        "src" : "logos/Logo192.png",
-          "sizes" : "192x192",
-          "type": "image/png"
-      },
-  ],
-    "start_url": "http://www.vasconcelandia.com.br/bauhaus",
-    "scope": "/index.html",
-    "display": "standalone",
-    "orientation": "any"
+  "lang": "en",
+  "name": "Super Racer 2000",
+  "short_name": "Racer2K",
+  "icons": [{
+        "src": "icon/lowres",
+        "sizes": "64x64",
+        "type": "image/webp"
+      }, {
+        "src": "icon/hd_small",
+        "sizes": "64x64"
+      }, {
+        "src": "icon/hd_hi",
+        "sizes": "128x128",
+        "density": 2
+      }],
+  "splash_screens": [{
+        "src": "splash/lowres",
+        "sizes": "320x240"
+      }, {
+        "src": "splash/hd_small",
+        "sizes": "1334x750"
+      }, {
+        "src": "splash/hd_hi",
+        "sizes": "1920x1080",
+        "density": 3
+      }],
+  "scope": "/racer/",
+  "start_url": "/racer/start.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "theme_color": "aliceblue"
 }
