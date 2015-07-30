@@ -2,8 +2,7 @@
   "lang": "en",
   "name": "Vasconcelandia Bauhaus",
   "short_name": "bauhaus",
-  "scope": "/",
-  "start_url": "",
+  "start_url": "http://www.vasconcelandia.com.br/bauhaus",
   "display": "standalone",
   "theme_color": "aliceblue"
 }
