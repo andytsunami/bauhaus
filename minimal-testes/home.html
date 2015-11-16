@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Trabalho Design Digital">
+		<meta name="author" content="André Vasconcelos">
+        
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="estilo.css">
+        
+        <script type="text/javascript" src="jquery-1.11.3.js"></script>
+        <script src="menu.js"></script>
+        
+        
+        <script type="text/javascript">
+			$(document).ready(function() {
+                $(".sub").hover(function(){
+                    $(this).toggleClass("extende","contrai");
+                });
+                
+			});
+			
+		</script>
+        
+                
+    </head>
+    
+    <body>
+        <div class="item">
+            <span>+</span>
+            <div class="contents lala">These are the contents of this div</div>
+        </div><br/><br/><br/>
+        <div class="item">
+            <span>+</span>
+            <div class="contents lala">These are the contents of this div</div>
+        </div><br/><br/><br/>
+        <div class="item">
+            <span>+</span>
+            <div class="contents lala">These are the contents of this div</div>
+        </div><br/><br/>
+        
+        
+        <ul class="menu">
+            <li class="sub" id="pri">Menu 01</li>
+            <li class="sub" id="seg">Menu 02</li>
+            <li class="sub" id="terc">Menu 03</li>
+            <li class="sub" id="quat">Menu 04</li>
+        </ul>
+    </body>
+</html>

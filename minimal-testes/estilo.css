@@ -1,0 +1,89 @@
+.item {
+    background:#DDD;
+    padding:1%;
+    display:inline;
+    height:20px;
+}
+
+
+span {
+    width: 1%;
+}
+
+.contents {
+    background:#c3c;
+    overflow:hidden;
+    white-space:nowrap;
+    display:inline-block;
+    width:0%;
+}
+
+
+
+.item:hover .contents{
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+    
+   width: 90%;
+    
+}
+
+.menu{
+    margin-top: 5%;
+    padding:1%;
+    height:auto;
+    background: #ccc;
+    width: 25%;
+    
+}
+
+.sub{
+    background: #c3c;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    width: 5%;
+    margin: 1%;
+    text-align: center;
+}
+
+.extende{
+    
+    -webkit-transition: width 400ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+   -moz-transition: width 400ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+     -o-transition: width 400ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+        transition: width 400ms cubic-bezier(0.250, 0.460, 0.450, 0.940); /* easeOutQuad */
+    
+    -webkit-transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+   -moz-transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+     -o-transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+        transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940); /* easeOutQuad */
+    
+    width: 90%;
+}
+
+.contrai{
+    
+        
+    width: 5%;
+    
+}
+
+#pri{
+      max-width: 90%;
+}
+
+#pri{
+      max-width: 80%;
+}
+
+#pri{
+      max-width: 70%;
+}
+
+#pri{
+      max-width: 60%;
+}
