@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - effects - stereo</title>
+		<title>INTERNET VR</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -12,32 +12,14 @@
 				font-weight: bold;
 				overflow:hidden;
 			}
-
-			#info {
-				position: absolute;
-				top: 0px; width: 100%;
-				color: #ffffff;
-				padding: 5px;
-				font-family:Monospace;
-				font-size:13px;
-				text-align:center;
-				z-index:1000;
-			}
-
-			a {
-				color: #ffffff;
-			}
-
 			#oldie a { color:#da0 }
 		</style>
 	</head>
 
 	<body>
-		<div id="info">
-			<a href="http://threejs.org" target="_blank">three.js</a> - effects - stereo. skybox by <a href="http://www.zfight.com/" target="_blank">Jochum Skoglund</a>
-		</div>
-
 		<script src="build/three.min.js"></script>
+		
+		<script src="js/effects/CardboardEffect.js"></script>
 
 		<script src="js/effects/StereoEffect.js"></script>
 
@@ -75,25 +57,43 @@
 				camera.position.z = 3200;
 
 				scene = new THREE.Scene();
+				
+				var rectLength = 512, rectWidth = 512;
 
-				var geometry = new THREE.SphereBufferGeometry( 100, 32, 16 );
+				var rectShape = new THREE.Shape();
+				rectShape.moveTo( 0,0 );
+				rectShape.lineTo( 0, rectWidth );
+				rectShape.lineTo( rectLength, rectWidth );
+				rectShape.lineTo( rectLength, 0 );
+				rectShape.lineTo( 0, 0 );
 
+				var geometry = new THREE.ShapeGeometry( rectShape );
+				
+				
 				var path = "skybox/";
 				var format = '.jpg';
 				var urls = [
 					path + 'px' + format, path + 'nx' + format,
 					path + 'py' + format, path + 'ny' + format,
 					path + 'pz' + format, path + 'nz' + format
+					
 				];
+				
+				var textura = new THREE.TextureLoader().load("zaca.png");
+				//var textura = THREE.ImageUtils.loadTexture('zaca.png');
+
 
 				var textureCube = new THREE.CubeTextureLoader().load( urls );
 				textureCube.mapping = THREE.CubeRefractionMapping;
+				
+				
+				var material2 = new THREE.MeshBasicMaterial( {map: textura, overdraw: 0.5} );
 				
 				var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube, refractionRatio: 0.95 } );
 
 				for ( var i = 0; i < 500; i ++ ) {
 
-					var mesh = new THREE.Mesh( geometry, material );
+					var mesh = new THREE.Mesh( geometry, material2 );
 					mesh.position.x = Math.random() * 10000 - 5000;
 					mesh.position.y = Math.random() * 10000 - 5000;
 					mesh.position.z = Math.random() * 10000 - 5000;
@@ -127,10 +127,12 @@
 				renderer.setPixelRatio( window.devicePixelRatio );
 				container.appendChild( renderer.domElement );
 
-				effect = new THREE.StereoEffect( renderer );
+				/*effect = new THREE.StereoEffect( renderer );
 				effect.eyeSeparation = 10;
+				effect.setSize( window.innerWidth, window.innerHeight );*/
+				
+				effect = new THREE.CardboardEffect( renderer );
 				effect.setSize( window.innerWidth, window.innerHeight );
-
 				//
 
 				window.addEventListener( 'resize', onWindowResize, false );
@@ -138,9 +140,6 @@
 			}
 
 			function onWindowResize() {
-
-				windowHalfX = window.innerWidth / 2,
-				windowHalfY = window.innerHeight / 2,
 
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
