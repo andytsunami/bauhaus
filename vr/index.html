@@ -155,8 +155,8 @@
 			/*Inicio novas interaçoes*/
 			
 			function deviceMotion(event){
-				mouseX = event.beta;
-				mouseY = event.gamma;
+				mouseX = event.accelerationIncludingGravity.x * 100;
+				mouseY = event.accelerationIncludingGravity.y * 100;
 				
 			}
 			
