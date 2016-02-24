@@ -44,6 +44,15 @@
 			var windowHalfY = window.innerHeight / 2;
 
 			document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+			
+			//Nova movimentacao
+		/*	document.addEventListener('touchstart', touchStart, false);
+			document.addEventListener('touchend', touchEnd, false);*/
+			
+			window.addEventListener('devicemotion', deviceMotion, false);
+			document.addEventListener('touchmove', touchMove, false);
+			window.addEventListener('deviceorientation', orientationChange, false);
+			
 
 			init();
 			animate();
@@ -137,11 +146,27 @@
 			}
 
 			function onDocumentMouseMove( event ) {
-
 				mouseX = ( event.clientX - windowHalfX ) * 10;
 				mouseY = ( event.clientY - windowHalfY ) * 10;
 
 			}
+			
+			/*Inicio novas interaçoes*/
+			
+			function deviceMotion(event){
+				mouseX = ( event.clientX - windowHalfX ) * 10;
+				mouseY = ( event.clientY - windowHalfY ) * 10;
+				
+			}
+			
+			function touchMove(event){
+				console.log("touchMove");
+				mouseX = event.touches[0].pageX - windowHalfX * 10;
+				mouseY = event.touches[0].pageY - windowHalfY * 10;
+				
+	}
+			
+			/*Fim novas interaçoes*/
 
 			//
 
