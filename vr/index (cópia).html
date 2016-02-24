@@ -58,7 +58,7 @@
 
 				scene = new THREE.Scene();
 				
-				var rectLength = 256, rectWidth = 256;
+				var rectLength = 512, rectWidth = 512;
 
 				var rectShape = new THREE.Shape();
 				rectShape.moveTo( 0,0 );
@@ -79,8 +79,8 @@
 					
 				];
 				
-				var zacaTextura = new  THREE.TextureLoader().load("zaca.png");
-				var zacaMaterial = new THREE.SpriteMaterial({ map: zacaTextura, color: 0xffffff, fog: true });
+				var textura = new THREE.TextureLoader().load("zaca.png");
+				textura.mapping = THREE.CubeRefractionMapping;
 				
 
 
@@ -88,18 +88,17 @@
 				textureCube.mapping = THREE.CubeRefractionMapping;
 				
 				
-				
+				var material2 = new THREE.MeshBasicMaterial( {map: textura, overdraw: 0.5} );
 				
 				var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube, refractionRatio: 0.95 } );
 
 				for ( var i = 0; i < 500; i ++ ) {
 
-					var mesh = new THREE.Sprite(zacaMaterial );
+					var mesh = new THREE.Mesh( geometry, material2 );
 					mesh.position.x = Math.random() * 10000 - 5000;
 					mesh.position.y = Math.random() * 10000 - 5000;
 					mesh.position.z = Math.random() * 10000 - 5000;
 					mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 3 + 1;
-					mesh.scale.set( 256, 256, 1.0 );
 					scene.add( mesh );
 
 					spheres.push( mesh );
