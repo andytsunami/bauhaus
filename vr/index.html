@@ -155,8 +155,8 @@
 			/*Inicio novas interaçoes*/
 			
 			function deviceMotion(event){
-				mouseX = ( event.clientX - windowHalfX ) * 10;
-				mouseY = ( event.clientY - windowHalfY ) * 10;
+				mouseX = event.beta;
+				mouseY = event.gamma;
 				
 			}
 			
