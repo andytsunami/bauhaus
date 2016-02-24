@@ -77,7 +77,7 @@
 				
 				function setOrientationControls(e) {
 					console.log("setOrientationControls");
-					  if (!e.alpha) {
+					 if (!e.alpha) {
 						return;
 					  }
 
@@ -90,7 +90,7 @@
 					  window.removeEventListener('deviceorientation', setOrientationControls, true);
 				}
 	       
-	       window.addEventListener('deviceorientation', setOrientationControls, true);
+	           window.addEventListener('deviceorientation', setOrientationControls, true);
 				
 				var path = "skybox/";
 				var format = '.gif';
@@ -175,6 +175,10 @@
 
 				effect.render( scene, camera );
 
+			}
+			
+			function teste(){
+				alert("xampoula");
 			}
 			
 			function fullscreen() {
