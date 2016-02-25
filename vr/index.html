@@ -67,9 +67,9 @@
 					camera.position.z
 				  );
 				  controls.noPan = true;
-				  controls.noZoom = true;*/
-				  
-				  
+				  controls.noZoom = true;
+				  */
+				  controls = new THREE.DeviceOrientationControls(camera, true);
 				  
 			function setOrientationControls(e) {
 					console.log("setOrientationControls");
@@ -155,7 +155,6 @@
 				camera.position.y += ( - mouseY - camera.position.y ) * .05;
 				camera.lookAt( scene.position );*/
 				
-				controls = new THREE.DeviceOrientationControls(camera, true);
 				  controls.connect();
 				  controls.update();
 
