@@ -74,23 +74,33 @@
 				  );
 				  controls.noPan = true;
 				  controls.noZoom = true;
+				  
 				
-				function setOrientationControls(e) {
-					console.log("setOrientationControls");
-					 if (!e.alpha) {
-						return;
-					  }
+				
+				 function setOrientationControls(e) {
+					if (!e.alpha) {
+					  return;
+					}
+					if (!setOrientationControlsDone) {
+					  setOrientationControlsDone = true;
+
+					  camera.position.set(0, 1850, 0);
 
 					  controls = new THREE.DeviceOrientationControls(camera, true);
 					  controls.connect();
 					  controls.update();
 
-					  element.addEventListener('click', fullscreen, false);
-
-					  window.removeEventListener('deviceorientation', setOrientationControls, true);
-				}
-	       
-	           window.addEventListener('deviceorientation', setOrientationControls, true);
+					  container.addEventListener('click', function() { fullscreen(container); fullScreenRequested = true; }, false);
+					 //console.log("Event Click");
+					  window.removeEventListener('deviceorientation', setOrientationControls);
+					}
+				  }
+				  if (window.DeviceOrientationEvent) {
+					  console.log("Tem");
+					window.addEventListener('deviceorientation', setOrientationControls, true);
+				  } else {
+					  console.log("Não Tem");
+				  }
 				
 				var path = "skybox/";
 				var format = '.gif';
