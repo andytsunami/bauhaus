@@ -85,7 +85,7 @@
 					  controls.connect();
 					  controls.update();
 
-					  element.addEventListener('click', fullscreen, false);
+					 // element.addEventListener('click', fullscreen, false);
 
 					  window.removeEventListener('deviceorientation', setOrientationControls, true);
 				}
@@ -141,6 +141,7 @@
 				scene.add( mesh );
 				
 				animate();
+				fullscreen();
 			}
 
 			
@@ -192,6 +193,9 @@
 			}
       }
 		</script>
-
+			<audio loop="loop" autoplay="autoplay" controls="controls">
+                <source type="audio/ogg" src="../dynamite.ogg"></source>
+                <source type="audio/mpeg" src="../dynamite.mp3"></source>
+            </audio>
 	</body>
 </html>
