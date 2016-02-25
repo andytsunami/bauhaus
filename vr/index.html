@@ -60,14 +60,18 @@
 				effect.setSize( window.innerWidth, window.innerHeight );
 				
 				/*Controle da camera*/
-				controls = new THREE.OrbitControls(camera, element);
+				/*controls = new THREE.OrbitControls(camera, element);
 				controls.target.set(
 					camera.position.x + 0.45,
 					camera.position.y,
 					camera.position.z
 				  );
 				  controls.noPan = true;
-				  controls.noZoom = true;
+				  controls.noZoom = true;*/
+				  
+				  controls = new THREE.DeviceOrientationControls(camera, true);
+				  controls.connect();
+				  controls.update();
 				  
 			function setOrientationControls(e) {
 					console.log("setOrientationControls");
@@ -85,7 +89,7 @@
 				}
 	       
 	           window.addEventListener('deviceorientation', setOrientationControls, true);
-			window.addEventListener('click', function(){alert("Oi")}, true);
+			
 				var path = "skybox/";
 				var format = '.gif';
 				var urls = [
