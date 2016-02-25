@@ -44,7 +44,7 @@
 				console.log("INIT");
 				scene = new THREE.Scene();
 				camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 100000 );
-		        camera.position.set(0, 15, 0);
+		        camera.position.set(10, 60, 0);
 				//camera.position.z = 3200;
 				scene.add(camera);
 				
@@ -69,7 +69,11 @@
 				  controls.noPan = true;
 				  controls.noZoom = true;
 				  */
-				  controls = new THREE.DeviceOrientationControls(camera, true);
+			
+			controls = new THREE.DeviceOrientationControls(camera, true);
+			
+			controls.noPan = true;
+			controls.noZoom = true;
 				  
 			function setOrientationControls(e) {
 					console.log("setOrientationControls");
@@ -112,7 +116,7 @@
 					mesh.position.y = Math.random() * 10000 - 5000;
 					mesh.position.z = Math.random() * 10000 - 5000;
 					mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 3 + 1;
-					mesh.scale.set( 292, 400, 1.0 );
+					mesh.scale.set( 1024, 1403, 1.0 );
 					scene.add( mesh );
 
 					spheres.push( mesh );
