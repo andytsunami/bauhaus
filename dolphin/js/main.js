@@ -17,7 +17,9 @@ function init() {
     //initCube();
     initGolfinho();
     initCamera();
+    initLights();
     initRenderer();
+
 
     document.body.appendChild(renderer.domElement);
 }
@@ -31,6 +33,11 @@ function initCamera() {
 function initRenderer() {
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(WIDTH, HEIGHT);
+}
+
+function initLights() {
+    var light = new THREE.AmbientLight(0xffffff);
+    scene.add(light);
 }
 
 function initCube() {
