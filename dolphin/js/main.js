@@ -31,7 +31,7 @@ function initCamera() {
 }
 
 function initRenderer() {
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(WIDTH, HEIGHT);
 }
 
@@ -55,6 +55,7 @@ function render() {
     requestAnimationFrame(render);
     rotateGolfinho();
     //rotateCube();
+    render.setClearColor();
     renderer.render(scene, camera);
 }
 
