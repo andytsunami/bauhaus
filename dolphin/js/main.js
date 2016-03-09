@@ -55,7 +55,7 @@ function render() {
     requestAnimationFrame(render);
     rotateGolfinho();
     //rotateCube();
-    render.setClearColor();
+  //  render.setClearColor();
     renderer.render(scene, camera);
 }
 
