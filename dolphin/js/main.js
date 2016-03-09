@@ -61,14 +61,11 @@ function render() {
 
 function initGolfinho(){
 
+    var materials = [];
+    materials.push(new THREE.MeshBasicMaterial({color: 0xFFFF00}));
+
      var loader = new THREE.JSONLoader();
     loader.load('./mesh/golfinho.json', function(geometry, materials) {
-
-         var facesLength = geometry.geo.faces.length;
-        for ( var i = 0; i < facesLength; i++ ) {
-            var face = geometry.geo.faces[ i ];
-            face.color.setStyle("#FFFF00");
-        }
 
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
         mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.75;
