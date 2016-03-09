@@ -61,7 +61,7 @@ function render() {
 
 function initGolfinho(){
 
-    var mate = new THREE.MeshBasicMaterial( { color: 0xFFFF00, shading: THREE.FlatShading, wireframe: true, transparent: true } );
+    var mate = new THREE.MeshBasicMaterial( { color: 0xFFFF00, shading: THREE.FlatShading, wireframe: true, transparent: false } );
      var loader = new THREE.JSONLoader();
     loader.load('./mesh/golfinho.json', function(geometry, mate) {
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(mate));
