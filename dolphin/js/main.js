@@ -9,10 +9,13 @@ var HEIGHT = 600;
 
 var SPEED = 0.01;
 
+var mesh = null;
+
 function init() {
     scene = new THREE.Scene();
 
-    initCube();
+    //initCube();
+    initGolfinho();
     initCamera();
     initRenderer();
 
@@ -43,8 +46,29 @@ function rotateCube() {
 
 function render() {
     requestAnimationFrame(render);
-    rotateCube();
+    rotateGolfinho();
+    //rotateCube();
     renderer.render(scene, camera);
+}
+
+function initGolfinho(){
+     var loader = new THREE.JSONLoader();
+    loader.load('../mesh/golfinho.json', function(geometry, materials) {
+        mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+        mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.75;
+        mesh.translation = THREE.GeometryUtils.center(geometry);
+        scene.add(mesh);
+    });
+}
+
+function rotateGolfinho() {
+    if (!mesh) {
+        return;
+    }
+
+    mesh.rotation.x -= SPEED * 2;
+    mesh.rotation.y -= SPEED;
+    mesh.rotation.z -= SPEED * 3;
 }
 
 init();
