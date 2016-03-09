@@ -53,7 +53,7 @@ function render() {
 
 function initGolfinho(){
      var loader = new THREE.JSONLoader();
-    loader.load('../mesh/golfinho.json', function(geometry, materials) {
+    loader.load('./mesh/golfinho.json', function(geometry, materials) {
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
         mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.75;
         mesh.translation = THREE.GeometryUtils.center(geometry);
