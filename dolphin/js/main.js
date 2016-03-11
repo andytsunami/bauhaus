@@ -1,3 +1,5 @@
+//Exemplo
+//http://www.jonathan-petitcolas.com/2015/07/27/importing-blender-modelized-mesh-in-threejs.html
 var scene, camera, renderer;
 
 //var WIDTH  = window.innerWidth;
