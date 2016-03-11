@@ -2,11 +2,14 @@
 //http://www.jonathan-petitcolas.com/2015/07/27/importing-blender-modelized-mesh-in-threejs.html
 var scene, camera, renderer;
 
-//var WIDTH  = window.innerWidth;
-//var HEIGHT = window.innerHeight;
+var WIDTH  = (window.innerWidth * 90) / 100;
+var HEIGHT = (window.innerHeight * 100) / 100;
 
-var WIDTH  = 800;
-var HEIGHT = 600;
+console.log("WIDTH - " + WIDTH);
+console.log("HEIGHT - " + HEIGHT);
+
+//var WIDTH  = 800;
+//var HEIGHT = 600;
 
 
 var SPEED = 0.01;
@@ -63,14 +66,27 @@ function render() {
 
 function initGolfinho(){
 
-    var materials = [];
-    materials.push(new THREE.MeshBasicMaterial({color: 0xFFFF00}));
-
      var loader = new THREE.JSONLoader();
     loader.load('./mesh/golfinho.json', function(geometry, materials) {
 
+        if ( materials ) {
+            for ( var k=0,l=materials.length; k < l; k++ ) {
+                if(k % 2 == 0){
+                //Corpo do Golfinho
+                materials[k].color.setHex( 0xFDF4BA );
+            } else {
+                //No Golfinho, isso é o olho
+                materials[k].color.setHex( 0xBCFFE7 );
+            }
+            }
+        } else {
+            alert("Isso é uma excessão!");
+            objects[i].children[j].material.color.setHex( 0x1A75FF );
+        }
+
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
-        mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.75;
+        //mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.75;
+        mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.75;
         mesh.translation = THREE.GeometryUtils.center(geometry);
 
        
