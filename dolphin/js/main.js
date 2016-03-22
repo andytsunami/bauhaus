@@ -5,18 +5,22 @@ var scene, camera, renderer;
 var WIDTH  = (window.innerWidth * 90) / 100;
 var HEIGHT = (window.innerHeight * 100) / 100;
 
+
 console.log("WIDTH - " + WIDTH);
 console.log("HEIGHT - " + HEIGHT);
 
-//var WIDTH  = 800;
-//var HEIGHT = 600;
 
 
 var SPEED = 0.01;
 
 var mesh = null;
+var venusArray = [];
+
+var animation, gui;
+var bLoader;
 
 function init() {
+    
     scene = new THREE.Scene();
 
     //initCube();
@@ -59,15 +63,55 @@ function rotateCube() {
 function render() {
     requestAnimationFrame(render);
     rotateGolfinho();
+    rotateVenus();
     //rotateCube();
-  //  render.setClearColor();
+    //render.setClearColor();
     renderer.render(scene, camera);
+
+
 }
 
 function initGolfinho(){
 
      var loader = new THREE.JSONLoader();
-    loader.load('./mesh/golfinho.json', function(geometry, materials) {
+    //loader.load('./mesh/golfinho.json', function(geometry, materials) {
+
+for (var i = 0; i <= 1; i++) {
+    console.log("Venus - " + i);
+        loader.load('./mesh/venus.json', function(geometry, materials) {
+
+            if ( materials ) {
+                for ( var k=0,l=materials.length; k < l; k++ ) {
+                    if(k % 2 == 0){
+                    //Corpo do Golfinho
+                    var hex = Math.random().toString(16).slice(2, 8);
+                    materials[k].color.setHex( "0x"+hex);
+                } else {
+                    //No Golfinho, isso é o olho
+                    materials[k].color.setHex( 0xBCFFE7 );
+                }
+                }
+            } else {
+                alert("Isso é uma excessão!");
+                objects[i].children[j].material.color.setHex( 0x1A75FF );
+            }
+
+            var venus = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+            //mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.75;
+           // venus.scale.x = venus.scale.y = venus.scale.z = 0.75;
+            venus.scale.x = venus.scale.y = venus.scale.z = Math.random() * 2 + 1;
+
+                      
+            venus.translation = geometry.center();
+            
+            
+            scene.add(venus);
+            venusArray.push(venus);
+        });
+    }
+
+
+    loader.load('./mesh/golfinhoAnimado.json', function(geometry, materials) {
 
         if ( materials ) {
             for ( var k=0,l=materials.length; k < l; k++ ) {
@@ -86,9 +130,8 @@ function initGolfinho(){
 
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
         //mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.75;
-        mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.75;
-        mesh.translation = THREE.GeometryUtils.center(geometry);
-
+        mesh.scale.x = mesh.scale.y = mesh.scale.z = .75;
+        mesh.translation = geometry.center();
        
 
 
@@ -104,6 +147,38 @@ function rotateGolfinho() {
     mesh.rotation.x -= SPEED * 2;
     mesh.rotation.y -= SPEED;
     mesh.rotation.z -= SPEED * 3;
+
+  //  console.log("Golfinho X - " + mesh.position.x);
+
+}
+
+function rotateVenus(){
+    var timer = 0.0001 * Date.now();
+    
+    for ( var i = 0, il = venusArray.length; i < il; i ++ ) {
+
+        var ven = venusArray[i];
+        var direcao;
+
+        if(ven.position.x == 0 || ven.position.x >= window.innerWidth){
+            direcao = -1;
+            console.log("dentro");
+        } else {
+            direcao = +1;
+            console.log("fora");
+        }
+
+        ven.position.x -= (SPEED * Math.cos( timer + i )) * direcao;
+        ven.position.y -= (SPEED * Math.sin( timer + i * 1.1 )) * direcao;
+        ven.position.z -= (SPEED * Math.cos( timer + i )) * direcao;
+
+        //ven.position.x -= i * 2;
+       // ven.position.y -= SPEED;
+        //ven.position.z -= i * 2;
+
+        //venus.position.y = 30;
+
+    }
 }
 
 init();
