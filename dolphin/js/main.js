@@ -1,5 +1,7 @@
 //Exemplo
 //http://www.jonathan-petitcolas.com/2015/07/27/importing-blender-modelized-mesh-in-threejs.html
+
+//https://github.com/mrdoob/three.js/issues/6050 - Exportar animado do Blender
 var scene, camera, renderer;
 
 var WIDTH  = (window.innerWidth * 90) / 100;
