@@ -6,6 +6,7 @@ var scene, camera, renderer;
 
 var WIDTH  = (window.innerWidth * 90) / 100;
 var HEIGHT = (window.innerHeight * 100) / 100;
+var mixer;
 
 
 console.log("WIDTH - " + WIDTH);
@@ -20,6 +21,7 @@ var venusArray = [];
 
 var animation, gui;
 var bLoader;
+var clock = new THREE.Clock();
 
 function init() {
     
@@ -77,7 +79,7 @@ function initGolfinho(){
 
      var loader = new THREE.JSONLoader();
     //loader.load('./mesh/golfinho.json', function(geometry, materials) {
-
+/*
 for (var i = 0; i <= 1; i++) {
     console.log("Venus - " + i);
         loader.load('./mesh/venus.json', function(geometry, materials) {
@@ -111,9 +113,9 @@ for (var i = 0; i <= 1; i++) {
             venusArray.push(venus);
         });
     }
-
-
-    loader.load('./mesh/golfinhoAnimado.json', function(geometry, materials) {
+*/
+    mixer = new THREE.AnimationMixer(scene);
+    loader.load('./mesh/flamingo.js', function(geometry, materials) {
 
         if ( materials ) {
             for ( var k=0,l=materials.length; k < l; k++ ) {
@@ -132,9 +134,13 @@ for (var i = 0; i <= 1; i++) {
 
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
         //mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.75;
-        mesh.scale.x = mesh.scale.y = mesh.scale.z = .75;
+        mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.03;
         mesh.translation = geometry.center();
-       
+        
+        mixer.clipAction( geometry.animations[0], mesh )
+                                .setDuration( 1 )           // one second
+                                .startAt( - Math.random() ) // random phase (already running)
+                                .play();    
 
 
         scene.add(mesh);
@@ -183,5 +189,24 @@ function rotateVenus(){
     }
 }
 
+function animate() {
+
+                requestAnimationFrame( animate );
+
+                var delta = clock.getDelta();
+
+                // animate Collada model
+
+                THREE.AnimationHandler.update( delta );
+
+                mixer.update( delta );
+
+
+                render();
+                stats.update();
+
+}
+
 init();
 render();
+animate();
