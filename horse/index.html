@@ -65,6 +65,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				light.position.set( -1, -1, -1 ).normalize();
 				scene.add( light );
 
+				//http://blender.stackexchange.com/questions/5151/model-wont-follow-its-armature-in-pose-mode
 				var loader = new THREE.JSONLoader();
 				loader.load( "m.json", function( geometry,materials ) {
 
