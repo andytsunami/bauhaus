@@ -115,7 +115,7 @@ for (var i = 0; i <= 1; i++) {
     }
 */
     mixer = new THREE.AnimationMixer(scene);
-    loader.load('./mesh/flamingo.js', function(geometry, materials) {
+    loader.load('./mesh/golfinho.json', function(geometry, materials) {
 
         if ( materials ) {
             for ( var k=0,l=materials.length; k < l; k++ ) {
@@ -134,13 +134,10 @@ for (var i = 0; i <= 1; i++) {
 
         mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
         //mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.75;
-        mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.03;
+        mesh.scale.x = mesh.scale.y = mesh.scale.z = 2.03;
         mesh.translation = geometry.center();
         
-        mixer.clipAction( geometry.animations[0], mesh )
-                                .setDuration( 1 )           // one second
-                                .startAt( - Math.random() ) // random phase (already running)
-                                .play();    
+           
 
 
         scene.add(mesh);
@@ -189,24 +186,5 @@ function rotateVenus(){
     }
 }
 
-function animate() {
-
-                requestAnimationFrame( animate );
-
-                var delta = clock.getDelta();
-
-                // animate Collada model
-
-                THREE.AnimationHandler.update( delta );
-
-                mixer.update( delta );
-
-
-                render();
-                stats.update();
-
-}
-
 init();
 render();
-animate();

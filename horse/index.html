@@ -67,7 +67,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 				//http://blender.stackexchange.com/questions/5151/model-wont-follow-its-armature-in-pose-mode
 				var loader = new THREE.JSONLoader();
-				loader.load( "gol.json", function( geometry,materials ) {
+				loader.load( "novoGol.json", function( geometry,materials ) {
 
 					mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( {
 						vertexColors: THREE.FaceColors,
@@ -90,7 +90,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				        }
 
 
-					mesh.scale.set( 100.7, 100.7, 100.7);
+					mesh.scale.set( 40.7, 40.7, 40.7);
 					scene.add( mesh );
 
 					mixer = new THREE.AnimationMixer( mesh );
