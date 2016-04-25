@@ -70,7 +70,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2( 0x000000, 0.035 );
 
-			
+				var loaderVenus = new THREE.JSONLoader();
+				loaderVenus.load( 'venus.json', function ( geometry, materials ) {
+				
+
+					var faceMaterial = new THREE.MultiMaterial(materials);
+
+						var x = 2;
+						var z = 2;
+
+						var mesh = new THREE.Mesh( geometry, faceMaterial);
+
+						mesh.scale.x = mesh.scale.y = mesh.scale.z = 4.99;
+
+						camera.position.set( 2, 4, 5 );
+						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
+
+						mesh.matrixAutoUpdate = false;
+						mesh.updateMatrix();
+
+						scene.add( mesh );
+									
+				} );
+
+
+
 				var loader = new THREE.JSONLoader();
 				loader.load( 'novoGol.json', function ( geometry, materials ) {
 
@@ -78,7 +102,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 					var material = materials[ 0 ];
 					material.morphTargets = true;
-					material.color.setHex( 0xffaaaa );
+					//material.color.setHex( 0xffaaaa );
 
 					var faceMaterial = new THREE.MultiMaterial(materials);
 
@@ -90,7 +114,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 						// leave space for big monster
 
-						//if ( Math.abs( x ) < 2 && Math.abs( z ) < 2 ) continue;
+						if ( Math.abs( x ) < 2 && Math.abs( z ) < 2 ) continue;
 
 						var mesh = new THREE.Mesh( geometry, faceMaterial);
 
