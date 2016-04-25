@@ -70,10 +70,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2( 0x000000, 0.035 );
 
-				// Add Blender exported Collada model
-
-				
-
+			
 				var loader = new THREE.JSONLoader();
 				loader.load( 'novoGol.json', function ( geometry, materials ) {
 
@@ -83,10 +80,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 					material.morphTargets = true;
 					material.color.setHex( 0xffaaaa );
 
-					var faceMaterial = new THREE.MultiMaterial( materials );
+					var faceMaterial = new THREE.MultiMaterial(materials);
 
 					for ( var i = 0; i < quant; i ++ ) {
-
 						// random placement in a grid
 
 						var x = ( ( i % 27 )  - 13.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
@@ -96,17 +92,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 						//if ( Math.abs( x ) < 2 && Math.abs( z ) < 2 ) continue;
 
-						var mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( {
-						vertexColors: THREE.FaceColors,
-						morphTargets: true,
-						
-						
-					} ) );
+						var mesh = new THREE.Mesh( geometry, faceMaterial);
 
-						
-
-						var s = THREE.Math.randFloat( 0.00075, 0.001 );
-						mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.11;
+						mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.29;
 
 						mesh.position.set( x, 0, z );
 						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
@@ -121,22 +109,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 						mixer[i].clipAction( clip ).setDuration( 1 ).play();
 
 					}
-
-
-
 				} );
 
 				// Lights
 
-				scene.add( new THREE.AmbientLight( 0xcccccc ) );
+				scene.add( new THREE.AmbientLight( 0xFFFFFF ) );
 
-				pointLight = new THREE.PointLight( 0xff4400, 5, 30 );
+				pointLight = new THREE.PointLight( 0xFFFFFF, 5, 30 );
 				pointLight.position.set( 5, 0, 0 );
 				scene.add( pointLight );
 
 				// Renderer
 
-				renderer = new THREE.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
