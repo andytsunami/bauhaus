@@ -22,8 +22,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 	<body>
 		<div id="info">
-			<a href="http://threejs.org" target="_blank">three.js</a> -
-			monster by <a href="http://www.3drt.com/downloads.htm" target="_blank">3drt</a>
+			
 		</div>
 
 		<script src="three.min.js"></script>
@@ -73,7 +72,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				var loaderVenus = new THREE.JSONLoader();
 				loaderVenus.load( 'venus.json', function ( geometry, materials ) {
 				
-
 					var faceMaterial = new THREE.MultiMaterial(materials);
 
 						var x = 2;
@@ -94,7 +92,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				} );
 
 
-
 				var loader = new THREE.JSONLoader();
 				loader.load( 'novoGol.json', function ( geometry, materials ) {
 
@@ -102,7 +99,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 					var material = materials[ 0 ];
 					material.morphTargets = true;
-					//material.color.setHex( 0xffaaaa );
+					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
 
 					var faceMaterial = new THREE.MultiMaterial(materials);
 
@@ -116,12 +113,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 						if ( Math.abs( x ) < 2 && Math.abs( z ) < 2 ) continue;
 
-						var mesh = new THREE.Mesh( geometry, faceMaterial);
 
+						var mesh = new THREE.Mesh(geometry, faceMaterial);
+						
+						
 						mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.29;
 
 						mesh.position.set( x, 0, z );
 						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
+
+
 
 						mesh.matrixAutoUpdate = false;
 						mesh.updateMatrix();
