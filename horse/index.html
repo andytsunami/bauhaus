@@ -41,7 +41,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 			var particleLight, pointLight;
 
 			var clock = new THREE.Clock();
-			var mixer;
+			var mixer = [];
+			var quant = 729;
 
 			init();
 			animate();
@@ -74,7 +75,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				
 
 				var loader = new THREE.JSONLoader();
-				loader.load( 'monster.js', function ( geometry, materials ) {
+				loader.load( 'novoGol.json', function ( geometry, materials ) {
 
 					// adjust color a bit
 
@@ -84,7 +85,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 					var faceMaterial = new THREE.MultiMaterial( materials );
 
-					for ( var i = 0; i < 729; i ++ ) {
+					for ( var i = 0; i < quant; i ++ ) {
 
 						// random placement in a grid
 
@@ -93,9 +94,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 						// leave space for big monster
 
-						if ( Math.abs( x ) < 2 && Math.abs( z ) < 2 ) continue;
+						//if ( Math.abs( x ) < 2 && Math.abs( z ) < 2 ) continue;
 
-						mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( {
+						var mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( {
 						vertexColors: THREE.FaceColors,
 						morphTargets: true,
 						
@@ -105,7 +106,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 						
 
 						var s = THREE.Math.randFloat( 0.00075, 0.001 );
-						mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.01;
+						mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.11;
 
 						mesh.position.set( x, 0, z );
 						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
@@ -115,9 +116,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 						scene.add( mesh );
 
-						mixer = new THREE.AnimationMixer( mesh );
+						mixer[i] = new THREE.AnimationMixer( mesh );
 						var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'gallop', geometry.morphTargets, 30 );
-						mixer.clipAction( clip ).setDuration( 1 ).play();
+						mixer[i].clipAction( clip ).setDuration( 1 ).play();
 
 					}
 
@@ -170,18 +171,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 				requestAnimationFrame( animate );
 
-				//var delta = clock.getDelta();
-
-				//mixer.update( delta );
-
-
 				render();
 				stats.update();
 
 			}
 
+			
 
-
+			var prevTime = Date.now();
 			function render() {
 
 				var timer = Date.now() * 0.0005;
@@ -192,6 +189,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 				camera.lookAt( scene.position );
 
+				var time = Date.now();
+				for ( var i = 0; i < quant; i ++ ) {
+					
+					if ( mixer[i] ) {
+						mixer[i].update( ( time - prevTime ) * 0.001 );
+				}
+
+			}
+				prevTime = time;
 				renderer.render( scene, camera );
 
 			}
