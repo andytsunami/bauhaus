@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - collada - blender</title>
+		<title>S E A P U N K</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -16,7 +16,7 @@ background: -o-linear-gradient(-45deg, rgba(249,209,210,1) 0%, rgba(144,164,227,
 background: -ms-linear-gradient(-45deg, rgba(249,209,210,1) 0%, rgba(144,164,227,1) 100%);
 background: linear-gradient(135deg, rgba(249,209,210,1) 0%, rgba(144,164,227,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', endColorstr='#90a4e3', GradientType=1 );
-
+}
     </style>
 	</head>
 
@@ -28,6 +28,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 		<script src="three.min.js"></script>
 		<script src="stats.min.js"></script>
 		<script src="AnimationClipCreator.js"></script>
+		<script src="FlyControls.js"></script>
 
 
 		<script>
@@ -39,8 +40,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 			var camera, scene, renderer, objects;
 			var particleLight, pointLight;
 
+			var MARGIN = 0;
+			var radius = 6371;
+			var SCREEN_HEIGHT = window.innerHeight - MARGIN * 2;
+			var SCREEN_WIDTH  = window.innerWidth;
+
 			var clock = new THREE.Clock();
 			var mixer = [];
+			var controls;
 			var quant = 729;
 
 			init();
@@ -58,13 +65,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				info.style.top = '10px';
 				info.style.width = '100%';
 				info.style.textAlign = 'center';
-				info.innerHTML = 'Funciona bosta...';
+				info.innerHTML = '...';
 				container.appendChild( info );
 
 
 
-				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
-				camera.position.set( 2, 4, 5 );
+				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 2, 1e7 );
+				camera.position.z = radius * 5;
+				
+				//Controle wasd
+				controls = new THREE.FlyControls( camera );
+				controls.movementSpeed = 1000;
+				controls.domElement = container;
+				controls.rollSpeed = Math.PI / 24;
+				controls.autoForward = false;
+				controls.dragToLook = false;
 
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2( 0x000000, 0.035 );
@@ -192,13 +207,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 			function render() {
 
 				var timer = Date.now() * 0.0005;
+				var delta = clock.getDelta();
 
-				camera.position.x = Math.cos( timer ) * 10;
-				camera.position.y = 4;
-				camera.position.z = Math.sin( timer ) * 10;
+				//camera.position.x = Math.cos( timer ) * 10;
+				//camera.position.y = 4;
+				//camera.position.z = Math.sin( timer ) * 10;
 
-				camera.lookAt( scene.position );
+				//camera.lookAt( scene.position );
 
+				//Animando golfinhos
 				var time = Date.now();
 				for ( var i = 0; i < quant; i ++ ) {
 					
@@ -208,6 +225,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 			}
 				prevTime = time;
+
+				controls.movementSpeed = 6.33;
+				controls.update( delta );
+
+				//renderer.clear();
+				//render( delta );
 				renderer.render( scene, camera );
 
 			}
