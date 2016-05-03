@@ -49,7 +49,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 			var mixer = [];
 			var controls;
 			var quant = 50;
-
+			
 			init();
 			animate();
 
@@ -72,7 +72,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 2, 1e7 );
 				camera.position.z = radius * 5;
-				camera.position.set( 2, 4, 5 );
+				camera.position.set( 90, 100, 200 );
 
 
 				//Controle wasd
@@ -84,7 +84,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				controls.dragToLook = false;
 
 				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0x000000, 0.010 );
+				scene.fog = new THREE.FogExp2( 0x000000, 0.0030 );
+
+				
 
 				var loaderGazebo = new THREE.JSONLoader();
 				loaderGazebo.load('gazebo.json', function ( geometry, materials ) {
@@ -112,7 +114,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 									
 				} );
 
-
 				var loader = new THREE.JSONLoader();
 				loader.load( 'novoGol.json', function ( geometry, materials ) {
 
@@ -131,6 +132,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 						var z = ( Math.floor( i / 27 ) - 13.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
 
 						// leave space for big monster
+						console.log("Posição: X " + x + ", Z " + z);
 
 						if ( Math.abs( x ) < 10 && Math.abs( z ) < 10 ) continue;
 
@@ -156,6 +158,41 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 					}
 				} );
+
+				var loaderRosca = new THREE.JSONLoader();
+				loaderRosca.load( 'rosca.json', function ( geometry, materials ) {
+
+					// adjust color a bit
+
+					var material = materials[ 0 ];
+					material.morphTargets = true;
+					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+					var faceMaterial = new THREE.MultiMaterial(materials);
+
+					// leave space for big monster
+					
+
+					var mesh = new THREE.Mesh(geometry, faceMaterial);
+						
+						
+					mesh.scale.x = mesh.scale.y = mesh.scale.z = 6.29;
+
+					mesh.position.set( 0, 40, 120);
+					
+					mesh.matrixAutoUpdate = false;
+					mesh.updateMatrix();
+
+					scene.add( mesh );
+
+					mixer[51] = new THREE.AnimationMixer( mesh );
+					var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+						mixer[51].clipAction( clip ).setDuration( 1 ).play();
+
+					
+				} );
+
+				
 
 				// Lights
 
