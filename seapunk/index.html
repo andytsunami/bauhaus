@@ -48,7 +48,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 			var clock = new THREE.Clock();
 			var mixer = [];
 			var controls;
-			var quant = 729;
+			var quant = 50;
 
 			init();
 			animate();
@@ -72,37 +72,43 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 2, 1e7 );
 				camera.position.z = radius * 5;
-				
+				camera.position.set( 2, 4, 5 );
+
+
 				//Controle wasd
 				controls = new THREE.FlyControls( camera );
 				controls.movementSpeed = 1000;
-				controls.domElement = container;
-				controls.rollSpeed = Math.PI / 24;
+				controls.domElement = window.document;
+				controls.rollSpeed = Math.PI / 40;
 				controls.autoForward = false;
 				controls.dragToLook = false;
 
 				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0x000000, 0.035 );
+				scene.fog = new THREE.FogExp2( 0x000000, 0.010 );
 
-				var loaderVenus = new THREE.JSONLoader();
-				loaderVenus.load( 'venus.json', function ( geometry, materials ) {
+				var loaderGazebo = new THREE.JSONLoader();
+				loaderGazebo.load('gazebo.json', function ( geometry, materials ) {
+
+					var materialGazebo = materials[ 0 ];
+					materialGazebo.morphTargets = true;
 				
-					var faceMaterial = new THREE.MultiMaterial(materials);
+					var gazeboMaterial = new THREE.MultiMaterial(materials);
 
 						var x = 2;
 						var z = 2;
 
-						var mesh = new THREE.Mesh( geometry, faceMaterial);
+						var meshGazebo = new THREE.Mesh( geometry, gazeboMaterial);
 
-						mesh.scale.x = mesh.scale.y = mesh.scale.z = 4.99;
+						meshGazebo.scale.x = meshGazebo.scale.y = meshGazebo.scale.z = 4.99;
+						
+						meshGazebo.matrixAutoUpdate = false;
+						meshGazebo.updateMatrix();
 
-						camera.position.set( 2, 4, 5 );
-						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
+						scene.add( meshGazebo );
 
-						mesh.matrixAutoUpdate = false;
-						mesh.updateMatrix();
-
-						scene.add( mesh );
+						mixer[50] = new THREE.AnimationMixer( meshGazebo );
+						var clipGazebo = THREE.AnimationClip.CreateFromMorphTargetSequence( 'gallop', geometry.morphTargets, 30 );
+						mixer[50].clipAction( clipGazebo ).setDuration( 1 ).play();
 									
 				} );
 
@@ -126,7 +132,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 						// leave space for big monster
 
-						if ( Math.abs( x ) < 2 && Math.abs( z ) < 2 ) continue;
+						if ( Math.abs( x ) < 10 && Math.abs( z ) < 10 ) continue;
 
 
 						var mesh = new THREE.Mesh(geometry, faceMaterial);
@@ -145,7 +151,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 						scene.add( mesh );
 
 						mixer[i] = new THREE.AnimationMixer( mesh );
-						var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'gallop', geometry.morphTargets, 30 );
+						var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
 						mixer[i].clipAction( clip ).setDuration( 1 ).play();
 
 					}
@@ -203,21 +209,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 
 			
 
-			var prevTime = Date.now();
+			var prevTime = performance.now();
 			function render() {
 
-				var timer = Date.now() * 0.0005;
+				var timer = performance.now();
 				var delta = clock.getDelta();
-
-				//camera.position.x = Math.cos( timer ) * 10;
-				//camera.position.y = 4;
-				//camera.position.z = Math.sin( timer ) * 10;
-
-				//camera.lookAt( scene.position );
 
 				//Animando golfinhos
 				var time = Date.now();
-				for ( var i = 0; i < quant; i ++ ) {
+	console.log("Quantidade de objetos animados: " + mixer.length);
+				for ( var i = 0; i <= mixer.length; i ++ ) {
 					
 					if ( mixer[i] ) {
 						mixer[i].update( ( time - prevTime ) * 0.001 );
@@ -227,12 +228,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', end
 				prevTime = time;
 
 				controls.movementSpeed = 6.33;
-				controls.update( delta );
-
-				//renderer.clear();
-				//render( delta );
+				controls.update(delta);
 				renderer.render( scene, camera );
-
 			}
 
 		</script>
