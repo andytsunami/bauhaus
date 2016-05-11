@@ -5,51 +5,37 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
-			body {
-				color: #000;
-				font-family:Monospace;
-				font-size:13px;
-				margin: 0px;
-				overflow: hidden;
-			}
-
-			#info {
-				position: absolute;
-				top: 0px; width: 100%;
-				text-align:center;
-				padding: 5px;
-			}
-
-			a {
-
-				color: #a06851;
-			}
-
-		</style>
+        body {
+            /*background: #E8D0FD;*/        
+            overflow: hidden;
+            background: rgba(249,209,210,1);
+background: -moz-linear-gradient(-45deg, rgba(249,209,210,1) 0%, rgba(144,164,227,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(249,209,210,1)), color-stop(100%, rgba(144,164,227,1)));
+background: -webkit-linear-gradient(-45deg, rgba(249,209,210,1) 0%, rgba(144,164,227,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(249,209,210,1) 0%, rgba(144,164,227,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(249,209,210,1) 0%, rgba(144,164,227,1) 100%);
+background: linear-gradient(135deg, rgba(249,209,210,1) 0%, rgba(144,164,227,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d1d2', endColorstr='#90a4e3', GradientType=1 );
+}
+    </style>
 	</head>
+
 	<body>
-	<div id="info"></div>
+		<div id="info">
+			
+		</div>
 
 		<script src="three.min.js"></script>
-
-		<script src="OrbitControls.js"></script>
+		<script src="stats.min.js"></script>
+		<script src="AnimationClipCreator.js"></script>
+		<script src="FlyControls.js"></script>
 		<script src="Mirror.js"></script>
 		<script src="WaterShader.js"></script>
 
-		<script src="AnimationClipCreator.js"></script>
-		<script src="FlyControls.js"></script>
-
-		<script src="Detector.js"></script>
-		<script src="stats.min.js"></script>
 
 		<script>
 
-			if ( ! Detector.webgl ) {
-
-				Detector.addGetWebGLMessage();
-				document.getElementById( 'container' ).innerHTML = "";
-
-			}
+			
 
 			var container, stats;
 
@@ -78,11 +64,11 @@
 				param: 4,
 				filterparam: 1
 			};
-
-			var waterNormals;
-
+			
 			init();
 			animate();
+
+
 
 			function init() {
 
@@ -94,33 +80,15 @@
 				info.style.top = '10px';
 				info.style.width = '100%';
 				info.style.textAlign = 'center';
-				info.innerHTML = 'S A D B O Y S';
+				info.innerHTML = '...';
 				container.appendChild( info );
 
-				//Renderer
-				renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				container.appendChild( renderer.domElement );
 
-				// Stats
-
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-				container.appendChild( stats.domElement );
-
-				// Events
-
-				window.addEventListener( 'resize', onWindowResize, false );
-
-				//Scene
-				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0x000000, 0.00060 );
 
 				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 2, 1e7 );
 				camera.position.z = radius * 5;
 				camera.position.set( 90, 100, 200 );
+
 
 				//Controle wasd
 				controls = new THREE.FlyControls( camera );
@@ -130,6 +98,9 @@
 				controls.autoForward = false;
 				controls.dragToLook = false;
 
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2( 0x000000, 0.0030 );
+
 				// Lights
 				scene.add( new THREE.AmbientLight( 0xFFFFFF ) );
 
@@ -138,7 +109,8 @@
 				scene.add( pointLight );
 
 
-				waterNormals = new THREE.TextureLoader().load( 'waternormals.jpg' );
+				//AGUA
+				waterNormals = new THREE.TextureLoader().load('waternormals.jpg');
 				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
 
 				water = new THREE.Water( renderer, camera, scene, {
@@ -161,7 +133,111 @@
 				mirrorMesh.add( water );
 				mirrorMesh.rotation.x = - Math.PI * 0.5;
 				scene.add( mirrorMesh );
+			
 
+				var loaderGazebo = new THREE.JSONLoader();
+				loaderGazebo.load('gazebo.json', function ( geometry, materials ) {
+
+					var materialGazebo = materials[ 0 ];
+					materialGazebo.morphTargets = true;
+				
+					var gazeboMaterial = new THREE.MultiMaterial(materials);
+
+						var x = 2;
+						var z = 2;
+
+						var meshGazebo = new THREE.Mesh( geometry, gazeboMaterial);
+
+						meshGazebo.scale.x = meshGazebo.scale.y = meshGazebo.scale.z = 4.99;
+						
+						meshGazebo.matrixAutoUpdate = false;
+						meshGazebo.updateMatrix();
+
+						scene.add( meshGazebo );
+
+						mixer[50] = new THREE.AnimationMixer( meshGazebo );
+						var clipGazebo = THREE.AnimationClip.CreateFromMorphTargetSequence( 'gallop', geometry.morphTargets, 30 );
+						mixer[50].clipAction( clipGazebo ).setDuration( 1 ).play();
+									
+				} );
+
+				var loader = new THREE.JSONLoader();
+				loader.load( 'novoGol.json', function ( geometry, materials ) {
+
+					// adjust color a bit
+
+					var material = materials[ 0 ];
+					material.morphTargets = true;
+					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+					var faceMaterial = new THREE.MultiMaterial(materials);
+
+					for ( var i = 0; i < quant; i ++ ) {
+						// random placement in a grid
+
+						var x = ( ( i % 27 )  - 13.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
+						var z = ( Math.floor( i / 27 ) - 13.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
+
+						// leave space for big monster
+						//console.log("Posição: X " + x + ", Z " + z);
+
+						if ( Math.abs( x ) < 10 && Math.abs( z ) < 10 ) continue;
+
+
+						var mesh = new THREE.Mesh(geometry, faceMaterial);
+						
+						
+						mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.29;
+
+						mesh.position.set( x, 0, z );
+						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
+
+
+
+						mesh.matrixAutoUpdate = false;
+						mesh.updateMatrix();
+
+						scene.add( mesh );
+
+						mixer[i] = new THREE.AnimationMixer( mesh );
+						var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+						mixer[i].clipAction( clip ).setDuration( 1 ).play();
+
+					}
+				} );
+
+				var loaderRosca = new THREE.JSONLoader();
+				loaderRosca.load( 'rosca.json', function ( geometry, materials ) {
+
+					// adjust color a bit
+
+					var material = materials[ 0 ];
+					material.morphTargets = true;
+					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+					var faceMaterial = new THREE.MultiMaterial(materials);
+
+					// leave space for big monster
+					
+
+					var mesh = new THREE.Mesh(geometry, faceMaterial);
+						
+						
+					mesh.scale.x = mesh.scale.y = mesh.scale.z = 6.29;
+
+					mesh.position.set( 0, 40, 120);
+					
+					mesh.matrixAutoUpdate = false;
+					mesh.updateMatrix();
+
+					scene.add( mesh );
+
+					mixer[51] = new THREE.AnimationMixer( mesh );
+					var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+						mixer[51].clipAction( clip ).setDuration( 1 ).play();
+
+					
+				} );
 
 				// load skybox
 
@@ -214,7 +290,7 @@
 
 				scene.add( skyBox );
 
-//MODELOS
+				//Esfera
 				var geometry = new THREE.IcosahedronGeometry( 400, 4 );
 
 				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
@@ -230,122 +306,37 @@
 				} );
 
 				sphere = new THREE.Mesh( geometry, material );
-				sphere.position.set( 1000, 28, 1000);
+				sphere.position.set( 0, 40, 120);
 				scene.add( sphere );
 
-	
+				// Renderer
 
-	//Gazebo
-				var loaderGazebo = new THREE.JSONLoader();
-				loaderGazebo.load('gazebo.json', function ( geometry, materials ) {
+				renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
 
-					var materialGazebo = materials[ 0 ];
-					materialGazebo.morphTargets = true;
-				
-					var gazeboMaterial = new THREE.MultiMaterial(materials);
+				// Stats
 
-						var x = 2;
-						var z = 2;
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild( stats.domElement );
 
-						var meshGazebo = new THREE.Mesh( geometry, gazeboMaterial);
+				// Events
 
-						meshGazebo.scale.x = meshGazebo.scale.y = meshGazebo.scale.z = 14.99;
-						meshGazebo.position.set( 0, 28, 0);
+				window.addEventListener( 'resize', onWindowResize, false );
 
+			}
 
-						meshGazebo.matrixAutoUpdate = false;
-						meshGazebo.updateMatrix();
+			//
 
-						
-						
-						scene.add( meshGazebo );
-					
+			function onWindowResize( event ) {
 
-						mixer[50] = new THREE.AnimationMixer( meshGazebo );
-						var clipGazebo = THREE.AnimationClip.CreateFromMorphTargetSequence( 'gallop', geometry.morphTargets, 30 );
-						mixer[50].clipAction( clipGazebo ).setDuration( 1 ).play();
-									
-				} );
+				renderer.setSize( window.innerWidth, window.innerHeight );
 
-	//Golfinhos
-				var loader = new THREE.JSONLoader();
-				loader.load( 'novoGol.json', function ( geometry, materials ) {
-
-					// adjust color a bit
-
-					var material = materials[ 0 ];
-					material.morphTargets = true;
-					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
-
-					var faceMaterial = new THREE.MultiMaterial(materials);
-
-					for ( var i = 0; i < quant; i ++ ) {
-						// random placement in a grid
-
-						var x = ( ( i % 27 )  - 13.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
-						var z = ( Math.floor( i / 27 ) - 13.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
-
-						// leave space for big monster
-						//console.log("Posição: X " + x + ", Z " + z);
-
-						if ( Math.abs( x ) < 10 && Math.abs( z ) < 10 ) continue;
-
-
-						var mesh = new THREE.Mesh(geometry, faceMaterial);
-						
-						
-						mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.29;
-
-						mesh.position.set( x, 5, z );
-						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
-
-
-
-						mesh.matrixAutoUpdate = false;
-						mesh.updateMatrix();
-
-						scene.add( mesh );
-
-						mixer[i] = new THREE.AnimationMixer( mesh );
-						var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
-						mixer[i].clipAction( clip ).setDuration( 1 ).play();
-
-					}
-				} );
-
-//Rosca
-				var loaderRosca = new THREE.JSONLoader();
-				loaderRosca.load( 'rosca.json', function ( geometry, materials ) {
-
-					// adjust color a bit
-
-					var material = materials[ 0 ];
-					material.morphTargets = true;
-					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
-
-					var faceMaterial = new THREE.MultiMaterial(materials);
-
-					// leave space for big monster
-					
-
-					var mesh = new THREE.Mesh(geometry, faceMaterial);
-						
-						
-					mesh.scale.x = mesh.scale.y = mesh.scale.z = 6.29;
-
-					mesh.position.set( 0, 40, 120);
-					
-					mesh.matrixAutoUpdate = false;
-					mesh.updateMatrix();
-
-					scene.add( mesh );
-
-					mixer[51] = new THREE.AnimationMixer( mesh );
-					var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
-						mixer[51].clipAction( clip ).setDuration( 1 ).play();
-
-					
-				} );
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
 
 			}
 
@@ -354,32 +345,26 @@
 			function animate() {
 
 				requestAnimationFrame( animate );
+
 				render();
 				stats.update();
 
 			}
 
-			function onWindowResize( event ) {
-
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-			}
-
-
+			
 
 			var prevTime = performance.now();
-
+			
 			function render() {
 
-				var time = performance.now() * 0.001;
+
+				var timer = performance.now();
 				var delta = clock.getDelta();
 
-				sphere.position.y = Math.sin( time ) * 500 + 250;
+				//Animando esfera
+				sphere.position.y = Math.sin( timer ) * 500 + 250;
 				sphere.rotation.x = time * 0.5;
 				sphere.rotation.z = time * 0.51;
-
 
 				//Animando golfinhos
 				var time = Date.now();
@@ -393,17 +378,15 @@
 			}
 
 
+				prevTime = time;
 
-				//agua
 				water.material.uniforms.time.value += 1.0 / 60.0;
 				
-				controls.movementSpeed = 100.33;
+
+				controls.movementSpeed = 6.33;
 				controls.update(delta);
-									
-
-				water.render();
-				renderer.render( scene, camera );
-
+				//water.render();
+				renderer.render( scene, camera);
 			}
 
 		</script>
