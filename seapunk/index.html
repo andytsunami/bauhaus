@@ -282,11 +282,17 @@
 					for ( var i = 0; i < quant; i ++ ) {
 						// random placement in a grid
 
-						var x = ( ( i % 27 )  - 13.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
-						var z = ( Math.floor( i / 27 ) - 13.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
+						/*var x = ( ( i % 227 )  - 213.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
+						var z = ( Math.floor( i / 227 ) - 213.5 ) * 2 + THREE.Math.randFloatSpread( 1 );*/
+
+						var min = -1000;
+						var max = 1000;
+
+						var x = Math.floor((Math.random() * (max-min)) + min + i);
+						var z = Math.floor((Math.random() * (max-min)) + min - i);
 
 						// leave space for big monster
-						//console.log("Posição: X " + x + ", Z " + z);
+						console.log("Posição: X " + x + ", Z " + z);
 
 						if ( Math.abs( x ) < 10 && Math.abs( z ) < 10 ) continue;
 
@@ -294,7 +300,7 @@
 						var mesh = new THREE.Mesh(geometry, faceMaterial);
 						
 						
-						mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.29;
+						mesh.scale.x = mesh.scale.y = mesh.scale.z = 8.29;
 
 						mesh.position.set( x, 5, z );
 						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
