@@ -64,10 +64,12 @@
 			var clock = new THREE.Clock();
 			var mixer = [];
 			var controls;
-			var quant = 50;
+			var quant = 10;
 			var waterNormals;
 			var mirrorMesh;
 			var sphere;
+			var golfinhoRot,meshRosca;
+			var golfinhoPivot, roscaPivot;
 
 			var parameters = {
 				width: 2000,
@@ -327,31 +329,73 @@
 
 					var material = materials[ 0 ];
 					material.morphTargets = true;
-					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+					
 
 					var faceMaterial = new THREE.MultiMaterial(materials);
 
 					// leave space for big monster
 					
 
-					var mesh = new THREE.Mesh(geometry, faceMaterial);
+					meshRosca = new THREE.Mesh(geometry, faceMaterial);
 						
 						
-					mesh.scale.x = mesh.scale.y = mesh.scale.z = 6.29;
+					meshRosca.scale.x = meshRosca.scale.y = meshRosca.scale.z = 6.29;
 
-					mesh.position.set( 0, 40, 120);
+					meshRosca.position.set( 0, 40, 120);
 					
-					mesh.matrixAutoUpdate = false;
-					mesh.updateMatrix();
+					meshRosca.rotation.x = 30;
+										
 
-					scene.add( mesh );
+					meshRosca.matrixAutoUpdate = false;
+					meshRosca.updateMatrix();
 
-					mixer[51] = new THREE.AnimationMixer( mesh );
+					
+
+
+
+					scene.add( meshRosca );
+
+					mixer[51] = new THREE.AnimationMixer( meshRosca );
 					var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
 						mixer[51].clipAction( clip ).setDuration( 1 ).play();
 
 					
 				} );
+
+//Golfinho rosca
+var loader = new THREE.JSONLoader();
+				loader.load( 'golfinho.json', function ( geometry, materials ) {
+
+					// adjust color a bit
+
+					var material = materials[ 0 ];
+					material.morphTargets = true;
+					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+					var faceMaterial = new THREE.MultiMaterial(materials);
+
+
+
+						golfinhoRot = new THREE.Mesh(geometry, faceMaterial);
+						
+						
+						golfinhoRot.scale.x = golfinhoRot.scale.y = golfinhoRot.scale.z = 8.29;
+
+						golfinhoRot.position.set( 0, 40, 120);
+						golfinhoRot.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
+
+						golfinhoPivot = new THREE.Object3D();
+						golfinhoPivot.position = meshRosca.position;
+						golfinhoPivot.add(golfinhoRot);
+
+
+						scene.add( golfinhoRot );
+
+						mixer[i] = new THREE.AnimationMixer( golfinhoRot );
+						var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+						mixer[i].clipAction( clip ).setDuration( 1 ).play();
+
+					});				
 
 			}
 
@@ -386,6 +430,11 @@
 				sphere.rotation.x = time * 0.5;
 				sphere.rotation.z = time * 0.51;
 
+				golfinhoRot.rotation.z = Math.sin( time ) * 120;
+				//golfinhoRot.position.x = Math.sin( time * 1.1 ) * 2 + 5;
+				golfinhoRot.rotation.y = time * 0.51;
+				
+				
 
 				//Animando golfinhos
 				var time = Date.now();
