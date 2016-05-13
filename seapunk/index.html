@@ -26,7 +26,7 @@
 			}
 
 		</style>
-	</head>
+	</head>e
 	<body>
 	<div id="info"></div>
 
@@ -122,7 +122,10 @@
 
 				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 2, 1e7 );
 				camera.position.z = radius * 5;
-				camera.position.set( 90, 100, 200 );
+				//camera.position.set( 90, 100, 200 );
+				camera.position.set( 0, 15, 0);
+				camera.rotation.set(0,-4.5,0);
+			
 
 				//Controle wasd
 				controls = new THREE.FlyControls( camera );
@@ -253,6 +256,7 @@
 
 						meshGazebo.scale.x = meshGazebo.scale.y = meshGazebo.scale.z = 14.99;
 						meshGazebo.position.set( 0, 0, 0);
+						meshGazebo.rotation. y= 30;
 
 
 						meshGazebo.matrixAutoUpdate = false;
@@ -416,6 +420,8 @@ var loader = new THREE.JSONLoader();
 				
 				controls.movementSpeed = 100.33;
 				controls.update(delta);
+
+				//camera.rotation.y += 0.001;
 									
 
 				water.render();
