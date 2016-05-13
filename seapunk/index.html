@@ -304,7 +304,7 @@
 						
 						mesh.scale.x = mesh.scale.y = mesh.scale.z = 8.29;
 
-						mesh.position.set( x, 5, z );
+						mesh.position.set( x, 40, z );
 						mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
 
 
@@ -429,20 +429,16 @@ var loader = new THREE.JSONLoader();
 				sphere.position.y = Math.sin( time ) * 500 + 250;
 				sphere.rotation.x = time * 0.5;
 				sphere.rotation.z = time * 0.51;
-
-				golfinhoRot.rotation.z = Math.sin( time ) * 120;
-				//golfinhoRot.position.x = Math.sin( time * 1.1 ) * 2 + 5;
-				golfinhoRot.rotation.y = time * 0.51;
-				
 				
 
 				//Animando golfinhos
-				var time = Date.now();
+			//	var time = Date.now();
 	//console.log("Quantidade de objetos animados: " + mixer.length);
 				for ( var i = 0; i <= mixer.length; i ++ ) {
 					
 					if ( mixer[i] ) {
-						mixer[i].update( ( time - prevTime ) * 0.001 );
+						//mixer[i].update( ( time - prevTime ) * 0.001 );
+						mixer[i].update( ( delta));
 				}
 
 			}
