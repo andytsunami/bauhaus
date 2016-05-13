@@ -252,21 +252,15 @@
 						var meshGazebo = new THREE.Mesh( geometry, gazeboMaterial);
 
 						meshGazebo.scale.x = meshGazebo.scale.y = meshGazebo.scale.z = 14.99;
-						meshGazebo.position.set( 0, 28, 0);
+						meshGazebo.position.set( 0, 0, 0);
 
 
 						meshGazebo.matrixAutoUpdate = false;
 						meshGazebo.updateMatrix();
-
-						
+				
 						
 						scene.add( meshGazebo );
-					
-
-						mixer[50] = new THREE.AnimationMixer( meshGazebo );
-						var clipGazebo = THREE.AnimationClip.CreateFromMorphTargetSequence( 'gallop', geometry.morphTargets, 30 );
-						mixer[50].clipAction( clipGazebo ).setDuration( 1 ).play();
-									
+														
 				} );
 
 	//Golfinhos
@@ -325,46 +319,27 @@
 				var loaderRosca = new THREE.JSONLoader();
 				loaderRosca.load( 'rosca.json', function ( geometry, materials ) {
 
-					// adjust color a bit
-
 					var material = materials[ 0 ];
 					material.morphTargets = true;
-					
 
 					var faceMaterial = new THREE.MultiMaterial(materials);
 
-					// leave space for big monster
-					
-
 					meshRosca = new THREE.Mesh(geometry, faceMaterial);
 						
-						
 					meshRosca.scale.x = meshRosca.scale.y = meshRosca.scale.z = 6.29;
-
 					meshRosca.position.set( 0, 40, 120);
-					
 					meshRosca.rotation.x = 30;
 										
-
 					meshRosca.matrixAutoUpdate = false;
 					meshRosca.updateMatrix();
 
-					
-
-
-
 					scene.add( meshRosca );
-
-					mixer[51] = new THREE.AnimationMixer( meshRosca );
-					var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
-						mixer[51].clipAction( clip ).setDuration( 1 ).play();
-
-					
+										
 				} );
 
 //Golfinho rosca
 var loader = new THREE.JSONLoader();
-				loader.load( 'golfinho.json', function ( geometry, materials ) {
+				loader.load( 'novoGol.json', function ( geometry, materials ) {
 
 					// adjust color a bit
 
@@ -375,7 +350,6 @@ var loader = new THREE.JSONLoader();
 					var faceMaterial = new THREE.MultiMaterial(materials);
 
 
-
 						golfinhoRot = new THREE.Mesh(geometry, faceMaterial);
 						
 						
@@ -383,11 +357,6 @@ var loader = new THREE.JSONLoader();
 
 						golfinhoRot.position.set( 0, 40, 120);
 						golfinhoRot.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
-
-						golfinhoPivot = new THREE.Object3D();
-						golfinhoPivot.position = meshRosca.position;
-						golfinhoPivot.add(golfinhoRot);
-
 
 						scene.add( golfinhoRot );
 
@@ -442,9 +411,6 @@ var loader = new THREE.JSONLoader();
 				}
 
 			}
-
-
-
 				//agua
 				water.material.uniforms.time.value += 1.0 / 60.0;
 				
