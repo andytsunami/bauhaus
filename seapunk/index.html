@@ -136,10 +136,13 @@
 				controls.dragToLook = false;
 
 				// Lights
-				scene.add( new THREE.AmbientLight( 0xFFFFFF ) );
+				scene.add( new THREE.AmbientLight( 0xFFFFFF, 1.5 ) );
 
-				pointLight = new THREE.PointLight( 0xFFFFFF, 5, 30 );
-				pointLight.position.set( - 1, 1, - 1 );
+				//pointLight = new THREE.PointLight( 0xFFFFFF, 5, 30 );
+				pointLight = new THREE.PointLight( 0xFFA966, 500, 1000 );
+				//pointLight.position.set( - 1, 1, - 1 );
+				pointLight.position.set(-640,900,-600);
+				pointLight.distance = 1255
 				scene.add( pointLight );
 
 
@@ -242,7 +245,7 @@
 
 	//Gazebo
 				var loaderGazebo = new THREE.JSONLoader();
-				loaderGazebo.load('gazebo.json', function ( geometry, materials ) {
+				loaderGazebo.load('json/gazebo.json', function ( geometry, materials ) {
 
 					var materialGazebo = materials[ 0 ];
 					materialGazebo.morphTargets = true;
@@ -269,13 +272,15 @@
 
 	//Golfinhos
 				var loader = new THREE.JSONLoader();
-				loader.load( 'novoGol.json', function ( geometry, materials ) {
+				//loader.load( 'json/novoGol.json', function ( geometry, materials ) {
+				loader.load( 'json/david.json', function ( geometry, materials ) {
+
 
 					// adjust color a bit
 
 					var material = materials[ 0 ];
 					material.morphTargets = true;
-					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+				//	material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
 
 					var faceMaterial = new THREE.MultiMaterial(materials);
 
@@ -321,7 +326,7 @@
 
 //Rosca
 				var loaderRosca = new THREE.JSONLoader();
-				loaderRosca.load( 'rosca.json', function ( geometry, materials ) {
+				loaderRosca.load( 'json/rosca.json', function ( geometry, materials ) {
 
 					var material = materials[ 0 ];
 					material.morphTargets = true;
@@ -343,7 +348,7 @@
 
 //Golfinho rosca
 var loader = new THREE.JSONLoader();
-				loader.load( 'novoGol.json', function ( geometry, materials ) {
+				loader.load( 'json/novoGol.json', function ( geometry, materials ) {
 
 					// adjust color a bit
 
@@ -368,7 +373,21 @@ var loader = new THREE.JSONLoader();
 						var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
 						mixer[i].clipAction( clip ).setDuration( 1 ).play();
 
-					});				
+					});
+
+
+//Sons
+				var listener = new THREE.AudioListener();
+				camera.add( listener );
+
+				var ambiente = new THREE.Audio( listener );
+				ambiente.load( 'audio/Ambiente.mp3' );
+				ambiente.autoplay = true;
+				ambiente.setLoop(true);
+				ambiente.setVolume(0.5);			
+
+
+
 
 			}
 
