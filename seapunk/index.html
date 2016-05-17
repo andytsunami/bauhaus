@@ -52,6 +52,7 @@
 			}
 
 			var container, stats;
+			var meshGazebo,materialGazebo,somGazebo;
 
 			var camera, scene, renderer, objects;
 			var particleLight, pointLight;
@@ -70,6 +71,9 @@
 			var sphere;
 			var golfinhoRot,meshRosca;
 			var golfinhoPivot, roscaPivot;
+			var analiser, listener;
+			var geometryEsfera, analyserEsfera;
+
 
 			var parameters = {
 				width: 2000,
@@ -223,11 +227,11 @@
 				scene.add( skyBox );
 
 //MODELOS
-				var geometry = new THREE.IcosahedronGeometry( 400, 4 );
+				geometryEsfera = new THREE.IcosahedronGeometry( 400, 4 );
 
-				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
+				for ( var i = 0, j = geometryEsfera.faces.length; i < j; i ++ ) {
 
-					geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
+					geometryEsfera.faces[ i ].color.setHex( Math.random() * 0xffffff );
 
 				}
 
@@ -237,17 +241,15 @@
 					envMap: cubeMap
 				} );
 
-				sphere = new THREE.Mesh( geometry, material );
-				sphere.position.set( 1000, 28, 1000);
+				sphere = new THREE.Mesh( geometryEsfera, material );
+				sphere.position.set( 1000, 28, 1000);		
 				scene.add( sphere );
 
-	
-
-	//Gazebo
+//Gazebo
 				var loaderGazebo = new THREE.JSONLoader();
 				loaderGazebo.load('json/gazebo.json', function ( geometry, materials ) {
 
-					var materialGazebo = materials[ 0 ];
+					materialGazebo = materials[ 0 ];
 					materialGazebo.morphTargets = true;
 				
 					var gazeboMaterial = new THREE.MultiMaterial(materials);
@@ -255,7 +257,7 @@
 						var x = 2;
 						var z = 2;
 
-						var meshGazebo = new THREE.Mesh( geometry, gazeboMaterial);
+						meshGazebo = new THREE.Mesh( geometry, gazeboMaterial);
 
 						meshGazebo.scale.x = meshGazebo.scale.y = meshGazebo.scale.z = 14.99;
 						meshGazebo.position.set( 0, 0, 0);
@@ -265,8 +267,20 @@
 						meshGazebo.matrixAutoUpdate = false;
 						meshGazebo.updateMatrix();
 				
-						
 						scene.add( meshGazebo );
+
+						listener = new THREE.AudioListener();
+						camera.add( listener );
+
+						somGazebo = new THREE.PositionalAudio( listener );
+						somGazebo.load( 'audio/Ambiente.mp3' );
+						somGazebo.autoplay = true;
+						somGazebo.setLoop(true);
+						somGazebo.setVolume(0.5);
+						somGazebo.setRefDistance( 20 );
+						meshGazebo.add(somGazebo);			
+
+						analyserEsfera = new THREE.AudioAnalyser( somGazebo, 32 );
 														
 				} );
 
@@ -377,17 +391,7 @@ var loader = new THREE.JSONLoader();
 
 
 //Sons
-				var listener = new THREE.AudioListener();
-				camera.add( listener );
-
-				var ambiente = new THREE.Audio( listener );
-				ambiente.load( 'audio/Ambiente.mp3' );
-				ambiente.autoplay = true;
-				ambiente.setLoop(true);
-				ambiente.setVolume(0.5);			
-
-
-
+				
 
 			}
 
@@ -441,6 +445,9 @@ var loader = new THREE.JSONLoader();
 				controls.update(delta);
 
 				//camera.rotation.y += 0.001;
+
+
+				//geometryEsfera.emissive.b = analyserEsfera.getData()[8] / 256;
 									
 
 				water.render();
