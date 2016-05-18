@@ -43,6 +43,7 @@
 		<script src="stats.min.js"></script>
 
 		<script>
+//VHS Shader https://www.airtightinteractive.com/demos/js/badtvshader/
 
 			if ( ! Detector.webgl ) {
 
@@ -71,8 +72,9 @@
 			var waterNormals;
 			var mirrorMesh;
 			var sphere;
-			var golfinhoRot,meshRosca;
-			var golfinhoPivot, roscaPivot;
+			var golfinhoRot = 0; 
+			var meshRosca;
+			var roscaPivot;
 			var analiser, listener;
 			var geometryEsfera, analyserGazebo;
 
@@ -88,9 +90,7 @@
 			};
 
 			var waterNormals;
-
-			init();
-			animate();
+            var pivot;
 
 			function init() {
 
@@ -394,6 +394,7 @@ var loader = new THREE.JSONLoader();
 
 					// adjust color a bit
 
+
 					var material = materials[ 0 ];
 					material.morphTargets = true;
 					material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
@@ -404,12 +405,19 @@ var loader = new THREE.JSONLoader();
 						golfinhoRot = new THREE.Mesh(geometry, faceMaterial);
 						
 						
-						golfinhoRot.scale.x = golfinhoRot.scale.y = golfinhoRot.scale.z = 23;
+						golfinhoRot.scale.x = golfinhoRot.scale.y = golfinhoRot.scale.z = 109.9;
 
 						golfinhoRot.position.set( -500, 80, 70);
-						golfinhoRot.rotation.set(9,12,0);
-						
-						scene.add( golfinhoRot );
+						golfinhoRot.rotation.set(9,11,0);
+
+						//Rotacao do golfinho
+                        scene.add( golfinhoRot );
+
+                        pivot = new THREE.Object3D();
+                        pivot.position.set(-480, 2.6000000000001364, 53.5);
+                        pivot.scale.x = pivot.scale.y = pivot.scale.z = 0.20010000000000006;
+                        pivot.add(golfinhoRot);
+                        scene.add(pivot);
 
 						mixer[i] = new THREE.AnimationMixer( golfinhoRot );
 						var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
@@ -424,14 +432,6 @@ var loader = new THREE.JSONLoader();
 			}
 
 			//
-
-			function animate() {
-
-				requestAnimationFrame( animate );
-				render();
-				stats.update();
-
-			}
 
 			function onWindowResize( event ) {
 
@@ -454,9 +454,10 @@ var loader = new THREE.JSONLoader();
 				sphere.rotation.x = time * 0.5;
 				sphere.rotation.z = time * 0.51;
 
-				golfinhoRot.rotation.x = time * 0.21;
+				/*golfinhoRot.rotation.x = time * 0.21;
 				golfinhoRot.position.y = Math.sin( time ) * 25 + 25;
-				golfinhoRot.position.x = Math.sin( time ) * 500 + 10;
+				golfinhoRot.position.x = Math.sin( time ) * 10 + 10;
+				console.log("Depois do golfinho");*/
 
 				//meshGazebo.position.z = time * 0.5;
 				
@@ -478,16 +479,30 @@ var loader = new THREE.JSONLoader();
 				controls.movementSpeed = 100.33;
 				controls.update(delta);
 
-				//camera.rotation.y += 0.001;
 
-
+                pivot.rotation.z -= 1.0 / 60.0;
+                golfinhoRot.rotation.z -= 1.0 / 60.0;
+                golfinhoRot.rotation.y -= 1.0 / 60.0;
+                
+				
 				//geometryEsfera.emissive.b = analyserEsfera.getData()[8] / 256;
-									
+				
+
 
 				water.render();
 				renderer.render( scene, camera );
 
 			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+				stats.update();
+			}
+
+			init();
+			animate();
 
 		</script>
 	</body>
