@@ -51,11 +51,13 @@
 
 			}
 
+			var meshGazebo = 0;
 			var container, stats;
-			var meshGazebo,materialGazebo,somGazebo;
+			var materialGazebo,somGazebo;
+			var meshWindowsG,materialWindowsG;
 
 			var camera, scene, renderer, objects;
-			var particleLight, pointLight;
+			var particleLight, pointLight,luzWindows;
 
 			var MARGIN = 0;
 			var radius = 6371;
@@ -72,7 +74,7 @@
 			var golfinhoRot,meshRosca;
 			var golfinhoPivot, roscaPivot;
 			var analiser, listener;
-			var geometryEsfera, analyserEsfera;
+			var geometryEsfera, analyserGazebo;
 
 
 			var parameters = {
@@ -122,7 +124,7 @@
 
 				//Scene
 				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0x000000, 0.00060 );
+				//scene.fog = new THREE.FogExp2( 0xFFA966, 0.00012 );
 
 				camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 2, 1e7 );
 				camera.position.z = radius * 5;
@@ -143,12 +145,18 @@
 				scene.add( new THREE.AmbientLight( 0xFFFFFF, 1.5 ) );
 
 				//pointLight = new THREE.PointLight( 0xFFFFFF, 5, 30 );
-				pointLight = new THREE.PointLight( 0xFFA966, 500, 1000 );
+				pointLight = new THREE.SpotLight( 0xFFA966, 500, 12000 );
 				//pointLight.position.set( - 1, 1, - 1 );
 				pointLight.position.set(-640,900,-600);
-				pointLight.distance = 1255
+				pointLight.distance = 1255;
 				scene.add( pointLight );
 
+				luzWindows = new THREE.PointLight( 0xFFA966, 500, 11000 );
+				luzWindows.position.set(5000,1500,1500);
+				luzWindows.distance = 1255;
+				luzWindows.target = meshWindowsG;
+				scene.add( luzWindows );
+				
 
 				waterNormals = new THREE.TextureLoader().load( 'waternormals.jpg' );
 				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
@@ -261,7 +269,7 @@
 
 						meshGazebo.scale.x = meshGazebo.scale.y = meshGazebo.scale.z = 14.99;
 						meshGazebo.position.set( 0, 0, 0);
-						meshGazebo.rotation. y= 30;
+						meshGazebo.rotation.y= 30;
 
 
 						meshGazebo.matrixAutoUpdate = false;
@@ -280,21 +288,21 @@
 						somGazebo.setRefDistance( 20 );
 						meshGazebo.add(somGazebo);			
 
-						analyserEsfera = new THREE.AudioAnalyser( somGazebo, 32 );
+						analyserGazebo = new THREE.AudioAnalyser( somGazebo, 32 );
 														
 				} );
 
 	//Golfinhos
 				var loader = new THREE.JSONLoader();
 				//loader.load( 'json/novoGol.json', function ( geometry, materials ) {
-				loader.load( 'json/david.json', function ( geometry, materials ) {
+				loader.load( 'json/paz.json', function ( geometry, materials ) {
 
 
 					// adjust color a bit
 
 					var material = materials[ 0 ];
 					material.morphTargets = true;
-				//	material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+				//	material.color.setHex("0x"+Math.floor(Math.ranwdom()*16777215).toString(16));
 
 					var faceMaterial = new THREE.MultiMaterial(materials);
 
@@ -349,20 +357,40 @@
 
 					meshRosca = new THREE.Mesh(geometry, faceMaterial);
 						
-					meshRosca.scale.x = meshRosca.scale.y = meshRosca.scale.z = 6.29;
-					meshRosca.position.set( 0, 40, 120);
-					meshRosca.rotation.x = 30;
+					meshRosca.scale.x = meshRosca.scale.y = meshRosca.scale.z = 19.29;
+					meshRosca.position.set( -500, 80, 70);
+					meshRosca.rotation.set(11.199999999999992,22.00000000000003,36.000000000000014);
+					
 										
-					meshRosca.matrixAutoUpdate = false;
-					meshRosca.updateMatrix();
+					//meshRosca.matrixAutoUpdate = false;
+					//meshRosca.updateMatrix();
 
 					scene.add( meshRosca );
 										
 				} );
+//Windows gigante
+var loaderWindowsG = new THREE.JSONLoader();
+				loaderWindowsG.load( 'json/windows.json', function ( geometry, materials ) {
+
+					var material = materials[ 0 ];
+					material.morphTargets = true;
+
+					materialWindowsG = new THREE.MultiMaterial(materials);
+
+					meshWindowsG = new THREE.Mesh(geometry, materialWindowsG);
+						
+					meshWindowsG.scale.x = meshWindowsG.scale.y = meshWindowsG.scale.z = 466.29;
+					meshWindowsG.position.set(-5000,1500,1500);
+					meshWindowsG.rotation.x = 80.1;
+					meshWindowsG.rotation.z = 80.1;
+										
+					scene.add( meshWindowsG );
+										
+				} );				
 
 //Golfinho rosca
 var loader = new THREE.JSONLoader();
-				loader.load( 'json/novoGol.json', function ( geometry, materials ) {
+				loader.load( 'json/golfinho.json', function ( geometry, materials ) {
 
 					// adjust color a bit
 
@@ -376,11 +404,11 @@ var loader = new THREE.JSONLoader();
 						golfinhoRot = new THREE.Mesh(geometry, faceMaterial);
 						
 						
-						golfinhoRot.scale.x = golfinhoRot.scale.y = golfinhoRot.scale.z = 8.29;
+						golfinhoRot.scale.x = golfinhoRot.scale.y = golfinhoRot.scale.z = 23;
 
-						golfinhoRot.position.set( 0, 40, 120);
-						golfinhoRot.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
-
+						golfinhoRot.position.set( -500, 80, 70);
+						golfinhoRot.rotation.set(9,12,0);
+						
 						scene.add( golfinhoRot );
 
 						mixer[i] = new THREE.AnimationMixer( golfinhoRot );
@@ -425,6 +453,12 @@ var loader = new THREE.JSONLoader();
 				sphere.position.y = Math.sin( time ) * 500 + 250;
 				sphere.rotation.x = time * 0.5;
 				sphere.rotation.z = time * 0.51;
+
+				golfinhoRot.rotation.x = time * 0.21;
+				golfinhoRot.position.y = Math.sin( time ) * 25 + 25;
+				golfinhoRot.position.x = Math.sin( time ) * 500 + 10;
+
+				//meshGazebo.position.z = time * 0.5;
 				
 
 				//Animando golfinhos
