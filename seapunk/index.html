@@ -76,7 +76,7 @@
             var roscaPivot;
             var analiser, listener;
             var geometryEsfera, analyserGazebo;
-            var meshGb,meshPc,meshVenusB;
+            var meshGb,meshPc,meshVenusB,meshPaz;
 
 
             var parameters = {
@@ -481,7 +481,27 @@ var loader = new THREE.JSONLoader();
                 
                     scene.add( meshVenusB );
                                         
+                } );
+
+//Paz
+                var loaderPaz = new THREE.JSONLoader();
+                loaderPaz.load( 'json/paz.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshPaz = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshPaz.scale.x = meshPaz.scale.y = meshPaz.scale.z = 1.79;
+                    meshPaz.position.set(-59.6, 14, -6.4);
+                    meshPaz.rotation.set(1.6,0,0);
+                
+                    scene.add( meshPaz );
+                                        
                 } );                
+
 
 
 //Sons
