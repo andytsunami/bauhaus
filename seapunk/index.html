@@ -76,7 +76,7 @@
             var roscaPivot;
             var analiser, listener;
             var geometryEsfera, analyserGazebo;
-            var meshGb,meshPc;
+            var meshGb,meshPc,meshVenusB;
 
 
             var parameters = {
@@ -463,6 +463,25 @@ var loader = new THREE.JSONLoader();
                     scene.add( meshPc );
                                         
                 } );
+
+//VENUS BUSTO
+                var loaderVenusB = new THREE.JSONLoader();
+                loaderVenusB.load( 'json/venus.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshVenusB = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshVenusB.scale.x = meshVenusB.scale.y = meshVenusB.scale.z = 6.79;
+                    meshVenusB.position.set(-55.6, 15.2, 24.5);
+                    meshVenusB.rotation.set(0,-3.1,0);
+                
+                    scene.add( meshVenusB );
+                                        
+                } );                
 
 
 //Sons
