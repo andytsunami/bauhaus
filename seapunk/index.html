@@ -77,7 +77,7 @@
 			var roscaPivot;
 			var analiser, listener;
 			var geometryEsfera, analyserGazebo;
-			var meshGb;
+			var meshGb,meshPc;
 
 
 			var parameters = {
@@ -428,28 +428,42 @@ var loader = new THREE.JSONLoader();
 
 
 //GAMEBOY
-				var loaderGb = new THREE.JSONLoader();
-				loaderGb.load( 'json/gameboy.json', function ( geometry, materials ) {
+                var loaderGb = new THREE.JSONLoader();
+                loaderGb.load( 'json/gameboy.json', function ( geometry, materials ) {
 
-					var material = materials[ 0 ];
-					material.morphTargets = true;
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
 
-					var faceMaterial = new THREE.MultiMaterial(materials);
+                    var faceMaterial = new THREE.MultiMaterial(materials);
 
-					meshGb = new THREE.Mesh(geometry, faceMaterial);
-						
-					meshGb.scale.x = meshGb.scale.y = meshGb.scale.z = 1.7900000000000023;
-					meshGb.position.set( -150, 10, 10);
-					meshGb.rotation.set(8.881784197001252e-16,3.2999999999999994,1.4);
-					
+                    meshGb = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshGb.scale.x = meshGb.scale.y = meshGb.scale.z = 1.7900000000000023;
+                    meshGb.position.set( -36.5, 14.5, 22);
+                    meshGb.rotation.set(8.881784197001252e-16,4.799999999999999,1.4);
+ 
+                    scene.add( meshGb );
+                                        
+                } );
 
-										
-					//meshRosca.matrixAutoUpdate = false;
-					//meshRosca.updateMatrix();
+//COMPUTADOR
+                var loaderPc = new THREE.JSONLoader();
+                loaderPc.load( 'json/computador.json', function ( geometry, materials ) {
 
-					scene.add( meshGb );
-										
-				} );
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshPc = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshPc.scale.x = meshPc.scale.y = meshPc.scale.z = 2.2900000000000027;
+                    meshPc.position.set( -41.40000000000007, 13.499999999999998, -8.200000000000024);
+                    meshPc.rotation.set(0,0,0);
+                
+                    scene.add( meshPc );
+                                        
+                } );
 
 
 //Sons
