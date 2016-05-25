@@ -75,6 +75,10 @@
             var meshRosca;
             var roscaPivot;
             var analiser, listener;
+            var somEsfera, listenerEsfera, analiserEsfera;
+            var somGb, listenerGb, analiserGb;
+            var somGolA, listenerGolA, analiserGolA;
+            var somGolB, listenerGolB, analiserGolB;
             var geometryEsfera, analyserGazebo;
             var meshGb,meshPc,meshVenusB,meshPaz;
             var golfinhoA, pivotGolfinhoA;
@@ -253,6 +257,19 @@
                 sphere = new THREE.Mesh( geometryEsfera, material );
                 sphere.position.set( 1000, 28, 1000);       
                 scene.add( sphere );
+
+                listenerEsfera = new THREE.AudioListener();
+                camera.add( listenerEsfera );
+
+                somEsfera = new THREE.PositionalAudio( listenerEsfera );
+                somEsfera.load( 'audio/esfera.ogg' );
+                somEsfera.autoplay = true;
+                somEsfera.setLoop(true);
+                somEsfera.setVolume(1.5);
+                somEsfera.setRefDistance( 20 );
+                sphere.add(somEsfera);          
+
+                analyserEsfera = new THREE.AudioAnalyser( somEsfera, 32 );
 
 //Gazebo
                 var loaderGazebo = new THREE.JSONLoader();
@@ -444,6 +461,19 @@ var loader = new THREE.JSONLoader();
                     meshGb.rotation.set(8.881784197001252e-16,4.799999999999999,1.4);
  
                     scene.add( meshGb );
+
+                    listenerGb = new THREE.AudioListener();
+                    camera.add( listenerGb );
+
+                    somGb = new THREE.PositionalAudio( listenerGb );
+                    somGb.load( 'audio/gb.ogg' );
+                    somGb.autoplay = true;
+                    somGb.setLoop(true);
+                    somGb.setVolume(1.5);
+                    somGb.setRefDistance( 20 );
+                    meshGb.add(somGb);          
+
+                analyserEsfera = new THREE.AudioAnalyser( somGb, 32 );
                                         
                 } );
 
@@ -535,6 +565,22 @@ var loaderGolfinhoA = new THREE.JSONLoader();
 
                         pivotGolfinhoA.add(golfinhoA);
                         scene.add(pivotGolfinhoA);
+
+                        listenerGolA = new THREE.AudioListener();
+                        camera.add( listenerGolA );
+
+                        somGolA = new THREE.PositionalAudio( listenerGolA );
+                        somGolA.load( 'audio/golA.ogg' );
+                        somGolA.autoplay = true;
+                        somGolA.setLoop(true);
+                        somGolA.setVolume(0.2);
+                        somGolA.setRefDistance( 20 );
+                        golfinhoA.add(somGolA);          
+
+                analiserGolA = new THREE.AudioAnalyser( somGolA, 32 );
+
+
+
 
                         mixer[i] = new THREE.AnimationMixer(pivotGolfinhoA);
                         var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
