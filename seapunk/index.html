@@ -611,6 +611,19 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                         pivotGolfinhoB.add(golfinhoB);
                         scene.add(pivotGolfinhoB);
 
+                        listenerGolA = new THREE.AudioListener();
+                        camera.add( listenerGolA );
+
+                        somGolB = new THREE.PositionalAudio( listenerGolB );
+                        somGolB.load( 'audio/golB.ogg' );
+                        somGolB.autoplay = true;
+                        somGolB.setLoop(true);
+                        somGolB.setVolume(0.2);
+                        somGolB.setRefDistance( 20 );
+                        golfinhoB.add(somGolB);          
+
+                analiserGolB = new THREE.AudioAnalyser( somGolB, 32 );
+
                         mixer[i] = new THREE.AnimationMixer(pivotGolfinhoB);
                         var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
                         mixer[i].clipAction( clip ).setDuration( 1 ).play();
