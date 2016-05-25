@@ -82,6 +82,7 @@
             var geometryEsfera, analyserGazebo;
             var meshGb,meshPc,meshVenusB,meshPaz;
             var golfinhoA, pivotGolfinhoA;
+            var pivotGolfinhoB, golfinhoB;
 
 
             var parameters = {
@@ -150,7 +151,7 @@
                 scene.add( new THREE.AmbientLight( 0xFFFFFF, 1.5 ) );
 
                 //pointLight = new THREE.PointLight( 0xFFFFFF, 5, 30 );
-                pointLight = new THREE.SpotLight( 0xFFA966, 500, 12000 );
+                pointLight = new THREE.SpotLight( 0xFFA966, 17.5, 12000 );
                 //pointLight.position.set( - 1, 1, - 1 );
                 pointLight.position.set(-640,900,-600);
                 pointLight.distance = 1255;
@@ -538,18 +539,13 @@ var loader = new THREE.JSONLoader();
 var loaderGolfinhoA = new THREE.JSONLoader();
                 loaderGolfinhoA.load( 'json/golfinho.json', function ( geometry, materials ) {
 
-                    // adjust color a bit
-
-
                     var material = materials[ 0 ];
                     material.morphTargets = true;
                     material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
 
                     var faceMaterial = new THREE.MultiMaterial(materials);
 
-
                         golfinhoA = new THREE.Mesh(geometry, faceMaterial);
-                        
                         
                         golfinhoA.scale.x = golfinhoA.scale.y = golfinhoA.scale.z = 2.9;
 
@@ -588,7 +584,38 @@ var loaderGolfinhoA = new THREE.JSONLoader();
 
                     });
 
+//Golfinho B
+var loaderGolfinhoB = new THREE.JSONLoader();
+                loaderGolfinhoB.load( 'json/golfinho.json', function ( geometry, materials ) {
 
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                        golfinhoB = new THREE.Mesh(geometry, faceMaterial);
+                        
+                        golfinhoB.scale.x = golfinhoB.scale.y = golfinhoB.scale.z = 2.9;
+
+                        golfinhoB.position.set(-3.5, 1, 22);
+                        golfinhoB.rotation.set(0,3,0);
+
+                        //Rotacao do golfinho
+                        scene.add( golfinhoB );
+
+                        pivotGolfinhoB = new THREE.Object3D();
+                        pivotGolfinhoB.position.set(-63.5, 14.5, 5);
+                        pivotGolfinhoB.scale.x = pivotGolfinhoB.scale.y = pivotGolfinhoB.scale.z = 2.9;
+
+                        pivotGolfinhoB.add(golfinhoB);
+                        scene.add(pivotGolfinhoB);
+
+                        mixer[i] = new THREE.AnimationMixer(pivotGolfinhoB);
+                        var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+                        mixer[i].clipAction( clip ).setDuration( 1 ).play();
+
+                    });
 
 //Sons
                 
@@ -640,15 +667,17 @@ var loaderGolfinhoA = new THREE.JSONLoader();
                 golfinhoRot.rotation.z -= 1.0 / 60.0;
                 golfinhoRot.rotation.y -= 1.0 / 60.0;
 
+                //Golfinho A
                 pivotGolfinhoA.rotation.x += 1.0 / 60.0;
-               // golfinhoA.rotation.z -= 1.0 / 60.0;
-                golfinhoA.rotation.x = Math.sin( time ) ;
+                golfinhoA.rotation.x = Math.sin( time );
+
+                //Golfinho B
+                pivotGolfinhoB.rotation.x -= 1.0 / 60.0;
+                golfinhoB.rotation.x = Math.sin( time );
                 
                 
                 //geometryEsfera.emissive.b = analyserEsfera.getData()[8] / 256;
                 
-
-
                 water.render();
                 renderer.render( scene, camera );
 
