@@ -38,3 +38,22 @@ nav .brand-logo{
 	height: 175px;
     line-height: 160px;
 }
+
+.vcr{
+	font-family: "VCR_OSD_MONO" !important;
+}
+
+.bebas{
+	font-family: "Bebas" !important;
+}
+
+.desc{
+	font-size: 3.1em;
+}
+
+.links{
+	padding: 10px;
+}
+.card-content{
+	padding: 15px !important;
+}
