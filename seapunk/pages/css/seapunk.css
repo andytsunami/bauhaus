@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'VCR_OSD_MONO';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/VCR_OSD_MONO.ttf) format('truetype');
+
+}
+
+@font-face {
+  font-family: 'Bebas';
+  font-style: bold;
+  font-weight: 400;
+  src: url(../font/bebas_neue/BebasNeueLight.otf) format('opentype');
+
+}
+
+body{
+	background-color: #ba68c8;
+	font-family: "Bebas";
+}
+
+h1,nav{
+	font-family: "VCR_OSD_MONO";
+}
+
+nav .brand-logo{
+	padding-top: 1%;
+	color: #000;
+	font-size: 8em;
+}
+
+.topo img {
+	margin-left: 3%;
+	width: 13% !important;
+}
+
+.topo{
+	height: 175px;
+    line-height: 160px;
+}
