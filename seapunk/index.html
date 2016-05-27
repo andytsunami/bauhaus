@@ -38,7 +38,27 @@
             }
 
         </style>
-    </head>e
+
+         <script type="text/javascript" src="../seapunk/js/jquery-1.12.4.min.js"></script>
+
+          <!-- Add fancyBox -->
+	      <link rel="stylesheet" href="../seapunk/js/fancy/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+	      <script type="text/javascript" src="../seapunk/js/fancy/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+         <script type="text/javascript">
+		      $(document).ready(function(){
+		          $("body").click(function(){
+		            $.fancybox.open({
+		                padding : 0,
+		                href:'/bauhaus/seapunk/pages/golfinho.html',
+		                type: 'iframe'
+		            });
+		          });
+		      });
+      
+
+      </script>
+    </head>
     <body>
     <div id="info"></div>
 
@@ -52,7 +72,6 @@
 
         <script src="Detector.js"></script>
         <script src="stats.min.js"></script>
-
         <script>
 //VHS Shader https://www.airtightinteractive.com/demos/js/badtvshader/
 
@@ -719,5 +738,6 @@ var loaderGolfinhoB = new THREE.JSONLoader();
             animate();
 
         </script>
+
     </body>
 </html>
