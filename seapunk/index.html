@@ -444,7 +444,7 @@
                     meshRosca.callback = function(){
                         $.fancybox.open({
                             padding : 0,
-                            href:'/bauhaus/seapunk/pages/golfinho.html',
+                            href: path + 'golfinho.html',
                             type: 'iframe'
                             });
                         };
@@ -476,7 +476,7 @@ var loaderWindowsG = new THREE.JSONLoader();
                      meshWindowsG.callback = function(){
                         $.fancybox.open({
                             padding : 0,
-                            href:'../seapunk/pages/estetica.html',
+                            href: path + 'estetica.html',
                             type: 'iframe'
                         });
                     };
@@ -566,7 +566,7 @@ var loader = new THREE.JSONLoader();
                     meshGb.callback = function(){
                         $.fancybox.open({
                             padding : 0,
-                            href:'/bauhaus/seapunk/pages/videoGame.html',
+                            href: path +'videoGame.html',
                             type: 'iframe'
                         });
                     };
@@ -600,7 +600,7 @@ var loader = new THREE.JSONLoader();
                     meshPc.callback = function(){
                         $.fancybox.open({
                             padding : 0,
-                            href:'/bauhaus/seapunk/pages/computador.html',
+                            href: path + 'computador.html',
                             type: 'iframe'
                         });
                     };
@@ -632,7 +632,7 @@ var loader = new THREE.JSONLoader();
                      meshVenusB.callback = function(){
                             $.fancybox.open({
                                 padding : 0,
-                                href:'/bauhaus/seapunk/pages/venus.html',
+                                href: path + 'venus.html',
                                 type: 'iframe'
                             });
                         };
@@ -664,7 +664,7 @@ var loader = new THREE.JSONLoader();
                     meshPaz.callback = function(){
                             $.fancybox.open({
                                 padding : 0,
-                                href:'/bauhaus/seapunk/pages/symbol.html',
+                                href: path + 'symbol.html',
                                 type: 'iframe'
                             });
                         };
@@ -703,20 +703,6 @@ var loaderGolfinhoA = new THREE.JSONLoader();
                         pivotGolfinhoA.scale.x = pivotGolfinhoA.scale.y = pivotGolfinhoA.scale.z = 2.9;
 
                         pivotGolfinhoA.add(golfinhoA);
-
-                        golfinhoA.callback = function(){
-                            $.fancybox.open({
-                                padding : 0,
-                                href:'/bauhaus/seapunk/pages/golfinho.html',
-                                type: 'iframe'
-                            });
-                        };
-
-                        golfinhoA.cursor = function(){
-                            console.log("Golfinho A");
-                            return true;
-                        }
-
 
                         scene.add(pivotGolfinhoA);
 
@@ -758,20 +744,6 @@ var loaderGolfinhoB = new THREE.JSONLoader();
 
                         golfinhoB.position.set(-3.5, 1, 22);
                         golfinhoB.rotation.set(0,3,0);
-
-
-                        golfinhoB.callback = function(){
-                            $.fancybox.open({
-                                padding : 0,
-                                href:'/bauhaus/seapunk/pages/golfinho.html',
-                                type: 'iframe'
-                            });
-                        };
-
-                        golfinhoB.cursor = function(){
-                            console.log("Golfinho A");
-                            return true;
-                        }
 
                         //Rotacao do golfinho
                         scene.add( golfinhoB );
