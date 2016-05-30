@@ -118,6 +118,7 @@
             var meshGb,meshPc,meshVenusB,meshPaz;
             var golfinhoA, pivotGolfinhoA;
             var pivotGolfinhoB, golfinhoB;
+            var meshFundo;
 
             var raycaster = new THREE.Raycaster();
             var mouse = new THREE.Vector2();
@@ -369,9 +370,9 @@
                 } );
 
     //Golfinhos
-                var loader = new THREE.JSONLoader();
+                /*var loader = new THREE.JSONLoader();
                 //loader.load( 'json/novoGol.json', function ( geometry, materials ) {
-                loader.load( 'json/paz.json', function ( geometry, materials ) {
+                loader.load( 'json/cristal.json', function ( geometry, materials ) {
 
 
                     // adjust color a bit
@@ -383,10 +384,7 @@
                     var faceMaterial = new THREE.MultiMaterial(materials);
 
                     for ( var i = 0; i < quant; i ++ ) {
-                        // random placement in a grid
-
-                        /*var x = ( ( i % 227 )  - 213.5 ) * 2 + THREE.Math.randFloatSpread( 1 );
-                        var z = ( Math.floor( i / 227 ) - 213.5 ) * 2 + THREE.Math.randFloatSpread( 1 );*/
+                    
 
                         var min = -1000;
                         var max = 1000;
@@ -405,7 +403,7 @@
                         
                         mesh.scale.x = mesh.scale.y = mesh.scale.z = 8.29;
 
-                        mesh.position.set( x, 40, z );
+                        mesh.position.set( x, -250, z );
                         mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
 
 
@@ -421,7 +419,7 @@
 
                     }
                 } );
-
+*/
 //Rosca
                 var loaderRosca = new THREE.JSONLoader();
                 loaderRosca.load( 'json/rosca.json', function ( geometry, materials ) {
@@ -773,8 +771,26 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                         mixer[i].clipAction( clip ).setDuration( 1 ).play();
 
                     });
+//FUNDO
+                var loaderFundo = new THREE.JSONLoader();
+                loaderFundo.load( 'json/fundo.json', function ( geometry, materials ) {
 
-//Sons
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshFundo = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshFundo.scale.x = meshFundo.scale.y = meshFundo.scale.z = 6.79;
+                    meshFundo.position.set(0,-200,0);
+                    meshFundo.rotation.set(0,-3.1,0);
+
+                
+                
+                    scene.add( meshFundo );
+                                        
+                } );
                 
 
             }
@@ -858,14 +874,14 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 //Animando golfinhos
             //  var time = Date.now();
     //console.log("Quantidade de objetos animados: " + mixer.length);
-                for ( var i = 0; i <= mixer.length; i ++ ) {
+               /* for ( var i = 0; i <= mixer.length; i ++ ) {
                     
                     if ( mixer[i] ) {
                         //mixer[i].update( ( time - prevTime ) * 0.001 );
                         mixer[i].update( ( delta));
                 }
 
-            }
+            }*/
                 //agua
                 water.material.uniforms.time.value += 1.0 / 60.0;
                 
