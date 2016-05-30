@@ -54,8 +54,8 @@
 		                type: 'iframe'
 		            });
 		          });
-		      });
-      */
+		      });*/
+      
 
       </script>
     </head>
@@ -72,6 +72,7 @@
 
         <script src="Detector.js"></script>
         <script src="stats.min.js"></script>
+        
         <script>
 //VHS Shader https://www.airtightinteractive.com/demos/js/badtvshader/
 
@@ -115,6 +116,12 @@
             var golfinhoA, pivotGolfinhoA;
             var pivotGolfinhoB, golfinhoB;
 
+            var raycaster = new THREE.Raycaster();
+            var mouse = new THREE.Vector2();
+
+            var info;
+            var fancy = true;
+
 
             var parameters = {
                 width: 2000,
@@ -134,7 +141,7 @@
                 container = document.createElement( 'div' );
                 document.body.appendChild( container );
 
-                var info = document.createElement( 'div' );
+                info = document.createElement( 'div' );
                 info.style.position = 'absolute';
                 info.style.top = '10px';
                 info.style.width = '100%';
@@ -158,6 +165,9 @@
                 // Events
 
                 window.addEventListener( 'resize', onWindowResize, false );
+                window.addEventListener( 'click', onDocumentMouseDown, false);
+                window.addEventListener( 'mousemove', onDocumentMouseMove, false);
+                
 
                 //Scene
                 scene = new THREE.Scene();
@@ -503,6 +513,17 @@ var loader = new THREE.JSONLoader();
                     somGb.setLoop(true);
                     somGb.setVolume(1.5);
                     somGb.setRefDistance( 20 );
+                    somGb.name = "Eita cusao";
+
+                    meshGb.callback = function(){
+                        alert("Game boy" + this.name);
+                    };
+
+                    meshGb.cursor = function(){
+                        console.log("over");
+                        return true;
+                    }
+
                     meshGb.add(somGb);          
 
                 analyserEsfera = new THREE.AudioAnalyser( somGb, 32 );
@@ -676,6 +697,59 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 camera.updateProjectionMatrix();
             }
 
+            function onDocumentMouseDown( event ) {
+                console.log("Clicado");
+
+                event.preventDefault();
+
+                mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+                mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+
+                raycaster.setFromCamera( mouse, camera );
+
+                var intersects = raycaster.intersectObjects( scene.children ); 
+
+                if ( intersects.length > 0 ) {
+                    try{
+                        intersects[0].object.callback();    
+                    } catch (err){
+                        console.log("Sem callback");
+                    }
+                    
+                }
+
+            }
+
+            function onDocumentMouseMove( event ) {
+                event.preventDefault();
+
+                mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+                mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+
+                raycaster.setFromCamera( mouse, camera );
+
+                var intersects = raycaster.intersectObjects( scene.children ); 
+
+                if ( intersects.length > 0 ) {
+                    try{
+                        var retorno = intersects[0].object.cursor();    
+                        if(retorno){
+                        document.body.style.cursor = "pointer";    
+                        } else {
+                            document.body.style.cursor = "crosshair";    
+                        }
+                    } catch (err) {
+                        document.body.style.cursor = "crosshair";    
+                    }   
+                    
+                    
+                    
+                } else {
+                    document.body.style.cursor = "crosshair";
+                }
+
+            }
+
 
 
             var prevTime = performance.now();
@@ -719,7 +793,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 pivotGolfinhoB.rotation.x -= 1.0 / 60.0;
                 golfinhoB.rotation.x = Math.sin( time );
 
-                var camX = camera.position.x;
+              /*  var camX = camera.position.x;
                 var camY = camera.position.y;
                 var camZ = camera.position.z;
 
@@ -728,15 +802,20 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 var gbY = meshGb.position.y + 10;
                 var gbZ = meshGb.position.z + 10;
 
-                if(camX == gbX && camY == gbY && camZ == gbZ){
-                    alert("Fronho!");
-                }
+                info.innerHTML = "X = " + camX + " <br/> Y = " + camY 
+                + "<br/> Z = " + camZ;
 
 
+                if(camX > -38.4 && camY > 15.2 && fancy){
+                    fancy = false;
+                     $.fancybox.open({
+                            padding : 0,
+                            href:'/bauhaus/seapunk/pages/videoGame.html',
+                            type: 'iframe'
+                        });
+                   
+                }*/
 
-
-                
-                
                 //geometryEsfera.emissive.b = analyserEsfera.getData()[8] / 256;
                 
                 water.render();
