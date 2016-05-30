@@ -83,6 +83,9 @@
 
             }
 
+            var path = "/pages/";
+            //var path = "/bauhaus/seapunk/pages/";
+
             var meshGazebo = 0;
             var container, stats;
             var materialGazebo,somGazebo;
@@ -338,7 +341,7 @@
                         meshGazebo.callback = function(){
                             $.fancybox.open({
                                 padding : 0,
-                                href:'/bauhaus/seapunk/pages/gazebo.html',
+                                href: path + 'gazebo.html',
                                 type: 'iframe'
                             });
                         };
