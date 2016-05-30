@@ -334,7 +334,20 @@
 
                         meshGazebo.matrixAutoUpdate = false;
                         meshGazebo.updateMatrix();
-                
+
+                        meshGazebo.callback = function(){
+                            $.fancybox.open({
+                                padding : 0,
+                                href:'/bauhaus/seapunk/pages/gazebo.html',
+                                type: 'iframe'
+                            });
+                        };
+
+                        meshGazebo.cursor = function(){
+                            console.log("gazebo");
+                            return true;
+                        }
+                    
                         scene.add( meshGazebo );
 
                         listener = new THREE.AudioListener();
@@ -425,6 +438,19 @@
                     //meshRosca.matrixAutoUpdate = false;
                     //meshRosca.updateMatrix();
 
+                    meshRosca.callback = function(){
+                        $.fancybox.open({
+                            padding : 0,
+                            href:'/bauhaus/seapunk/pages/golfinho.html',
+                            type: 'iframe'
+                            });
+                        };
+
+                        meshRosca.cursor = function(){
+                            console.log("Golfinho Rot");
+                            return true;
+                        }
+
                     scene.add( meshRosca );
                                         
                 } );
@@ -443,6 +469,19 @@ var loaderWindowsG = new THREE.JSONLoader();
                     meshWindowsG.position.set(-5000,1500,1500);
                     meshWindowsG.rotation.x = 80.1;
                     meshWindowsG.rotation.z = 80.1;
+
+                     meshWindowsG.callback = function(){
+                        $.fancybox.open({
+                            padding : 0,
+                            href:'/bauhaus/seapunk/pages/estetica.html',
+                            type: 'iframe'
+                        });
+                    };
+
+                    meshWindowsG.cursor = function(){
+                        console.log("over");
+                        return true;
+                    }
                                         
                     scene.add( meshWindowsG );
                                         
@@ -470,6 +509,8 @@ var loader = new THREE.JSONLoader();
                         golfinhoRot.position.set( -500, 80, 70);
                         golfinhoRot.rotation.set(9,11,0);
 
+
+
                         //Rotacao do golfinho
                         scene.add( golfinhoRot );
 
@@ -477,6 +518,10 @@ var loader = new THREE.JSONLoader();
                         pivot.position.set(-480, 2.6000000000001364, 53.5);
                         pivot.scale.x = pivot.scale.y = pivot.scale.z = 0.20010000000000006;
                         pivot.add(golfinhoRot);
+
+                       
+
+
                         scene.add(pivot);
 
                         mixer[i] = new THREE.AnimationMixer( golfinhoRot );
@@ -513,10 +558,14 @@ var loader = new THREE.JSONLoader();
                     somGb.setLoop(true);
                     somGb.setVolume(1.5);
                     somGb.setRefDistance( 20 );
-                    somGb.name = "Eita cusao";
+                    
 
                     meshGb.callback = function(){
-                        alert("Game boy" + this.name);
+                        $.fancybox.open({
+                            padding : 0,
+                            href:'/bauhaus/seapunk/pages/videoGame.html',
+                            type: 'iframe'
+                        });
                     };
 
                     meshGb.cursor = function(){
@@ -544,6 +593,19 @@ var loader = new THREE.JSONLoader();
                     meshPc.scale.x = meshPc.scale.y = meshPc.scale.z = 2.2900000000000027;
                     meshPc.position.set( -41.40000000000007, 13.499999999999998, -8.200000000000024);
                     meshPc.rotation.set(0,0,0);
+
+                    meshPc.callback = function(){
+                        $.fancybox.open({
+                            padding : 0,
+                            href:'/bauhaus/seapunk/pages/computador.html',
+                            type: 'iframe'
+                        });
+                    };
+
+                    meshPc.cursor = function(){
+                        console.log("Computador");
+                        return true;
+                    }
                 
                     scene.add( meshPc );
                                         
@@ -563,6 +625,19 @@ var loader = new THREE.JSONLoader();
                     meshVenusB.scale.x = meshVenusB.scale.y = meshVenusB.scale.z = 6.79;
                     meshVenusB.position.set(-55.6, 15.2, 24.5);
                     meshVenusB.rotation.set(0,-3.1,0);
+
+                     meshVenusB.callback = function(){
+                            $.fancybox.open({
+                                padding : 0,
+                                href:'/bauhaus/seapunk/pages/venus.html',
+                                type: 'iframe'
+                            });
+                        };
+
+                        meshVenusB.cursor = function(){
+                            console.log("Venus");
+                            return true;
+                        }
                 
                     scene.add( meshVenusB );
                                         
@@ -582,6 +657,19 @@ var loader = new THREE.JSONLoader();
                     meshPaz.scale.x = meshPaz.scale.y = meshPaz.scale.z = 1.79;
                     meshPaz.position.set(-59.6, 14, -6.4);
                     meshPaz.rotation.set(1.6,0,0);
+
+                    meshPaz.callback = function(){
+                            $.fancybox.open({
+                                padding : 0,
+                                href:'/bauhaus/seapunk/pages/symbol.html',
+                                type: 'iframe'
+                            });
+                        };
+
+                        meshPaz.cursor = function(){
+                            console.log("Venus");
+                            return true;
+                        }
                 
                     scene.add( meshPaz );
                                         
@@ -612,6 +700,21 @@ var loaderGolfinhoA = new THREE.JSONLoader();
                         pivotGolfinhoA.scale.x = pivotGolfinhoA.scale.y = pivotGolfinhoA.scale.z = 2.9;
 
                         pivotGolfinhoA.add(golfinhoA);
+
+                        golfinhoA.callback = function(){
+                            $.fancybox.open({
+                                padding : 0,
+                                href:'/bauhaus/seapunk/pages/golfinho.html',
+                                type: 'iframe'
+                            });
+                        };
+
+                        golfinhoA.cursor = function(){
+                            console.log("Golfinho A");
+                            return true;
+                        }
+
+
                         scene.add(pivotGolfinhoA);
 
                         listenerGolA = new THREE.AudioListener();
@@ -652,6 +755,20 @@ var loaderGolfinhoB = new THREE.JSONLoader();
 
                         golfinhoB.position.set(-3.5, 1, 22);
                         golfinhoB.rotation.set(0,3,0);
+
+
+                        golfinhoB.callback = function(){
+                            $.fancybox.open({
+                                padding : 0,
+                                href:'/bauhaus/seapunk/pages/golfinho.html',
+                                type: 'iframe'
+                            });
+                        };
+
+                        golfinhoB.cursor = function(){
+                            console.log("Golfinho A");
+                            return true;
+                        }
 
                         //Rotacao do golfinho
                         scene.add( golfinhoB );
@@ -792,29 +909,6 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 //Golfinho B
                 pivotGolfinhoB.rotation.x -= 1.0 / 60.0;
                 golfinhoB.rotation.x = Math.sin( time );
-
-              /*  var camX = camera.position.x;
-                var camY = camera.position.y;
-                var camZ = camera.position.z;
-
-
-                var gbX = meshGb.position.x + 10;
-                var gbY = meshGb.position.y + 10;
-                var gbZ = meshGb.position.z + 10;
-
-                info.innerHTML = "X = " + camX + " <br/> Y = " + camY 
-                + "<br/> Z = " + camZ;
-
-
-                if(camX > -38.4 && camY > 15.2 && fancy){
-                    fancy = false;
-                     $.fancybox.open({
-                            padding : 0,
-                            href:'/bauhaus/seapunk/pages/videoGame.html',
-                            type: 'iframe'
-                        });
-                   
-                }*/
 
                 //geometryEsfera.emissive.b = analyserEsfera.getData()[8] / 256;
                 
