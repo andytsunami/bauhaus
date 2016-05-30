@@ -46,16 +46,16 @@
 	      <script type="text/javascript" src="../seapunk/js/fancy/jquery.fancybox.pack.js?v=2.1.5"></script>
 
          <script type="text/javascript">
-		      $(document).ready(function(){
+		     /* $(document).ready(function(){
 		          $("body").click(function(){
 		            $.fancybox.open({
 		                padding : 0,
-		                href:'/bauhaus/seapunk/pages/golfinho.html',
+		                href:'/bauhaus/seapunk/pages/estetica.html',
 		                type: 'iframe'
 		            });
 		          });
 		      });
-      
+      */
 
       </script>
     </head>
@@ -718,6 +718,23 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 //Golfinho B
                 pivotGolfinhoB.rotation.x -= 1.0 / 60.0;
                 golfinhoB.rotation.x = Math.sin( time );
+
+                var camX = camera.position.x;
+                var camY = camera.position.y;
+                var camZ = camera.position.z;
+
+
+                var gbX = meshGb.position.x + 10;
+                var gbY = meshGb.position.y + 10;
+                var gbZ = meshGb.position.z + 10;
+
+                if(camX == gbX && camY == gbY && camZ == gbZ){
+                    alert("Fronho!");
+                }
+
+
+
+
                 
                 
                 //geometryEsfera.emissive.b = analyserEsfera.getData()[8] / 256;

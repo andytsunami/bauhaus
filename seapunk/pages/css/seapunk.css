@@ -35,6 +35,7 @@ nav .brand-logo{
 }
 
 .topo{
+	
 	height: 175px;
     line-height: 160px;
 }
@@ -56,4 +57,11 @@ nav .brand-logo{
 }
 .card-content{
 	padding: 15px !important;
+}
+
+.input-field label {
+	color: #000 !important;
+    font-size: 1.8rem !important;
+    top: 2.2rem !important;
+    width: 129% !important;
 }
