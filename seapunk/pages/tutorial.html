@@ -29,13 +29,16 @@
       <script type="text/javascript" src="../js/materialize/js/materialize.min.js"></script>
 
       <link type="text/css" rel="stylesheet" href="../pages/css/seapunk.css"  media="screen,projection"/>
-      <script type="text/javascript">
-      $(document).ready(function(){
-    
-      });
-      
+      <script type="text/javascript" src="../js/contextAction.js"></script>
+      <style>
+        form{
+           height: 13em;
+        }
 
-      </script>
+        #enviar{
+          bottom: -3em;
+        }
+      </style>
       <title>S E A P U N K</title>
     </head>
     <body>    
@@ -63,6 +66,18 @@
             Mouse para virar.
             Clique esquerdo para FRENTE e clique direito para TRÁS.
             </span>
+            <form class="card-panel purple lighten-2" id="form">
+              <div class="input-field col s7">
+                <input placeholder="." id="nome" type="text" class="validate" name="nome"/>
+                <label for="nome black">Informe seu nome</label>
+              </div>
+              <div class="input-field col s7">
+                <input placeholder="." id="email" type="text" class="validate" name="email">
+                <label for="email black">Informe seu Email</label>
+              </div>
+              <br/>
+              <a class="waves-effect waves-light btn right" id="enviar">Enviar</a>
+          </form>
           </div>
         </div>
       </div>    
