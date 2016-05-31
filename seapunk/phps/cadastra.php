@@ -10,13 +10,20 @@
 	
 	mysql_select_db($banco);
 
-	$sql = "select id,uuid, nome from acesso;";
+	$preenchido = (!empty($_POST['nome']) AND !empty($_POST['email']));
 
-		$retorno = mysql_query($sql,$conexao) or exit(mysql_error());
 
-		if(!empty($retorno)){
-			while($linha = mysql_fetch_array($retorno)){
-				echo $linha["nome"];
-			}	
+	if($preenchido){
+		$nome = htmlentities($_POST['nome'],ENT_QUOTES);
+		$email = htmlentities($_POST['email'],ENT_QUOTES);
+		$uuid = md5(uniqid(rand(), true));
+
+		$sql = "INSERT INTO acesso (uuid,nome,email,acesso) VALUES('{$uuid}','{$nome}','{$email}',now());";
+
+			$retorno = mysql_query($sql,$conexao) or exit(mysql_error());
+
+			if($retorno) {
+					echo $uuid;
+		}
 	}
 ?>
