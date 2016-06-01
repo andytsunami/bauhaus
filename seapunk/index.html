@@ -130,7 +130,7 @@
             var analiserFundo, somFundo, listenerFundo;
             var somGolB, listenerGolB, analiserGolB;
             var geometryEsfera, analyserGazebo;
-            var meshGb,meshPc,meshVenusB,meshPaz;
+            var meshGb,meshPc,meshtV,meshVenusB,meshPaz;
             var golfinhoA, pivotGolfinhoA;
             var pivotGolfinhoB, golfinhoB;
             var meshFundo;
@@ -601,6 +601,7 @@ var loader = new THREE.JSONLoader();
 
                     var material = materials[ 0 ];
                     material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
 
                     var faceMaterial = new THREE.MultiMaterial(materials);
 
@@ -633,6 +634,7 @@ var loader = new THREE.JSONLoader();
 
                     var material = materials[ 0 ];
                     material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
 
                     var faceMaterial = new THREE.MultiMaterial(materials);
 
@@ -665,6 +667,7 @@ var loader = new THREE.JSONLoader();
 
                     var material = materials[ 0 ];
                     material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
 
                     var faceMaterial = new THREE.MultiMaterial(materials);
 
@@ -786,6 +789,40 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                         mixer[i].clipAction( clip ).setDuration( 1 ).play();
 
                     });
+
+//TELEVISAO
+                var loadertV = new THREE.JSONLoader();
+                loadertV.load( 'json/computador.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshtV = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshtV.scale.x = meshtV.scale.y = meshtV.scale.z = 4.2900000000000027;
+                    meshtV.position.set( -41.40000000000007, -375, -8.200000000000024);
+                    meshtV.rotation.set(0,0,0);
+
+                    meshtV.callback = function(){
+                        $.fancybox.open({
+                            padding : 0,
+                            href: path + 'tv.html',
+                            type: 'iframe'
+                        });
+                    };
+
+                    meshtV.cursor = function(){
+                        console.log("Glogo mente e Roberto Marinho é Traficante!!");
+                        return true;
+                    }
+                
+                    scene.add( meshtV );
+                                        
+                } );
+
 //FUNDO
                 var loaderFundo = new THREE.JSONLoader();
                 loaderFundo.load( 'json/fundo.json', function ( geometry, materials ) {

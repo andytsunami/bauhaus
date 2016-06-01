@@ -30,4 +30,32 @@
 		           }
 		         });
             });
+
+              $("#tv").click(function(){
+              	$("#uuid").val(parent.$("#uuid").val());
+            	$.ajax({
+		           type: "POST",
+		           url: $.paramsPage.contexto + "televisao.php",
+		           data: $("#form").serialize(), 
+		           success: function(data)
+		           {
+		               console.log("Pesquisa televisao preenchida." + data);
+		               parent.close();
+		           }
+		         });
+            });
+
+              $("#vg").click(function(){
+              	$("#uuid").val(parent.$("#uuid").val());
+            	$.ajax({
+		           type: "POST",
+		           url: $.paramsPage.contexto + "videoGame.php",
+		           data: $("#form").serialize(), 
+		           success: function(data)
+		           {
+		               console.log("Pesquisa videogame preenchida." + data);
+		               parent.close();
+		           }
+		         });
+            });
       });
