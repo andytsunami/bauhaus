@@ -10,13 +10,20 @@
 	
 	mysql_select_db($banco);
 
+	$uuid = "";
 	$preenchido = (!empty($_POST['nome']) AND !empty($_POST['email']));
 
+	/*if(!empty($_POST['uuid'])){
+		$uuid = $_POST['uuid'];
+	} else {
+		$uuid = md5(uniqid(rand(), true));	
+	}*/
+	$uuid = md5(uniqid(rand(), true));
 
 	if($preenchido){
 		$nome = htmlentities($_POST['nome'],ENT_QUOTES);
 		$email = htmlentities($_POST['email'],ENT_QUOTES);
-		$uuid = md5(uniqid(rand(), true));
+
 
 		$sql = "INSERT INTO acesso (uuid,nome,email,acesso) VALUES('{$uuid}','{$nome}','{$email}',now());";
 
@@ -24,6 +31,14 @@
 
 			if($retorno) {
 					echo $uuid;
-		}
+			}
+	} else {
+		$sql = "INSERT INTO acesso (uuid,acesso) VALUES('{$uuid}',now());";
+
+			$retorno = mysql_query($sql,$conexao) or exit(mysql_error());
+
+			if($retorno) {
+					echo $uuid;
+			}
 	}
 ?>
