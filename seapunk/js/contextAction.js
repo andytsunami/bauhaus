@@ -11,7 +11,22 @@
 		           data: $("#form").serialize(), 
 		           success: function(data)
 		           {
-		               alert(data);
+		               parent.$("#uuid").val(data);
+		               parent.close();
+		           }
+		         });
+            });
+
+              $("#comp").click(function(){
+              	$("#uuid").val(parent.$("#uuid").val());
+            	$.ajax({
+		           type: "POST",
+		           url: $.paramsPage.contexto + "computador.php",
+		           data: $("#form").serialize(), 
+		           success: function(data)
+		           {
+		               console.log("Pesquisa computador preenchida.");
+		               parent.close();
 		           }
 		         });
             });

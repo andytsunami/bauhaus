@@ -60,7 +60,7 @@
       </script>
     </head>
     <body>
-    <input type="hide" name="uuid" id="uuid"/>
+    <input type="hidden" name="uuid" id="uuid"/>
     <div id="info"></div>
 
         <script src="three.min.js"></script>
@@ -84,8 +84,21 @@
 
             }
 
-            var path = "/seapunk/pages/";
-            //var path = "/bauhaus/seapunk/pages/";
+       
+            //var path = "/seapunk/pages/";
+            var path = "/bauhaus/seapunk/pages/";
+
+                 $.fancybox.open({
+                                padding : 0,
+                                href: path + 'tutorial.html',
+                                type: 'iframe',
+                                'closeBtn':false
+            });
+
+            function close(){
+                $.fancybox.close();
+            }
+
 
             var meshGazebo = 0;
             var container, stats;
@@ -904,7 +917,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 //agua
                 water.material.uniforms.time.value += 1.0 / 60.0;
                 
-                controls.movementSpeed = 500.33;
+                controls.movementSpeed = 7.33;
                 controls.update(delta);
 
 
