@@ -29,13 +29,7 @@
       <script type="text/javascript" src="../js/materialize/js/materialize.min.js"></script>
 
       <link type="text/css" rel="stylesheet" href="../pages/css/seapunk.css"  media="screen,projection"/>
-      <script type="text/javascript">
-      $(document).ready(function(){
-    
-      });
-      
-
-      </script>
+      <script type="text/javascript" src="../js/contextAction.js"></script>
       <title>S E A P U N K</title>
     </head>
     <body>    
@@ -58,15 +52,16 @@
 
         <div class="col s12 m7 right">
           <div class="card-panel light-blue lighten-3">
-            <span class="black-text bebas desc capitalize">As crianças nos anos 90 passavem muito tempo na frente da televisão..</span>
+            <span class="black-text bebas desc capitalize">As crianças nos anos 90 passavam muito tempo na frente da televisão..</span>
 
-             <form class="card-panel purple lighten-2">
-            <div class="input-field col s7">
-              <input placeholder="." id="video" type="text" class="validate">
-              <label for="video black">O que voce gostava de assistir?</label>
-            </div>
-            <br/>
-            <a class="waves-effect waves-light btn">Enviar</a>
+             <form class="card-panel purple lighten-2" id="form">
+              <input type="hidden" name="uuid" id="uuid"/>
+              <div class="input-field col s7">
+                <input placeholder="." id="tvInput" type="text" class="validate" name="tv">
+                <label for="video black">O que você gostava de assistir?</label>
+              </div>
+              <br/>
+              <a class="waves-effect waves-light btn" id="tv">Enviar</a>
           </form>
           </div>
         </div>
