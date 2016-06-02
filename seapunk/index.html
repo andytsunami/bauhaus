@@ -59,7 +59,7 @@
 
       </script>
     </head>
-    <body>
+    <body id="corpo">
     <input type="hidden" name="uuid" id="uuid"/>
     <div id="info"></div>
 
@@ -87,7 +87,6 @@
        
            // var path = "/seapunk/pages/";
             var path = "/bauhaus/seapunk/pages/";
-
                  $.fancybox.open({
                                 padding : 0,
                                 href: path + 'tutorial.html',
@@ -154,6 +153,9 @@
 
             var waterNormals;
             var pivot;
+            function cipa (){
+                alert("Cipa");
+            }
 
             function init() {
 
@@ -182,11 +184,15 @@
                 container.appendChild( stats.domElement );
 
                 // Events
-
                 window.addEventListener( 'resize', onWindowResize, false );
                 window.addEventListener( 'click', onDocumentMouseDown, false);
                 window.addEventListener( 'mousemove', onDocumentMouseMove, false);
+                document.getElementById('corpo').addEventListener( 'mouseout', onMouseOut, false );
+                document.getElementById('corpo').addEventListener( 'mouseover', onMouseOver, false );
                 
+
+                $("body").delegate(".fancybox-opened","mouseover",onMouseOut);
+
 
                 //Scene
                 scene = new THREE.Scene();
@@ -203,7 +209,7 @@
                 controls = new THREE.FlyControls( camera );
                 controls.movementSpeed = 1000;
                 controls.domElement = window.document;
-                controls.rollSpeed = Math.PI / 40;
+                controls.rollSpeed = Math.PI / 30;
                 controls.autoForward = false;
                 controls.dragToLook = false;
 
@@ -355,10 +361,12 @@
                         meshGazebo.updateMatrix();
 
                         meshGazebo.callback = function(){
+                            onMouseOut();
                             $.fancybox.open({
                                 padding : 0,
                                 href: path + 'gazebo.html',
-                                type: 'iframe'
+                                type: 'iframe',
+
                             });
                         };
 
@@ -455,6 +463,7 @@
                     //meshRosca.updateMatrix();
 
                     meshRosca.callback = function(){
+                        onMouseOut();
                         $.fancybox.open({
                             padding : 0,
                             href: path + 'golfinho.html',
@@ -487,6 +496,7 @@ var loaderWindowsG = new THREE.JSONLoader();
                     meshWindowsG.rotation.z = 80.1;
 
                      meshWindowsG.callback = function(){
+                        onMouseOut();
                         $.fancybox.open({
                             padding : 0,
                             href: path + 'estetica.html',
@@ -577,6 +587,7 @@ var loader = new THREE.JSONLoader();
                     
 
                     meshGb.callback = function(){
+                        onMouseOut();
                         $.fancybox.open({
                             padding : 0,
                             href: path +'videoGame.html',
@@ -612,6 +623,7 @@ var loader = new THREE.JSONLoader();
                     meshPc.rotation.set(0,0,0);
 
                     meshPc.callback = function(){
+                        onMouseOut();
                         $.fancybox.open({
                             padding : 0,
                             href: path + 'computador.html',
@@ -645,6 +657,7 @@ var loader = new THREE.JSONLoader();
                     meshVenusB.rotation.set(0,-3.1,0);
 
                      meshVenusB.callback = function(){
+                        onMouseOut();
                             $.fancybox.open({
                                 padding : 0,
                                 href: path + 'venus.html',
@@ -678,6 +691,7 @@ var loader = new THREE.JSONLoader();
                     meshPaz.rotation.set(1.6,0,0);
 
                     meshPaz.callback = function(){
+                        onMouseOut();
                             $.fancybox.open({
                                 padding : 0,
                                 href: path + 'symbol.html',
@@ -807,6 +821,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                     meshtV.rotation.set(0,0,0);
 
                     meshtV.callback = function(){
+                        onMouseOut();
                         $.fancybox.open({
                             padding : 0,
                             href: path + 'tv.html',
@@ -874,6 +889,17 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 camera.updateProjectionMatrix();
             }
 
+            function onMouseOut(event){
+                
+                controls.movementSpeed = 0;
+                controls.rollSpeed = 0;
+            }
+
+            function onMouseOver(event){
+                controls.movementSpeed = 1000;
+                controls.rollSpeed = Math.PI / 30;
+            }
+
             function onDocumentMouseDown( event ) {
                 console.log("Clicado");
 
@@ -924,6 +950,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 } else {
                     document.body.style.cursor = "crosshair";
                 }
+
 
             }
 
