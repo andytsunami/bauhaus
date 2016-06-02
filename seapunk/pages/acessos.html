@@ -39,9 +39,9 @@
          /* $.get($.paramsPage.contexto + "acessos.php",function(dataSet){
            
           })*/
-          var msg = " - ";
+          var msg = "";
            var table = $("#table").DataTable({
-          "order": [[ 0, "desc" ]],
+          "order": [[ 3, "desc" ],[0,'desc']],
           language: {
                   "sEmptyTable": "Nenhum registro encontrado",
                   "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -107,6 +107,13 @@
                   "defaultContent": msg
                 },
               ],
+
+              columnDefs: [
+                { 
+                  type: 'date-eu', targets: 3
+                }
+              ],
+
 
         })
       });
