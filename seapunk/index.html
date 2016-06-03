@@ -85,8 +85,8 @@
             }
 
        
-           var path = "/seapunk/pages/";
-           //var path = "/bauhaus/seapunk/pages/";
+           //var path = "/seapunk/pages/";
+           var path = "/bauhaus/seapunk/pages/";
                  $.fancybox.open({
                                 padding : 0,
                                 href: path + 'tutorial.html',
@@ -105,7 +105,7 @@
             var meshWindowsG,materialWindowsG;
 
             var camera, scene, renderer, objects;
-            var particleLight, pointLight,luzWindows;
+            var particleLight, pointLight,pointLight2,luzWindows;
 
             var MARGIN = 0;
             var radius = 6371;
@@ -126,6 +126,7 @@
             var somEsfera, listenerEsfera, analiserEsfera;
             var somGb, listenerGb, analiserGb;
             var somGolA, listenerGolA, analiserGolA;
+            var somWin, listenerWin, analiserWin;
             var analiserFundo, somFundo, listenerFundo;
             var somGolB, listenerGolB, analiserGolB;
             var geometryEsfera, analyserGazebo;
@@ -216,12 +217,16 @@
                 // Lights
                 scene.add( new THREE.AmbientLight( 0xFFFFFF, 1.5 ) );
 
-                //pointLight = new THREE.PointLight( 0xFFFFFF, 5, 30 );
+               
                 pointLight = new THREE.SpotLight( 0xFFA966, 17.5, 12000 );
-                //pointLight.position.set( - 1, 1, - 1 );
                 pointLight.position.set(-640,900,-600);
                 pointLight.distance = 1255;
                 scene.add( pointLight );
+
+                pointLight2 = new THREE.SpotLight( 0x0C4D69, 26.5, 12000 );
+                pointLight2.position.set(-640,-780,-600);
+                pointLight2.distance = 1705;
+                scene.add( pointLight2 );
 
                 luzWindows = new THREE.PointLight( 0xFFA966, 500, 11000 );
                 luzWindows.position.set(5000,1500,1500);
@@ -510,6 +515,17 @@ var loaderWindowsG = new THREE.JSONLoader();
                     }
                                         
                     scene.add( meshWindowsG );
+
+                        listenerWin = new THREE.AudioListener();
+                        camera.add( listenerWin );
+
+                        somWin = new THREE.PositionalAudio( listenerWin );
+                        somWin.load( 'audio/win.ogg' );
+                        somWin.autoplay = true;
+                        somWin.setLoop(true);
+                        somWin.setVolume(0.2);
+                        somWin.setRefDistance( 20 );
+                    meshWindowsG.add(somWin);
                                         
                 } );                
 
@@ -981,7 +997,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 //agua
                 water.material.uniforms.time.value += 1.0 / 60.0;
                 
-                controls.movementSpeed = 7.33;
+                controls.movementSpeed = 9.33;
                 controls.update(delta);
 
 
