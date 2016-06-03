@@ -38,7 +38,7 @@
 
             #frase{
                 font-family: "VCR_OSD_MONO" !important;
-                color: #ccc;
+                color: rgb(224,235,229);
                 font-size: 5em;
                 position: absolute;
                 bottom: 2%;
@@ -71,7 +71,39 @@
 		          
                  setInterval(function(){
                     $("#frase").toggleClass("hide");
-                 },2000)
+                 },2000);
+
+                 setInterval(function(){
+                         badTVParams = {
+                            mute:true,
+                            show: true,
+                            distortion: 1.0,
+                            distortion2: 1.0,
+                            speed: 0.3,
+                            rollSpeed: 0.1
+                        }
+                        console.log("TILT");
+                        onParamsChange();
+                        onToggleShaders();
+
+
+                        setTimeout(function(){
+                            console.log("TAPA!");
+                            badTVParams = {
+                                mute:true,
+                                show: false,
+                                distortion: 1.0,
+                                distortion2: 1.0,
+                                speed: 0.3,
+                                rollSpeed: 0.1
+                            }
+                            onParamsChange();
+                            onToggleShaders();
+                        },5000);
+
+
+                        
+                    },60000);
 		      });
       
 
@@ -1000,8 +1032,6 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                     scene.add( meshFundo );
                                         
                 } );
-                
-
             }
 
             //
@@ -1049,6 +1079,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
             }
 
         function onParamsChange() {
+            console.log("Mudando");
             //copy gui params into shader uniforms
             badTVPass.uniforms[ "distortion" ].value = badTVParams.distortion;
             badTVPass.uniforms[ "distortion2" ].value = badTVParams.distortion2;
@@ -1217,7 +1248,6 @@ var loaderGolfinhoB = new THREE.JSONLoader();
 
             init();
             animate();
-
         </script>
 
     </body>
