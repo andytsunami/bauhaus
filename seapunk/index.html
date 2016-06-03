@@ -73,6 +73,17 @@
 
         <script src="Detector.js"></script>
         <script src="stats.min.js"></script>
+
+        <!--SHADER -->
+        <script src="EffectComposer.js"></script>
+        <script src="RenderPass.js"></script>
+        <script src="ShaderPass.js"></script>
+        <script src="MaskPass.js"></script> 
+        <script src="CopyShader.js"></script>
+        <script src="FilmShader.js"></script>
+        <script src="RGBShiftShader.js"></script>
+        <script src="BadTVShader.js"></script>
+        <script src="StaticShader.js"></script>
         
         <script>
 //VHS Shader https://www.airtightinteractive.com/demos/js/badtvshader/
@@ -85,8 +96,8 @@
             }
 
        
-           var path = "/seapunk/pages/";
-           //var path = "/bauhaus/seapunk/pages/";
+           //var path = "/seapunk/pages/";
+           var path = "/bauhaus/seapunk/pages/";
                  $.fancybox.open({
                                 padding : 0,
                                 href: path + 'tutorial.html',
@@ -139,6 +150,17 @@
 
             var info;
             var fancy = true;
+
+
+            var composer;
+            var shaderTime = 0;
+            var badTVParams, badTVPass;     
+            var staticParams, staticPass;       
+            var rgbParams, rgbPass; 
+            var filmParams, filmPass;   
+            var renderPass, copyPass;
+            var gui;
+            var pnoise, globalParams;
 
 
             var parameters = {
@@ -228,8 +250,51 @@
                 luzWindows.distance = 1255;
                 luzWindows.target = meshWindowsG;
                 scene.add( luzWindows );
-                
 
+//SHADER
+                renderPass = new THREE.RenderPass( scene, camera );
+                badTVPass = new THREE.ShaderPass( THREE.BadTVShader );
+                rgbPass = new THREE.ShaderPass( THREE.RGBShiftShader );
+                filmPass = new THREE.ShaderPass( THREE.FilmShader );
+                staticPass = new THREE.ShaderPass( THREE.StaticShader );
+                copyPass = new THREE.ShaderPass( THREE.CopyShader );
+
+                filmPass.uniforms[ "grayscale" ].value = 0;
+
+                //Init DAT GUI control panel
+            badTVParams = {
+                mute:true,
+                show: false,
+                distortion: 1.0,
+                distortion2: 1.0,
+                speed: 0.3,
+                rollSpeed: 0.1
+            }
+
+            staticParams = {
+                show: true,
+                amount:0.09,
+                size2:3.5
+            }
+
+            rgbParams = {
+                show: true,
+                amount: 0.0044,
+                angle: 1.2452228198592943,
+            }
+
+            filmParams = {
+                show: true,
+                count: 165,
+                sIntensity: 0.6,
+                nIntensity: 0.4
+            }
+
+            onToggleShaders();
+            onParamsChange();
+            //randomizeParams();
+                
+//AGUA
                 waterNormals = new THREE.TextureLoader().load( 'waternormals.jpg' );
                 waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
 
@@ -923,6 +988,77 @@ var loaderGolfinhoB = new THREE.JSONLoader();
 
             }
 
+        function onParamsChange() {
+            //copy gui params into shader uniforms
+            badTVPass.uniforms[ "distortion" ].value = badTVParams.distortion;
+            badTVPass.uniforms[ "distortion2" ].value = badTVParams.distortion2;
+            badTVPass.uniforms[ "speed" ].value = badTVParams.speed;
+            badTVPass.uniforms[ "rollSpeed" ].value = badTVParams.rollSpeed;
+
+            staticPass.uniforms[ "amount" ].value = staticParams.amount;
+            staticPass.uniforms[ "size" ].value = staticParams.size2;
+
+            rgbPass.uniforms[ "angle" ].value = rgbParams.angle*Math.PI;
+            rgbPass.uniforms[ "amount" ].value = rgbParams.amount;
+
+            filmPass.uniforms[ "sCount" ].value = filmParams.count;
+            filmPass.uniforms[ "sIntensity" ].value = filmParams.sIntensity;
+            filmPass.uniforms[ "nIntensity" ].value = filmParams.nIntensity;
+        }
+
+
+        function randomizeParams() {
+
+            if (Math.random() <0.2){
+                //you fixed it!
+                badTVParams.distortion = 0.1;
+                badTVParams.distortion2 =0.1;
+                badTVParams.speed =0;
+                badTVParams.rollSpeed =0;
+                rgbParams.angle = 0;
+                rgbParams.amount = 0;
+                staticParams.amount = 0;
+
+            }else{
+                badTVParams.distortion = Math.random()*10+0.1;
+                badTVParams.distortion2 =Math.random()*10+0.1;
+                badTVParams.speed =Math.random()*.4;
+                badTVParams.rollSpeed =Math.random()*.2;
+                rgbParams.angle = Math.random()*2;
+                rgbParams.amount = Math.random()*0.03;
+                staticParams.amount = Math.random()*0.2;
+            }
+
+            onParamsChange();
+        }
+
+        function onToggleShaders(){
+
+            //Add Shader Passes to Composer
+            //order is important 
+            composer = new THREE.EffectComposer( renderer);
+            composer.addPass( renderPass );
+            
+            if (filmParams.show){
+                composer.addPass( filmPass );
+            }
+
+            if (badTVParams.show){
+                composer.addPass( badTVPass );
+            }
+
+            if (rgbParams.show){
+                composer.addPass( rgbPass );
+            }
+
+            if (staticParams.show){
+                composer.addPass( staticPass );
+            }
+
+            composer.addPass( copyPass );
+            copyPass.renderToScreen = true;
+        }
+
             function onDocumentMouseMove( event ) {
                 event.preventDefault();
 
@@ -1006,8 +1142,16 @@ var loaderGolfinhoB = new THREE.JSONLoader();
 
             function animate() {
 
+                shaderTime += 0.1;
+                badTVPass.uniforms[ 'time' ].value =  shaderTime;
+                filmPass.uniforms[ 'time' ].value =  shaderTime;
+                staticPass.uniforms[ 'time' ].value =  shaderTime;
+
+               
+
                 requestAnimationFrame( animate );
                 render();
+                composer.render( 0.1);
                 stats.update();
             }
 
