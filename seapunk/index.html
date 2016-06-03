@@ -33,8 +33,29 @@
             }
 
             a {
-
                 color: #a06851;
+            }
+
+            #frase{
+                font-family: "VCR_OSD_MONO" !important;
+                color: #ccc;
+                font-size: 5em;
+                position: absolute;
+                bottom: 2%;
+                width: 100%;
+                text-align: left;
+                left: 4%;
+            }
+
+            .hide{
+                visibility:hidden;
+                opacity:0;
+                transition:opacity 0.5s linear;
+            }
+
+            .show{
+                visibility:visible;
+                opacity:1;    
             }
 
         </style>
@@ -46,18 +67,16 @@
 	      <script type="text/javascript" src="../seapunk/js/fancy/jquery.fancybox.pack.js?v=2.1.5"></script>
 
          <script type="text/javascript">
-		     /* $(document).ready(function(){
-		          $("body").click(function(){
-		            $.fancybox.open({
-		                padding : 0,
-		                href:'/bauhaus/seapunk/pages/estetica.html',
-		                type: 'iframe'
-		            });
-		          });
-		      });*/
+		      $(document).ready(function(){
+		          
+                 setInterval(function(){
+                    $("#frase").toggleClass("hide");
+                 },2000)
+		      });
       
 
       </script>
+      <link type="text/css" rel="stylesheet" href="pages/css/seapunk.css"  media="screen,projection"/>
     </head>
     <body id="corpo">
     <input type="hidden" name="uuid" id="uuid"/>
@@ -164,11 +183,9 @@
                 document.body.appendChild( container );
 
                 info = document.createElement( 'div' );
-                info.style.position = 'absolute';
-                info.style.top = '10px';
-                info.style.width = '100%';
-                info.style.textAlign = 'center';
-                info.innerHTML = 'S A D B O Y S';
+                info.innerHTML = 'REC';
+                info.id = "frase";
+                info.class = "show";
                 container.appendChild( info );
 
                 //Renderer
