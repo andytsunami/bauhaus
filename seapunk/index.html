@@ -27,9 +27,16 @@
 
             #info {
                 position: absolute;
-                top: 0px; width: 100%;
-                text-align:center;
+                top: 0px;
+                width: 200px;
+                text-align: center;
                 padding: 5px;
+                height: 150px;
+                cursor: help;
+                background-image: url("manchete.png");
+                background-size: 200px 150px;
+                opacity: 0.6;
+                filter: alpha(opacity=40);
             }
 
             a {
@@ -103,7 +110,19 @@
 
 
                         
-                    },60000);
+                    },60000 *2);
+
+                 $("#info").click(function(){
+                    $.fancybox.open({
+                                padding : 0,
+                                href: path + 'tutorial.html',
+                                type: 'iframe',
+                                'closeBtn':false,
+                                'width': '80%',
+                                'height': '80%',
+                                'autoSize' : true
+                     });
+                 });
 		      });
       
 
@@ -147,8 +166,8 @@
             }
 
        
-           //var path = "/seapunk/pages/";
-           var path = "/bauhaus/seapunk/pages/";
+           var path = "/seapunk/pages/";
+           //var path = "/bauhaus/seapunk/pages/";
                  $.fancybox.open({
                                 padding : 0,
                                 href: path + 'tutorial.html',
@@ -253,11 +272,11 @@
 
                 // Stats
 
-                stats = new Stats();
+/*              stats = new Stats();
                 stats.domElement.style.position = 'absolute';
                 stats.domElement.style.top = '0px';
                 container.appendChild( stats.domElement );
-
+*/
                 // Events
                 window.addEventListener( 'resize', onWindowResize, false );
                 window.addEventListener( 'click', onDocumentMouseDown, false);
@@ -1010,10 +1029,13 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                     meshFundo.position.set(0,-400,0);
                     meshFundo.rotation.set(0,-3.1,0);
 
+                    scene.add( meshFundo );
+
                     fundoDummy = new THREE.Object3D();
                         fundoDummy.position.set(-36.5, -380, 22);
                         fundoDummy.scale.x = fundoDummy.scale.y = fundoDummy.scale.z = 2.9;
                     scene.add(fundoDummy);
+
 
                     listenerFundo = new THREE.AudioListener();
                     camera.add(listenerFundo);
@@ -1029,7 +1051,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
 
                     analiserFundo = new THREE.AudioAnalyser( somFundo, 32 );
                 
-                    scene.add( meshFundo );
+                    
                                         
                 } );
             }
@@ -1208,7 +1230,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 //agua
                 water.material.uniforms.time.value += 1.0 / 60.0;
                 
-                controls.movementSpeed = 9.33;
+                controls.movementSpeed = 13.33;
                 controls.update(delta);
 
 
@@ -1243,7 +1265,7 @@ var loaderGolfinhoB = new THREE.JSONLoader();
                 requestAnimationFrame( animate );
                 render();
                 composer.render( 0.1);
-                stats.update();
+                //stats.update();
             }
 
             init();
