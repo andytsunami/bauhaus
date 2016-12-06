@@ -72,7 +72,3 @@ var aposInicializado = function() {
 	
 };
 $(aposInicializado);
-
-$(".amostra").click(function(){
-	$(".novo").toggleClass("esconde");
-});
