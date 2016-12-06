@@ -72,3 +72,17 @@ var aposInicializado = function() {
 	
 };
 $(aposInicializado);
+$("select").change(function(){
+	if($(this).val() !== ""){
+		//Adiconando na thead
+			
+		var tr = $("#tabela-" + $(this).attr("data-estado") + " thead tr");
+		$(tr).find('td:last').before('<td>' + $(this).val() + '</td>');
+		
+		//Adicionando na tbody
+		$("#tabela-" + $(this).attr("data-estado") + " tbody tr").find('td:last').before('<td>' + '<input type="text" />' + '</td>');
+
+		$(this).find(":selected").attr("disabled","disabled");
+	}
+	
+});
