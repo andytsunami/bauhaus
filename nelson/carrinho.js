@@ -72,6 +72,8 @@ var aposInicializado = function() {
 	
 };
 $(aposInicializado);
+
+//Exercicio começa aqui
 $("select").change(function(){
 	if($(this).val() !== ""){
 		//Adiconando na thead
@@ -80,9 +82,25 @@ $("select").change(function(){
 		$(tr).find('td:last').before('<td>' + $(this).val() + '</td>');
 		
 		//Adicionando na tbody
-		$("#tabela-" + $(this).attr("data-estado") + " tbody tr").find('td:last').before('<td>' + '<input type="text" />' + '</td>');
+		$("#tabela-" + $(this).attr("data-estado") + " tbody tr").find('td:last').before('<td class="novo">' 
+			+ '<input type="text" /> &nbsp<a class="ok">Ok</a>' +
+		'</td>');
 
 		$(this).find(":selected").attr("disabled","disabled");
+
+		//Ajustando propaganda
+		$('.propaganda .novo').remove();
+		var colspan = parseInt($("#tabela-" + $(this).attr("data-estado") + ' .propaganda td').attr("colspan")) + 1;
+		$("#tabela-" + $(this).attr("data-estado") + ' .propaganda td').attr('colspan',colspan);
 	}
-	
+});
+
+//Bind do elemento dinamico
+$("tr").on("click",".ok",function(){
+	var conteudo = $(this).prev().val();
+	if(conteudo !== ''){
+		$(this).prev().remove();
+		$(this).parent("td").html(conteudo);
+		$(this).remove();
+	}
 });
