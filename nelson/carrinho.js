@@ -92,6 +92,7 @@ $("select").change(function(){
 		$('.propaganda .novo').remove();
 		var colspan = parseInt($("#tabela-" + $(this).attr("data-estado") + ' .propaganda td').attr("colspan")) + 1;
 		$("#tabela-" + $(this).attr("data-estado") + ' .propaganda td').attr('colspan',colspan);
+		$(".novo").removeClass("novo");
 	}
 });
 
