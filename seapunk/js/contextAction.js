@@ -1,6 +1,6 @@
  $(document).ready(function(){
  	$.paramsPage = {
-		contexto: "http://josepaulodesigndigital.com/seapunk/",
+		contexto: "http://apresentacao.top/seapunk/pages/",
 		uuid: ""
 	};
 
