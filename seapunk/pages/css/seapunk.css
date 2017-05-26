@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'VCR_OSD_MONO';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/VCR_OSD_MONO.ttf) format('truetype');
+
+}
+
+@font-face {
+  font-family: 'Bebas';
+  font-style: bold;
+  font-weight: 400;
+  src: url(../font/bebas_neue/BebasNeueLight.otf) format('opentype');
+
+}
+
+body{
+	background-color: #ba68c8;
+	font-family: "Bebas" !important;
+}
+
+h1,nav{
+	font-family: "VCR_OSD_MONO";
+}
+
+nav .brand-logo{
+	padding-top: 1%;
+	color: #000;
+	font-size: 6em;
+}
+
+.topo img {
+	margin-left: 3%;
+	width: 13% !important;
+}
+
+.topo{
+	
+	height: 175px;
+    line-height: 160px;
+}
+
+.vcr{
+	font-family: "VCR_OSD_MONO" !important;
+}
+
+.bebas{
+	font-family: "Bebas" !important;
+}
+
+.desc{
+	font-size: 3.1em;
+}
+
+.links{
+	padding: 10px;
+}
+.card-content{
+	padding: 15px !important;
+}
+
+.input-field label {
+	color: #000 !important;
+    font-size: 1.8rem !important;
+    top: 2.2rem !important;
+    width: 129% !important;
+}

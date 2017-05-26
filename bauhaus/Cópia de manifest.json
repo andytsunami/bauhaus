@@ -1,0 +1,31 @@
+{
+    "lang": "pt",
+    "name": "Vasconcelandia Bauhaus",
+    "short_name": "Bauhaus",
+    "icons": [
+      {
+         "src" : "logos/Logo96.png",
+          "sizes" : "96x96",
+          "type": "image/png"
+      },
+      {
+        "src" : "logos/Logo128.png",
+          "sizes" : "128x128",
+          "type": "image/png"
+      },
+      {
+        "src" : "logos/Logo144.png",
+          "sizes" : "144x144",
+          "type": "image/png"
+      },
+      {
+        "src" : "logos/Logo192.png",
+          "sizes" : "192x192",
+          "type": "image/png"
+      },
+  ],
+    "start_url": "http://www.vasconcelandia.com.br/bauhaus",
+    "scope": "/index.html",
+    "display": "standalone",
+    "orientation": "any"
+}

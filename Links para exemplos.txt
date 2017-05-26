@@ -1,0 +1,16 @@
+Exemplos para sobre Bauhaus
+https://www.google.com.br/?gws_rd=ssl#q=diagonal%20background%20css
+http://stackoverflow.com/questions/14739162/two-tone-background-split-by-diagonal-line-using-css
+http://jsfiddle.net/PchSZ/
+
+---
+Color pick
+
+http://blog.project-sierra.de/projects/image-color-picker
+http://stackoverflow.com/questions/7379564/image-pixel-color-picker-with-jquery
+
+Color pick funcionando melhor
+
+http://stackoverflow.com/questions/7985722/using-javascript-or-jquery-how-can-i-get-the-rgb-color-where-ever-the-mouse-is
+
+http://www.script-tutorials.com/demos/158/index.html

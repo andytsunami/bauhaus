@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+     	<script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-63185188-1', 'auto');
+              ga('send', 'pageview');
+		</script>
+        <title>S E A P U N K</title>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	      <meta content="IE=edge" http-equiv="X-UA-Compatible">
+	      <meta content="no" name="msapplication-tap-highlight">
+	      <meta content="Seapunk,Vaporwave,internet,design digital, memes, meme, zuera, anhembi morumbi " name="description">
+       	 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+                color: #000;
+                font-family:Monospace;
+                font-size:13px;
+                margin: 0px;
+                overflow: hidden;
+            }
+
+            #info {
+                position: absolute;
+                top: 0px;
+                width: 200px;
+                text-align: center;
+                padding: 5px;
+                height: 150px;
+                cursor: help;
+                background-image: url("manchete.png");
+                background-size: 200px 150px;
+                opacity: 0.6;
+                filter: alpha(opacity=40);
+            }
+
+            #res {
+                
+                font-family: "VCR_OSD_MONO" !important;
+                color: rgb(224,235,229);
+                font-size: 1em;
+                position: fixed;
+                bottom: 2%;
+                width: 100%;
+                text-align: right;
+                left: 0%;
+            }
+
+            a {
+                color: #a06851;
+            }
+
+            #frase{
+                font-family: "VCR_OSD_MONO" !important;
+                color: rgb(224,235,229);
+                font-size: 5em;
+                position: absolute;
+                bottom: 2%;
+                width: 100%;
+                text-align: left;
+                left: 4%;
+            }
+
+            .hide{
+                visibility:hidden;
+                opacity:0;
+                transition:opacity 0.5s linear;
+            }
+
+            .show{
+                visibility:visible;
+                opacity:1;    
+            }
+
+        </style>
+
+         <script type="text/javascript" src="../seapunk/js/jquery-1.12.4.min.js"></script>
+
+          <!-- Add fancyBox -->
+	      <link rel="stylesheet" href="../seapunk/js/fancy/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+	      <script type="text/javascript" src="../seapunk/js/fancy/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+         <script type="text/javascript">
+		      $(document).ready(function(){
+		          
+                 setInterval(function(){
+                    $("#frase").toggleClass("hide");
+                 },2000);
+
+                 setInterval(function(){
+                         badTVParams = {
+                            mute:true,
+                            show: true,
+                            distortion: 1.0,
+                            distortion2: 1.0,
+                            speed: 0.3,
+                            rollSpeed: 0.1
+                        }
+                        console.log("TILT");
+                        onParamsChange();
+                        onToggleShaders();
+
+
+                        setTimeout(function(){
+                            console.log("TAPA!");
+                            badTVParams = {
+                                mute:true,
+                                show: false,
+                                distortion: 1.0,
+                                distortion2: 1.0,
+                                speed: 0.3,
+                                rollSpeed: 0.1
+                            }
+                            onParamsChange();
+                            onToggleShaders();
+                        },5000);
+
+
+                        
+                    },60000 *2);
+
+                 $("#info").click(function(){
+                    $.fancybox.open({
+                                padding : 0,
+                                href: path + 'tutorial.html',
+                                type: 'iframe',
+                                'closeBtn':false,
+                                'width': '80%',
+                                'height': '80%',
+                                'autoSize' : true
+                     });
+                 });
+		      });
+      
+
+      </script>
+      <link type="text/css" rel="stylesheet" href="pages/css/seapunk.css"  media="screen,projection"/>
+    </head>
+    <body id="corpo">
+    <input type="hidden" name="uuid" id="uuid"/>
+    <div id="info"></div>
+    <div id="res">YWR - Todos os direitos reservados.</div>
+
+        <script src="three.min.js"></script>
+
+        <script src="Mirror.js"></script>
+        <script src="WaterShader.js"></script>
+
+        <script src="AnimationClipCreator.js"></script>
+        <script src="FlyControls.js"></script>
+
+        <script src="Detector.js"></script>
+        <script src="stats.min.js"></script>
+
+        <!--SHADER -->
+        <script src="EffectComposer.js"></script>
+        <script src="RenderPass.js"></script>
+        <script src="ShaderPass.js"></script>
+        <script src="MaskPass.js"></script> 
+        <script src="CopyShader.js"></script>
+        <script src="FilmShader.js"></script>
+        <script src="RGBShiftShader.js"></script>
+        <script src="BadTVShader.js"></script>
+        <script src="StaticShader.js"></script>
+        
+        <script>
+//VHS Shader https://www.airtightinteractive.com/demos/js/badtvshader/
+
+            if ( ! Detector.webgl ) {
+
+                Detector.addGetWebGLMessage();
+                document.getElementById( 'container' ).innerHTML = "";
+
+            }
+
+       
+           var path = "/seapunk/pages/";
+           //var path = "/bauhaus/seapunk/pages/";
+                 $.fancybox.open({
+                                padding : 0,
+                                href: path + 'tutorial.html',
+                                type: 'iframe',
+                                'closeBtn':false,
+                                'width': '80%',
+                                'height': '80%',
+                                'autoSize' : true
+            });
+
+            function close(){
+                $.fancybox.close();
+            }
+
+
+            var meshGazebo = 0;
+            var container, stats;
+            var materialGazebo,somGazebo;
+            var meshWindowsG,materialWindowsG;
+
+            var camera, scene, renderer, objects;
+            var particleLight, pointLight,pointLight2,luzWindows;
+
+            var MARGIN = 0;
+            var radius = 6371;
+            var SCREEN_HEIGHT = window.innerHeight - MARGIN * 2;
+            var SCREEN_WIDTH  = window.innerWidth;
+
+            var clock = new THREE.Clock();
+            var mixer = [];
+            var controls;
+            var quant = 10;
+            var waterNormals;
+            var mirrorMesh;
+            var sphere;
+            var golfinhoRot = 0; 
+            var meshRosca;
+            var roscaPivot;
+            var analiser, listener;
+            var somEsfera, listenerEsfera, analiserEsfera;
+            var somGb, listenerGb, analiserGb;
+            var somGolA, listenerGolA, analiserGolA;
+            var somWin, listenerWin, analiserWin;
+            var analiserFundo, somFundo, listenerFundo;
+            var somGolB, listenerGolB, analiserGolB;
+            var geometryEsfera, analyserGazebo;
+            var meshGb,meshPc,meshtV,meshVenusB,meshPaz;
+            var golfinhoA, pivotGolfinhoA;
+            var pivotGolfinhoB, golfinhoB;
+            var meshFundo;
+
+            var raycaster = new THREE.Raycaster();
+            var mouse = new THREE.Vector2();
+
+            var info;
+            var fancy = true;
+
+
+            var composer;
+            var shaderTime = 0;
+            var badTVParams, badTVPass;     
+            var staticParams, staticPass;       
+            var rgbParams, rgbPass; 
+            var filmParams, filmPass;   
+            var renderPass, copyPass;
+            var gui;
+            var pnoise, globalParams;
+
+
+            var parameters = {
+                width: 2000,
+                height: 2000,
+                widthSegments: 250,
+                heightSegments: 250,
+                depth: 1500,
+                param: 4,
+                filterparam: 1
+            };
+
+            var waterNormals;
+            var pivot;
+            function cipa (){
+                alert("Cipa");
+            }
+
+            function init() {
+
+                container = document.createElement( 'div' );
+                document.body.appendChild( container );
+
+                info = document.createElement( 'div' );
+                info.innerHTML = 'REC';
+                info.id = "frase";
+                info.class = "show";
+                container.appendChild( info );
+
+                //Renderer
+                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setPixelRatio( window.devicePixelRatio );
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                container.appendChild( renderer.domElement );
+
+                // Stats
+
+/*              stats = new Stats();
+                stats.domElement.style.position = 'absolute';
+                stats.domElement.style.top = '0px';
+                container.appendChild( stats.domElement );
+*/
+                // Events
+                window.addEventListener( 'resize', onWindowResize, false );
+                window.addEventListener( 'click', onDocumentMouseDown, false);
+                window.addEventListener( 'mousemove', onDocumentMouseMove, false);
+                document.getElementById('corpo').addEventListener( 'mouseout', onMouseOut, false );
+                document.getElementById('corpo').addEventListener( 'mouseover', onMouseOver, false );
+                
+
+                $("body").delegate(".fancybox-opened","mouseover",onMouseOut);
+
+
+                //Scene
+                scene = new THREE.Scene();
+                //scene.fog = new THREE.FogExp2( 0xFFA966, 0.00012 );
+
+                camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 2, 1e7 );
+                camera.position.z = radius * 5;
+                //camera.position.set( 90, 100, 200 );
+                camera.position.set( 0, 15, 0);
+                camera.rotation.set(0,-4.5,0);
+            
+
+                //Controle wasd
+                controls = new THREE.FlyControls( camera );
+                controls.movementSpeed = 1000;
+                controls.domElement = window.document;
+                controls.rollSpeed = Math.PI / 30;
+                controls.autoForward = false;
+                controls.dragToLook = false;
+
+                // Lights
+                scene.add( new THREE.AmbientLight( 0xFFFFFF, 1.5 ) );
+
+               
+                pointLight = new THREE.SpotLight( 0xFFA966, 17.5, 12000 );
+                pointLight.position.set(-640,900,-600);
+                pointLight.distance = 1255;
+                scene.add( pointLight );
+
+                pointLight2 = new THREE.SpotLight( 0x0C4D69, 26.5, 12000 );
+                pointLight2.position.set(-640,-780,-600);
+                pointLight2.distance = 1705;
+                scene.add( pointLight2 );
+
+                luzWindows = new THREE.PointLight( 0xFFA966, 500, 11000 );
+                luzWindows.position.set(5000,1500,1500);
+                luzWindows.distance = 1255;
+                luzWindows.target = meshWindowsG;
+                scene.add( luzWindows );
+
+//SHADER
+                renderPass = new THREE.RenderPass( scene, camera );
+                badTVPass = new THREE.ShaderPass( THREE.BadTVShader );
+                rgbPass = new THREE.ShaderPass( THREE.RGBShiftShader );
+                filmPass = new THREE.ShaderPass( THREE.FilmShader );
+                staticPass = new THREE.ShaderPass( THREE.StaticShader );
+                copyPass = new THREE.ShaderPass( THREE.CopyShader );
+
+                filmPass.uniforms[ "grayscale" ].value = 0;
+
+                //Init DAT GUI control panel
+            badTVParams = {
+                mute:true,
+                show: false,
+                distortion: 1.0,
+                distortion2: 1.0,
+                speed: 0.3,
+                rollSpeed: 0.1
+            }
+
+            staticParams = {
+                show: true,
+                amount:0.09,
+                size2:3.5
+            }
+
+            rgbParams = {
+                show: true,
+                amount: 0.0044,
+                angle: 1.2452228198592943,
+            }
+
+            filmParams = {
+                show: true,
+                count: 165,
+                sIntensity: 0.6,
+                nIntensity: 0.4
+            }
+
+            onToggleShaders();
+            onParamsChange();
+            //randomizeParams();
+                
+//AGUA
+                waterNormals = new THREE.TextureLoader().load( 'waternormals.jpg' );
+                waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
+
+                water = new THREE.Water( renderer, camera, scene, {
+                    textureWidth: 512,
+                    textureHeight: 512,
+                    waterNormals: waterNormals,
+                    alpha:  1.0,
+                    sunDirection: pointLight.position.clone().normalize(),
+                    sunColor: 0xffffff,
+                    waterColor: 0x6B1C6F,
+                    distortionScale: 50.0,
+                } );
+
+
+                mirrorMesh = new THREE.Mesh(
+                    new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+                    water.material
+                );
+
+                mirrorMesh.add( water );
+                mirrorMesh.rotation.x = - Math.PI * 0.5;
+                scene.add( mirrorMesh );
+
+
+                // load skybox
+
+                var cubeMap = new THREE.CubeTexture( [] );
+                cubeMap.format = THREE.RGBFormat;
+
+                var loader = new THREE.ImageLoader();
+                loader.load( 'skyboxsun25degtest.png', function ( image ) {
+
+                    var getSide = function ( x, y ) {
+
+                        var size = 1024;
+
+                        var canvas = document.createElement( 'canvas' );
+                        canvas.width = size;
+                        canvas.height = size;
+
+                        var context = canvas.getContext( '2d' );
+                        context.drawImage( image, - x * size, - y * size );
+
+                        return canvas;
+
+                    };
+
+                    cubeMap.images[ 0 ] = getSide( 2, 1 ); // px
+                    cubeMap.images[ 1 ] = getSide( 0, 1 ); // nx
+                    cubeMap.images[ 2 ] = getSide( 1, 0 ); // py
+                    cubeMap.images[ 3 ] = getSide( 1, 2 ); // ny
+                    cubeMap.images[ 4 ] = getSide( 1, 1 ); // pz
+                    cubeMap.images[ 5 ] = getSide( 3, 1 ); // nz
+                    cubeMap.needsUpdate = true;
+
+                } );
+
+                var cubeShader = THREE.ShaderLib[ 'cube' ];
+                cubeShader.uniforms[ 'tCube' ].value = cubeMap;
+
+                var skyBoxMaterial = new THREE.ShaderMaterial( {
+                    fragmentShader: cubeShader.fragmentShader,
+                    vertexShader: cubeShader.vertexShader,
+                    uniforms: cubeShader.uniforms,
+                    depthWrite: false,
+                    side: THREE.BackSide
+                } );
+
+                var skyBox = new THREE.Mesh(
+                    new THREE.BoxGeometry( 1000000, 1000000, 1000000 ),
+                    skyBoxMaterial
+                );
+
+                scene.add( skyBox );
+
+//MODELOS
+                geometryEsfera = new THREE.IcosahedronGeometry( 400, 4 );
+
+                for ( var i = 0, j = geometryEsfera.faces.length; i < j; i ++ ) {
+
+                    geometryEsfera.faces[ i ].color.setHex( Math.random() * 0xffffff );
+
+                }
+
+                var material = new THREE.MeshPhongMaterial( {
+                    vertexColors: THREE.FaceColors,
+                    shininess: 100,
+                    envMap: cubeMap
+                } );
+
+                sphere = new THREE.Mesh( geometryEsfera, material );
+                sphere.position.set( 1000, 28, 1000);       
+                scene.add( sphere );
+
+                listenerEsfera = new THREE.AudioListener();
+                camera.add( listenerEsfera );
+
+                somEsfera = new THREE.PositionalAudio( listenerEsfera );
+                somEsfera.load( 'audio/esfera.ogg' );
+                somEsfera.autoplay = true;
+                somEsfera.setLoop(true);
+                somEsfera.setVolume(1.5);
+                somEsfera.setRefDistance( 20 );
+                sphere.add(somEsfera);          
+
+                analyserEsfera = new THREE.AudioAnalyser( somEsfera, 32 );
+
+//Gazebo
+                var loaderGazebo = new THREE.JSONLoader();
+                loaderGazebo.load('json/gazebo.json', function ( geometry, materials ) {
+
+                    materialGazebo = materials[ 0 ];
+                    materialGazebo.morphTargets = true;
+                
+                    var gazeboMaterial = new THREE.MultiMaterial(materials);
+
+                        var x = 2;
+                        var z = 2;
+
+                        meshGazebo = new THREE.Mesh( geometry, gazeboMaterial);
+
+                        meshGazebo.scale.x = meshGazebo.scale.y = meshGazebo.scale.z = 14.99;
+                        meshGazebo.position.set( 0, 0, 0);
+                        meshGazebo.rotation.y= 30;
+
+
+                        meshGazebo.matrixAutoUpdate = false;
+                        meshGazebo.updateMatrix();
+
+                        meshGazebo.callback = function(){
+                            onMouseOut();
+                            $.fancybox.open({
+                                padding : 0,
+                                href: path + 'gazebo.html',
+                                type: 'iframe',
+                                'width': '80%',
+                                'height': '80%',
+                                'autoSize' : true
+
+                            });
+                        };
+
+                        meshGazebo.cursor = function(){
+                            console.log("gazebo");
+                            return true;
+                        }
+                    
+                        scene.add( meshGazebo );
+
+                        listener = new THREE.AudioListener();
+                        camera.add( listener );
+
+                        somGazebo = new THREE.PositionalAudio( listener );
+                        somGazebo.load( 'audio/Ambiente.mp3' );
+                        somGazebo.autoplay = true;
+                        somGazebo.setLoop(true);
+                        somGazebo.setVolume(0.5);
+                        somGazebo.setRefDistance( 20 );
+                        meshGazebo.add(somGazebo);          
+
+                        analyserGazebo = new THREE.AudioAnalyser( somGazebo, 32 );
+                                                        
+                } );
+
+    //Golfinhos
+                /*var loader = new THREE.JSONLoader();
+                //loader.load( 'json/novoGol.json', function ( geometry, materials ) {
+                loader.load( 'json/cristal.json', function ( geometry, materials ) {
+
+
+                    // adjust color a bit
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                //  material.color.setHex("0x"+Math.floor(Math.ranwdom()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    for ( var i = 0; i < quant; i ++ ) {
+                    
+
+                        var min = -1000;
+                        var max = 1000;
+
+                        var x = Math.floor((Math.random() * (max-min)) + min + i);
+                        var z = Math.floor((Math.random() * (max-min)) + min - i);
+
+                        // leave space for big monster
+                        console.log("Posição: X " + x + ", Z " + z);
+
+                        if ( Math.abs( x ) < 10 && Math.abs( z ) < 10 ) continue;
+
+
+                        var mesh = new THREE.Mesh(geometry, faceMaterial);
+                        
+                        
+                        mesh.scale.x = mesh.scale.y = mesh.scale.z = 8.29;
+
+                        mesh.position.set( x, -390, z );
+                        mesh.rotation.y = THREE.Math.randFloat( -0.25, 0.25 );
+
+
+
+                        mesh.matrixAutoUpdate = false;
+                        mesh.updateMatrix();
+
+                        scene.add( mesh );
+
+                        mixer[i] = new THREE.AnimationMixer( mesh );
+                        var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+                        mixer[i].clipAction( clip ).setDuration( 1 ).play();
+
+                    }
+                } );
+*/
+//Rosca
+                var loaderRosca = new THREE.JSONLoader();
+                loaderRosca.load( 'json/rosca.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshRosca = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshRosca.scale.x = meshRosca.scale.y = meshRosca.scale.z = 19.29;
+                    meshRosca.position.set( -500, 80, 70);
+                    meshRosca.rotation.set(11.199999999999992,22.00000000000003,36.000000000000014);
+                    
+                                        
+                    //meshRosca.matrixAutoUpdate = false;
+                    //meshRosca.updateMatrix();
+
+                    meshRosca.callback = function(){
+                        onMouseOut();
+                        $.fancybox.open({
+                            padding : 0,
+                            href: path + 'golfinho.html',
+                            type: 'iframe',
+                            'width': '80%',
+                            'height': '80%',
+                            'autoSize' : true
+                            });
+                        };
+
+                        meshRosca.cursor = function(){
+                            console.log("Golfinho Rot");
+                            return true;
+                        }
+
+                    scene.add( meshRosca );
+                                        
+                } );
+//Windows gigante
+var loaderWindowsG = new THREE.JSONLoader();
+                loaderWindowsG.load( 'json/windows.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+
+                    materialWindowsG = new THREE.MultiMaterial(materials);
+
+                    meshWindowsG = new THREE.Mesh(geometry, materialWindowsG);
+                        
+                    meshWindowsG.scale.x = meshWindowsG.scale.y = meshWindowsG.scale.z = 466.29;
+                    meshWindowsG.position.set(-5000,1500,1500);
+                    meshWindowsG.rotation.x = 80.1;
+                    meshWindowsG.rotation.z = 80.1;
+
+                     meshWindowsG.callback = function(){
+                        onMouseOut();
+                        $.fancybox.open({
+                            padding : 0,
+                            href: path + 'estetica.html',
+                            type: 'iframe',
+                            'width': '80%',
+                            'height': '80%',
+                            'autoSize' : true
+                        });
+                    };
+
+                    meshWindowsG.cursor = function(){
+                        console.log("over");
+                        return true;
+                    }
+                                        
+                    scene.add( meshWindowsG );
+
+                        listenerWin = new THREE.AudioListener();
+                        camera.add( listenerWin );
+
+                        somWin = new THREE.PositionalAudio( listenerWin );
+                        somWin.load( 'audio/win.ogg' );
+                        somWin.autoplay = true;
+                        somWin.setLoop(true);
+                        somWin.setVolume(0.2);
+                        somWin.setRefDistance( 20 );
+                    meshWindowsG.add(somWin);
+                                        
+                } );                
+
+//Golfinho rosca
+var loader = new THREE.JSONLoader();
+                loader.load( 'json/golfinho.json', function ( geometry, materials ) {
+
+                    // adjust color a bit
+
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+
+                        golfinhoRot = new THREE.Mesh(geometry, faceMaterial);
+                        
+                        
+                        golfinhoRot.scale.x = golfinhoRot.scale.y = golfinhoRot.scale.z = 109.9;
+
+                        golfinhoRot.position.set( -500, 80, 70);
+                        golfinhoRot.rotation.set(9,11,0);
+
+
+
+                        //Rotacao do golfinho
+                        scene.add( golfinhoRot );
+
+                        pivot = new THREE.Object3D();
+                        pivot.position.set(-480, 2.6000000000001364, 53.5);
+                        pivot.scale.x = pivot.scale.y = pivot.scale.z = 0.20010000000000006;
+                        pivot.add(golfinhoRot);
+
+                       
+
+
+                        scene.add(pivot);
+
+                        mixer[i] = new THREE.AnimationMixer( golfinhoRot );
+                        var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+                        mixer[i].clipAction( clip ).setDuration( 1 ).play();
+
+                    });
+
+
+//GAMEBOY
+                var loaderGb = new THREE.JSONLoader();
+                loaderGb.load( 'json/gameboy.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshGb = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshGb.scale.x = meshGb.scale.y = meshGb.scale.z = 1.7900000000000023;
+                    
+                    meshGb.position.set( -36.5, 14.5, 22);
+                    meshGb.rotation.set(8.881784197001252e-16,4.799999999999999,1.4);
+ 
+                    scene.add( meshGb );
+
+                    listenerGb = new THREE.AudioListener();
+                    camera.add( listenerGb );
+
+                    somGb = new THREE.PositionalAudio( listenerGb );
+                    somGb.load( 'audio/gb.ogg' );
+                    somGb.autoplay = true;
+                    somGb.setLoop(true);
+                    somGb.setVolume(1.5);
+                    somGb.setRefDistance( 20 );
+                    
+
+                    meshGb.callback = function(){
+                        onMouseOut();
+                        $.fancybox.open({
+                            padding : 0,
+                            href: path +'videoGame.html',
+                            type: 'iframe',
+                            'width': '80%',
+                            'height': '80%',
+                            'autoSize' : true
+                        });
+                    };
+
+                    meshGb.cursor = function(){
+                        console.log("over");
+                        return true;
+                    }
+
+                    meshGb.add(somGb);          
+
+                analyserEsfera = new THREE.AudioAnalyser( somGb, 32 );
+                                        
+                } );
+
+//COMPUTADOR
+                var loaderPc = new THREE.JSONLoader();
+                loaderPc.load( 'json/computador.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshPc = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshPc.scale.x = meshPc.scale.y = meshPc.scale.z = 2.2900000000000027;
+                    meshPc.position.set( -41.40000000000007, 13.499999999999998, -8.200000000000024);
+                    meshPc.rotation.set(0,0,0);
+
+                    meshPc.callback = function(){
+                        onMouseOut();
+                        $.fancybox.open({
+                            padding : 0,
+                            href: path + 'computador.html',
+                            type: 'iframe',
+                            'width': '80%',
+                            'height': '80%',
+                            'autoSize' : true
+                        });
+                    };
+
+                    meshPc.cursor = function(){
+                        console.log("Computador");
+                        return true;
+                    }
+                
+                    scene.add( meshPc );
+                                        
+                } );
+
+//VENUS BUSTO
+                var loaderVenusB = new THREE.JSONLoader();
+                loaderVenusB.load( 'json/venus.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshVenusB = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshVenusB.scale.x = meshVenusB.scale.y = meshVenusB.scale.z = 6.79;
+                    meshVenusB.position.set(-55.6, 15.2, 24.5);
+                    meshVenusB.rotation.set(0,-3.1,0);
+
+                     meshVenusB.callback = function(){
+                        onMouseOut();
+                            $.fancybox.open({
+                                padding : 0,
+                                href: path + 'venus.html',
+                                type: 'iframe',
+                                'width': '80%',
+                                'height': '80%',
+                                'autoSize' : true
+                            });
+                        };
+
+                        meshVenusB.cursor = function(){
+                            console.log("Venus");
+                            return true;
+                        }
+                
+                    scene.add( meshVenusB );
+                                        
+                } );
+
+//Paz
+                var loaderPaz = new THREE.JSONLoader();
+                loaderPaz.load( 'json/paz.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshPaz = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshPaz.scale.x = meshPaz.scale.y = meshPaz.scale.z = 1.79;
+                    meshPaz.position.set(-59.6, 14, -6.4);
+                    meshPaz.rotation.set(1.6,0,0);
+
+                    meshPaz.callback = function(){
+                        onMouseOut();
+                            $.fancybox.open({
+                                padding : 0,
+                                href: path + 'symbol.html',
+                                type: 'iframe',
+                                'width': '80%',
+                                'height': '80%',
+                                'autoSize' : true
+                            });
+                        };
+
+                        meshPaz.cursor = function(){
+                            console.log("Venus");
+                            return true;
+                        }
+                
+                    scene.add( meshPaz );
+                                        
+                } );
+
+//Golfinho A
+var loaderGolfinhoA = new THREE.JSONLoader();
+                loaderGolfinhoA.load( 'json/golfinho.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                        golfinhoA = new THREE.Mesh(geometry, faceMaterial);
+                        
+                        golfinhoA.scale.x = golfinhoA.scale.y = golfinhoA.scale.z = 2.9;
+
+                        golfinhoA.position.set(-3.5, 1, 22);
+                        golfinhoA.rotation.set(0,0,0);
+
+                        //Rotacao do golfinho
+                        scene.add( golfinhoA );
+
+                        pivotGolfinhoA = new THREE.Object3D();
+                        pivotGolfinhoA.position.set(-36.5, 14.5, 5);
+                        pivotGolfinhoA.scale.x = pivotGolfinhoA.scale.y = pivotGolfinhoA.scale.z = 2.9;
+
+                        pivotGolfinhoA.add(golfinhoA);
+
+                        scene.add(pivotGolfinhoA);
+
+                        listenerGolA = new THREE.AudioListener();
+                        camera.add( listenerGolA );
+
+                        somGolA = new THREE.PositionalAudio( listenerGolA );
+                        somGolA.load( 'audio/golA.ogg' );
+                        somGolA.autoplay = true;
+                        somGolA.setLoop(true);
+                        somGolA.setVolume(0.2);
+                        somGolA.setRefDistance( 20 );
+                        golfinhoA.add(somGolA);          
+
+                analiserGolA = new THREE.AudioAnalyser( somGolA, 32 );
+
+
+
+
+                        mixer[i] = new THREE.AnimationMixer(pivotGolfinhoA);
+                        var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+                        mixer[i].clipAction( clip ).setDuration( 1 ).play();
+
+                    });
+
+//Golfinho B
+var loaderGolfinhoB = new THREE.JSONLoader();
+                loaderGolfinhoB.load( 'json/golfinho.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                        golfinhoB = new THREE.Mesh(geometry, faceMaterial);
+                        
+                        golfinhoB.scale.x = golfinhoB.scale.y = golfinhoB.scale.z = 2.9;
+
+                        golfinhoB.position.set(-3.5, 1, 22);
+                        golfinhoB.rotation.set(0,3,0);
+
+                        //Rotacao do golfinho
+                        scene.add( golfinhoB );
+
+                        pivotGolfinhoB = new THREE.Object3D();
+                        pivotGolfinhoB.position.set(-63.5, 14.5, 5);
+                        pivotGolfinhoB.scale.x = pivotGolfinhoB.scale.y = pivotGolfinhoB.scale.z = 2.9;
+
+                        pivotGolfinhoB.add(golfinhoB);
+                        scene.add(pivotGolfinhoB);
+
+                        listenerGolA = new THREE.AudioListener();
+                        camera.add( listenerGolA );
+
+                        somGolB = new THREE.PositionalAudio( listenerGolB );
+                        somGolB.load( 'audio/golB.ogg' );
+                        somGolB.autoplay = true;
+                        somGolB.setLoop(true);
+                        somGolB.setVolume(0.2);
+                        somGolB.setRefDistance( 20 );
+                        golfinhoB.add(somGolB);          
+
+                analiserGolB = new THREE.AudioAnalyser( somGolB, 32 );
+
+                        mixer[i] = new THREE.AnimationMixer(pivotGolfinhoB);
+                        var clip = THREE.AnimationClip.CreateFromMorphTargetSequence( 'mexe', geometry.morphTargets, 30 );
+                        mixer[i].clipAction( clip ).setDuration( 1 ).play();
+
+                    });
+
+//TELEVISAO
+                var loadertV = new THREE.JSONLoader();
+                loadertV.load( 'json/computador.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+                    material.color.setHex("0x"+Math.floor(Math.random()*16777215).toString(16));
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshtV = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshtV.scale.x = meshtV.scale.y = meshtV.scale.z = 4.2900000000000027;
+                    meshtV.position.set( -41.40000000000007, -375, -8.200000000000024);
+                    meshtV.rotation.set(0,0,0);
+
+                    meshtV.callback = function(){
+                        onMouseOut();
+                        $.fancybox.open({
+                            padding : 0,
+                            href: path + 'tv.html',
+                            type: 'iframe',
+                            'width': '80%',
+                            'height': '80%',
+                            'autoSize' : true
+                        });
+                    };
+
+                    meshtV.cursor = function(){
+                        console.log("Glogo mente e Roberto Marinho é Traficante!!");
+                        return true;
+                    }
+                
+                    scene.add( meshtV );
+                                        
+                } );
+
+//FUNDO
+                var loaderFundo = new THREE.JSONLoader();
+                loaderFundo.load( 'json/fundo.json', function ( geometry, materials ) {
+
+                    var material = materials[ 0 ];
+                    material.morphTargets = true;
+
+                    var faceMaterial = new THREE.MultiMaterial(materials);
+
+                    meshFundo = new THREE.Mesh(geometry, faceMaterial);
+                        
+                    meshFundo.scale.x = meshFundo.scale.y = meshFundo.scale.z = 6.79;
+                    meshFundo.position.set(0,-400,0);
+                    meshFundo.rotation.set(0,-3.1,0);
+
+                    scene.add( meshFundo );
+
+                    fundoDummy = new THREE.Object3D();
+                        fundoDummy.position.set(-36.5, -380, 22);
+                        fundoDummy.scale.x = fundoDummy.scale.y = fundoDummy.scale.z = 2.9;
+                    scene.add(fundoDummy);
+
+
+                    listenerFundo = new THREE.AudioListener();
+                    camera.add(listenerFundo);
+
+                    somFundo = new THREE.PositionalAudio( listenerFundo );
+                    somFundo.load( 'audio/fundo.ogg' );
+                    somFundo.autoplay = true;
+                    somFundo.setLoop(true);
+                    somFundo.setVolume(0.6);
+                    somFundo.setRefDistance(40);
+                    
+                    fundoDummy.add(somFundo);          
+
+                    analiserFundo = new THREE.AudioAnalyser( somFundo, 32 );
+                
+                    
+                                        
+                } );
+            }
+
+            //
+
+            function onWindowResize( event ) {
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+            }
+
+            function onMouseOut(event){
+                
+                controls.movementSpeed = 0;
+                controls.rollSpeed = 0;
+            }
+
+            function onMouseOver(event){
+                controls.movementSpeed = 1000;
+                controls.rollSpeed = Math.PI / 30;
+            }
+
+            function onDocumentMouseDown( event ) {
+                console.log("Clicado");
+
+                event.preventDefault();
+
+                mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+                mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+
+                raycaster.setFromCamera( mouse, camera );
+
+                var intersects = raycaster.intersectObjects( scene.children ); 
+
+                if ( intersects.length > 0 ) {
+                    try{
+                        intersects[0].object.callback();    
+                    } catch (err){
+                        console.log("Sem callback");
+                    }
+                    
+                }
+
+            }
+
+        function onParamsChange() {
+            console.log("Mudando");
+            //copy gui params into shader uniforms
+            badTVPass.uniforms[ "distortion" ].value = badTVParams.distortion;
+            badTVPass.uniforms[ "distortion2" ].value = badTVParams.distortion2;
+            badTVPass.uniforms[ "speed" ].value = badTVParams.speed;
+            badTVPass.uniforms[ "rollSpeed" ].value = badTVParams.rollSpeed;
+
+            staticPass.uniforms[ "amount" ].value = staticParams.amount;
+            staticPass.uniforms[ "size" ].value = staticParams.size2;
+
+            rgbPass.uniforms[ "angle" ].value = rgbParams.angle*Math.PI;
+            rgbPass.uniforms[ "amount" ].value = rgbParams.amount;
+
+            filmPass.uniforms[ "sCount" ].value = filmParams.count;
+            filmPass.uniforms[ "sIntensity" ].value = filmParams.sIntensity;
+            filmPass.uniforms[ "nIntensity" ].value = filmParams.nIntensity;
+        }
+
+
+        function randomizeParams() {
+
+            if (Math.random() <0.2){
+                //you fixed it!
+                badTVParams.distortion = 0.1;
+                badTVParams.distortion2 =0.1;
+                badTVParams.speed =0;
+                badTVParams.rollSpeed =0;
+                rgbParams.angle = 0;
+                rgbParams.amount = 0;
+                staticParams.amount = 0;
+
+            }else{
+                badTVParams.distortion = Math.random()*10+0.1;
+                badTVParams.distortion2 =Math.random()*10+0.1;
+                badTVParams.speed =Math.random()*.4;
+                badTVParams.rollSpeed =Math.random()*.2;
+                rgbParams.angle = Math.random()*2;
+                rgbParams.amount = Math.random()*0.03;
+                staticParams.amount = Math.random()*0.2;
+            }
+
+            onParamsChange();
+        }
+
+        function onToggleShaders(){
+
+            //Add Shader Passes to Composer
+            //order is important 
+            composer = new THREE.EffectComposer( renderer);
+            composer.addPass( renderPass );
+            
+            if (filmParams.show){
+                composer.addPass( filmPass );
+            }
+
+            if (badTVParams.show){
+                composer.addPass( badTVPass );
+            }
+
+            if (rgbParams.show){
+                composer.addPass( rgbPass );
+            }
+
+            if (staticParams.show){
+                composer.addPass( staticPass );
+            }
+
+            composer.addPass( copyPass );
+            copyPass.renderToScreen = true;
+        }
+
+            function onDocumentMouseMove( event ) {
+                event.preventDefault();
+
+                mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+                mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+
+                raycaster.setFromCamera( mouse, camera );
+
+                var intersects = raycaster.intersectObjects( scene.children ); 
+
+                if ( intersects.length > 0 ) {
+                    try{
+                        var retorno = intersects[0].object.cursor();    
+                        if(retorno){
+                        document.body.style.cursor = "pointer";    
+                        } else {
+                            document.body.style.cursor = "crosshair";    
+                        }
+                    } catch (err) {
+                        document.body.style.cursor = "crosshair";    
+                    }   
+                    
+                    
+                    
+                } else {
+                    document.body.style.cursor = "crosshair";
+                }
+
+
+            }
+
+
+
+            var prevTime = performance.now();
+
+            function render() {
+
+                var time = performance.now() * 0.001;
+                var delta = clock.getDelta();
+
+                sphere.position.y = Math.sin( time ) * 500 + 250;
+                sphere.rotation.x = time * 0.5;
+                sphere.rotation.z = time * 0.51;
+
+                //Animando golfinhos
+            //  var time = Date.now();
+    //console.log("Quantidade de objetos animados: " + mixer.length);
+               /* for ( var i = 0; i <= mixer.length; i ++ ) {
+                    
+                    if ( mixer[i] ) {
+                        //mixer[i].update( ( time - prevTime ) * 0.001 );
+                        mixer[i].update( ( delta));
+                }
+
+            }*/
+                //agua
+                water.material.uniforms.time.value += 1.0 / 60.0;
+                
+                controls.movementSpeed = 13.33;
+                controls.update(delta);
+
+
+                pivot.rotation.z -= 1.0 / 60.0;
+                golfinhoRot.rotation.z -= 1.0 / 60.0;
+                golfinhoRot.rotation.y -= 1.0 / 60.0;
+
+                //Golfinho A
+                pivotGolfinhoA.rotation.x += 1.0 / 60.0;
+                golfinhoA.rotation.x = Math.sin( time );
+
+                //Golfinho B
+                pivotGolfinhoB.rotation.x -= 1.0 / 60.0;
+                golfinhoB.rotation.x = Math.sin( time );
+
+                //geometryEsfera.emissive.b = analyserEsfera.getData()[8] / 256;
+                
+                water.render();
+                renderer.render( scene, camera );
+
+            }
+
+            function animate() {
+
+                shaderTime += 0.1;
+                badTVPass.uniforms[ 'time' ].value =  shaderTime;
+                filmPass.uniforms[ 'time' ].value =  shaderTime;
+                staticPass.uniforms[ 'time' ].value =  shaderTime;
+
+               
+
+                requestAnimationFrame( animate );
+                render();
+                composer.render( 0.1);
+                //stats.update();
+            }
+
+            init();
+            animate();
+        </script>
+
+    </body>
+</html>
