@@ -27,6 +27,7 @@ GameCtrl.Boot.prototype = {
         this.load.image('preloaderBackground', 'assets/images/progress_bar_background.png');
         this.load.image('preloaderBar', 'assets/images/progress_bar.png');
 
+        //this.load.spritesheet('clown', 'assets/images/CircusCharlieSheet1.gif',16,24,10);   Original     
         this.load.spritesheet('clown', 'assets/images/CircusCharlieSheet1.gif',16,24,10);
         
 

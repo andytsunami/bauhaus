@@ -243,7 +243,31 @@ var botData={'frames': [
     'trimmed': true,
     'spriteSourceSize': {'x':0,'y':0,'w':17,'h':16},
     'sourceSize': {'w':17,'h':16}
-    }
+    },
+    {
+        'filename': 'urso0000',
+        'frame': {'x':0,'y':0,'w':28,'h':24},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0001',
+        'frame': {'x':28, 'y':0,'w':28,'h':24},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+        },
+        {
+            'filename': 'urso0002',
+            'frame': {'x':0,'y':0,'w':28,'h':24},
+            'rotated': false,
+            'trimmed': true,
+            'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+            'sourceSize': {'w':16,'h':24}
+        }
     ]};
 
 

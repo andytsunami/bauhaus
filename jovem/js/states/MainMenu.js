@@ -40,7 +40,8 @@ GameCtrl.MainMenu.prototype = {
 
 
                 this.game.physics.startSystem(Phaser.Physics.ARCADE);
-                     
+                
+                //Posicao na tela
                 var clown= this.game.add.sprite(100, 600, 'clown');
                 clown.scale.x =4;
                 clown.scale.y =4;
@@ -50,7 +51,8 @@ GameCtrl.MainMenu.prototype = {
 
                 
 
-                clown.animations.add('run', Phaser.Animation.generateFrameNames('clown', 0, 2, '', 4), 10 /*fps */, true);
+               // clown.animations.add('run', Phaser.Animation.generateFrameNames('clown', 0, 2, '', 4), 10 /*fps */, true); Original
+                clown.animations.add('run', Phaser.Animation.generateFrameNames('urso', 0, 2, '', 4), 10 /*fps */, true);
                 clown.animations.play('run', 8, true);
     //clown.animations.stope()
 
