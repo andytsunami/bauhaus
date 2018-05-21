@@ -11,16 +11,17 @@ GameCtrl.MainMenu.prototype = {
 
 
         preload: function(){
-            
+                
         },
 
         create: function () {
-                this.backgroundColor = '#000';
+                //this.backgroundColor = '#ccc';
+                this.game.stage.backgroundColor = '#ccc';
                 
         
-                var starsmenu=this.game.add.sprite(130, 100, 'starsmenu');
+                /*var starsmenu=this.game.add.sprite(130, 100, 'starsmenu');
                 starsmenu.scale.x =5;
-                starsmenu.scale.y =5;
+                starsmenu.scale.y =5;*/
 
                 var logo=this.game.add.sprite(250, 170, 'logo');
                 logo.scale.x=0.8;
@@ -41,18 +42,19 @@ GameCtrl.MainMenu.prototype = {
 
                 this.game.physics.startSystem(Phaser.Physics.ARCADE);
                 
+                
                 //Posicao na tela
-                var clown= this.game.add.sprite(100, 600, 'clown');
-                clown.scale.x =4;
-                clown.scale.y =4;
+                var clown= this.game.add.sprite(100, 650, 'clown');
+                clown.scale.x =0.4;
+                clown.scale.y =0.4;
                 this.game.physics.enable(clown, Phaser.Physics.ARCADE);
 
-                clown.body.velocity.x =100;
+                clown.body.velocity.x =60;
 
                 
 
                // clown.animations.add('run', Phaser.Animation.generateFrameNames('clown', 0, 2, '', 4), 10 /*fps */, true); Original
-                clown.animations.add('run', Phaser.Animation.generateFrameNames('urso', 0, 2, '', 4), 10 /*fps */, true);
+                clown.animations.add('run', Phaser.Animation.generateFrameNames('urso', 0, 15, '', 4), 10 /*fps */, true);
                 clown.animations.play('run', 8, true);
     //clown.animations.stope()
 

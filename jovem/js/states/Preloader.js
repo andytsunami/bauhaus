@@ -246,28 +246,132 @@ var botData={'frames': [
     },
     {
         'filename': 'urso0000',
-        'frame': {'x':0,'y':0,'w':28,'h':24},
+        'frame': {'x':8,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':1,'y':1,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0001',
+        'frame': {'x':243, 'y':1760,'w':150,'h':240},
         'rotated': false,
         'trimmed': true,
         'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
         'sourceSize': {'w':16,'h':24}
     },
     {
-        'filename': 'urso0001',
-        'frame': {'x':28, 'y':0,'w':28,'h':24},
+        'filename': 'urso0002',
+        'frame': {'x':496,'y':1760,'w':150,'h':240},
         'rotated': false,
         'trimmed': true,
         'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
         'sourceSize': {'w':16,'h':24}
-        },
-        {
-            'filename': 'urso0002',
-            'frame': {'x':0,'y':0,'w':28,'h':24},
-            'rotated': false,
-            'trimmed': true,
-            'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
-            'sourceSize': {'w':16,'h':24}
-        }
+    },
+    {
+        'filename': 'urso0003',
+        'frame': {'x':754,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0004',
+        'frame': {'x':1008,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0005',
+        'frame': {'x':1277,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0006',
+        'frame': {'x':1547,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0007',
+        'frame': {'x':1791,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0008',
+        'frame': {'x':8,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':1,'y':1,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0009',
+        'frame': {'x':243, 'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0010',
+        'frame': {'x':496,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0011',
+        'frame': {'x':754,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0012',
+        'frame': {'x':1008,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0013',
+        'frame': {'x':1277,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0014',
+        'frame': {'x':1547,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'urso0015',
+        'frame': {'x':1791,'y':1760,'w':150,'h':240},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    }
     ]};
 
 

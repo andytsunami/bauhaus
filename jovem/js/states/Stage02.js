@@ -57,19 +57,23 @@ GameCtrl.Stage02.prototype = {
      * Create player group (the clown and the lion)
      */
     _createPlayer:function(){
-        this.player=this.add.sprite(85, 348, 'clown','walkBalance0');
+        //this.player=this.add.sprite(85, 348, 'clown','walkBalance0'); Original
+        this.player=this.add.sprite(85, 1, 'clown','urso0000');
         this.physics.enable(this.player, Phaser.Physics.ARCADE);
         
-        this.player.scale.x =3;
-        this.player.scale.y =3;
+        //this.player.scale.x =3;
+        //this.player.scale.y =3;
+        this.player.scale.x =0.4;
+        this.player.scale.y =0.4;
         
         this.physics.enable(this.player, Phaser.Physics.ARCADE,true);
         
-                
-        this.player.body.setSize(35, 69, 0, 0);
+        //this.player.body.setSize(35, 69, 10, 10);  original      Posicionamento na tela
+        this.player.body.setSize(35, 100, 10, 10);
         
 
-        this.player.animations.add('walkBalance', Phaser.Animation.generateFrameNames('walkBalance', 0, 2, '', 0), 3 /*fps */, true);
+        //this.player.animations.add('walkBalance', Phaser.Animation.generateFrameNames('walkBalance', 0, 2, '', 0), 3 /*fps */, true);
+        this.player.animations.add('walkBalance', Phaser.Animation.generateFrameNames('urso', 0, 15, '', 4), 10 /*fps */, true);
 
         this.player.body.collideWorldBounds=true;
         
@@ -243,7 +247,8 @@ GameCtrl.Stage02.prototype = {
         var isJumping=!this.player.body.touching.down;
         this.game.camera.x=this.player.x-120;
         if(isJumping){
-            this.player.frameName='jumpBalance';
+            //this.player.frameName='jumpBalance';
+            this.player.frameName='urso0001'; // PULO
         }
 
         if (this.cursors.up.isDown&& !isJumping){
@@ -270,7 +275,8 @@ GameCtrl.Stage02.prototype = {
             this.player.body.velocity.x=0;
                 
             this.player.animations.stop();
-            this.player.frameName='walkBalance2';
+            //this.player.frameName='walkBalance2';
+            this.player.frameName='urso0001';
             //this.player.animations.play('walkBalance',8,true);
         }
 

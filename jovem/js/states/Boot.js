@@ -22,8 +22,8 @@ GameCtrl.Boot.prototype = {
     preload: function () {
 
         //  Here we load the assets required for our preloader (in this case a background and a loading bar)
-        this.load.image('logo', 'assets/images/logo.png');
-        this.load.image('starsmenu', 'assets/images/stars.png');
+        this.load.image('logo', 'assets/images/logoJovem.png');
+        //this.load.image('starsmenu', 'assets/images/stars.png');
         this.load.image('preloaderBackground', 'assets/images/progress_bar_background.png');
         this.load.image('preloaderBar', 'assets/images/progress_bar.png');
 
