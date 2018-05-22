@@ -37,8 +37,7 @@ GameCtrl.MainMenu.prototype = {
                   align : 'center'
                 };
                 //var textobj = 
-                this.startText=this.game.add.text(this.game.width / 2 - 180, this.game.height / 2 + 120, 'ENTER para começar\n Setas para jogar', textstyle);
-
+                this.startText=this.game.add.text(this.game.width / 2 - 180, this.game.height / 2 + 120, frase, textstyle);
 
                 this.game.physics.startSystem(Phaser.Physics.ARCADE);
                 

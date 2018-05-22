@@ -162,14 +162,14 @@ GameCtrl.Stage02.prototype = {
         this._createObstacles();
         
 
-        this.bruno=this.game.add.sprite(600, 200, 'clown','bruno'); //Afastar o Bruno de Luca
+        this.bruno=this.game.add.sprite(1024*8-300, 200, 'clown','bruno'); //Afastar o Bruno de Luca
         this.bruno.scale.x=0.4;
         this.bruno.scale.y=0.4;
         
 
         this.floor = this.game.add.sprite(0, 417);
        // this.endStage=this.game.add.sprite(1024*8-300, 620, 'clown','endLevel1'); original
-        this.endStage=this.game.add.sprite(600, 356, 'clown','endLevel1');
+        this.endStage=this.game.add.sprite(1024*8-300, 356, 'clown','endLevel1');
         this.physics.enable(this.floor, Phaser.Physics.ARCADE);
         this.physics.enable(this.endStage, Phaser.Physics.ARCADE);
         this.endStage.scale.x=3;
@@ -201,7 +201,8 @@ GameCtrl.Stage02.prototype = {
          
         setTimeout(function(){
             that.player.animations.stop();
-            that.player.frameName='clownburn0000';
+            //that.player.frameName='clownburn0000'; //Original
+            that.player.frameName='urso0002';
 
             that.player.body.gravity.y=0;
             that.player.body.speed=0;
@@ -323,7 +324,11 @@ GameCtrl.Stage02.prototype = {
     },
     triggerWin: function(){
         this.music.stop();
-        GameCtrl.data={textToRender:'STAGE 02', nextState:'Stage01' };
+        this.music = this.add.audio('show');
+        this.music.play();
+        //GameCtrl.data={textToRender:'STAGE 02', nextState:'Stage01' };
+        frase = "Em breve novas fases";
+        GameCtrl.data={textToRender:'STAGE 02', nextState:'MainMenu' };
         setTimeout(function(_this){
             _this.game.state.start('Prestage');
         },10, this);

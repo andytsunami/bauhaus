@@ -44,7 +44,8 @@ GameCtrl.Preloader.prototype = {
 
 		this.load.audio('stage1', ['assets/audio/stage1-4.mp3']);
         this.load.audio('stage2', ['assets/audio/level2-3.mp3']);
-		this.load.audio('failure', ['assets/audio/failure.mp3']);
+        this.load.audio('failure', ['assets/audio/failure.mp3']);
+        this.load.audio('show', ['assets/audio/show.mp3']);
 
 		//  This is how you load fonts
 		//this.load.bitmapFont('caslon', 'assets/fonts/caslon.png', 'assets/fonts/caslon.xml');
@@ -404,7 +405,8 @@ var botData={'frames': [
         'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
         'sourceSize': {'w':16,'h':24}
     }
-    ]};
+    ]
+};
 
 
     this.game.load.atlas('clown', 'assets/images/CircusCharlieSheet1.gif', null, botData);
