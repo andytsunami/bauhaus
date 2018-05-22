@@ -95,15 +95,18 @@ GameCtrl.Stage02.prototype = {
             }
             
 
-            var monkey=this.monkeys.create(x, 372, 'clown','monkey0');
-            monkey.scale.x=3;
-            monkey.scale.y=3;
+            //var monkey=this.monkeys.create(x, 372, 'clown','monkey0'); Original
+            var monkey=this.monkeys.create(x, 372, 'clown','poop0');
+            monkey.scale.x=0.1;
+            monkey.scale.y=0.1;
             monkey.body.velocity.x=-90;
-            monkey.animations.add('monkey', Phaser.Animation.generateFrameNames('monkey', 0, 2, '', 0), 3 /*fps */, true);
-            monkey.animations.play('monkey',6);
+            //monkey.animations.add('monkey', Phaser.Animation.generateFrameNames('monkey', 0, 2, '', 0), 3 /*fps */, true); //original            
+            monkey.animations.add('monkey', Phaser.Animation.generateFrameNames('poop', 0, 2, '', 0), 3 /*fps */, true); //original            
+            monkey.animations.play('monkey',6); //Original
             monkey.checkWorldBounds = true;
             monkey.events.onOutOfBounds.add(this._monkyOut, this);
-            monkey.body.setSize(44, 49, 0, 0);
+            //monkey.body.setSize(44, 49, 0, 0); //Original
+            monkey.body.setSize(44, 49, 10, 15);
             monkey.body.gravity.y=400;
             return monkey;
         };
@@ -159,6 +162,11 @@ GameCtrl.Stage02.prototype = {
         this._createObstacles();
         
 
+        this.bruno=this.game.add.sprite(600, 200, 'clown','bruno'); //Afastar o Bruno de Luca
+        this.bruno.scale.x=0.4;
+        this.bruno.scale.y=0.4;
+        
+
         this.floor = this.game.add.sprite(0, 417);
        // this.endStage=this.game.add.sprite(1024*8-300, 620, 'clown','endLevel1'); original
         this.endStage=this.game.add.sprite(600, 356, 'clown','endLevel1');
@@ -167,6 +175,7 @@ GameCtrl.Stage02.prototype = {
         this.endStage.scale.x=3;
         this.endStage.scale.y=3;
         this.endStage.body.immovable = true;
+
 
         //this.endStage.body.checkCollision.left = false;
         //this.endStage.body.checkCollision.right = false;

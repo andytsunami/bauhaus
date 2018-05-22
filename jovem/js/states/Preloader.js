@@ -371,6 +371,38 @@ var botData={'frames': [
         'trimmed': true,
         'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
         'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'bruno',
+        'frame': {'x':1764,'y':0,'w':236,'h':573},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'poop0',
+        'frame': {'x':1628,'y':585,'w':363,'h':363},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'poop1',
+        'frame': {'x':1628,'y':585,'w':363,'h':363},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
+    },
+    {
+        'filename': 'poop2',
+        'frame': {'x':1628,'y':585,'w':363,'h':363},
+        'rotated': false,
+        'trimmed': true,
+        'spriteSourceSize': {'x':0,'y':0,'w':16,'h':24},
+        'sourceSize': {'w':16,'h':24}
     }
     ]};
 
