@@ -16,7 +16,7 @@ GameCtrl.MainMenu.prototype = {
 
         create: function () {
                 //this.backgroundColor = '#ccc';
-                this.game.stage.backgroundColor = '#ccc';
+                this.game.stage.backgroundColor = '#606060';
                 
         
                 /*var starsmenu=this.game.add.sprite(130, 100, 'starsmenu');
@@ -32,12 +32,12 @@ GameCtrl.MainMenu.prototype = {
 
 
                 var textstyle = {
-                  font : '50px "arcadeclasic"',
-                  fill : '#fff',
+                  font : '50px "Roboto"',
+                  fill : '#9d1d2c',
                   align : 'center'
                 };
                 //var textobj = 
-                this.startText=this.game.add.text(this.game.width / 2 - 180, this.game.height / 2 + 120, frase, textstyle);
+                this.startText=this.game.add.text(this.game.width / 2 - 180, this.game.height / 2 + 200, frase, textstyle);
 
                 this.game.physics.startSystem(Phaser.Physics.ARCADE);
                 
